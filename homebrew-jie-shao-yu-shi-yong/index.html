@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>bany</title>
+<title>Homebrew介绍与使用 | bany</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://ofo-ofo.github.io">bany</a></h3>
@@ -76,121 +77,110 @@
   </div>
 </nav>
 
-
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
+          <article class="article">
+            <h1>Homebrew介绍与使用</h1>
+            <p class="article-meta">
+              2020-11-11
+              
+                <a href="https://ofo-ofo.github.io/tag/KYvhbNE5f/" class="badge secondary">
+                  mac
+                </a>
+              
+                <a href="https://ofo-ofo.github.io/tag/OlN6aUdO8i/" class="badge success">
+                  homebrew
+                </a>
+              
+            </p>
+            
+              <img src="https://ofo-ofo.github.io/post-images/homebrew-jie-shao-yu-shi-yong.jpg" alt="Homebrew介绍与使用">
+            
+            <div class="post-content">
+              <p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p>
+<p>引用<a href="https://brew.sh/index_zh-cn">官方</a>的一句话：又提示缺少套件啦？别担心，Homebrew 随时守候。Homebrew —— OS X 不可或缺的套件管理器</p>
+<h2 id="1-要求">1. 要求</h2>
+<ul>
+<li>Intel CPU</li>
+<li>OS X 10.9 or higher</li>
+<li>Xcode命令行工具</li>
+<li>支持shell (sh或者bash)</li>
+</ul>
+<p><a name="c3a27555"></a></p>
+<h2 id="2-安装和卸载">2. 安装和卸载</h2>
+<ul>
+<li>安装</li>
+</ul>
+<pre><code class="language-shell">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+<ul>
+<li>卸载</li>
+</ul>
+<pre><code class="language-shell">cd `brew --prefix`
+rm -rf Cellar
+brew prune
+rm `git ls-files`
+rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
+rm -rf .git
+rm -rf ~/Library/Caches/Homebrew
+</code></pre>
+<h2 id="3常用命令">3.常用命令</h2>
+<ul>
+<li>安装任意包</li>
+</ul>
+<pre><code class="language-shell">brew install &lt;packageName&gt;
+</code></pre>
+<ul>
+<li>卸载任意包</li>
+</ul>
+<pre><code class="language-shell">brew uninstall &lt;packageName&gt;
+</code></pre>
+<ul>
+<li>查询可用包</li>
+</ul>
+<pre><code class="language-shell">brew search &lt;packageName&gt;
+</code></pre>
+<ul>
+<li>查看已安装包列表</li>
+</ul>
+<pre><code class="language-shell">brew list
+</code></pre>
+<ul>
+<li>查看任意包信息</li>
+</ul>
+<pre><code class="language-shell">brew info &lt;packageName&gt;
+</code></pre>
+<ul>
+<li>更新Homebrew</li>
+</ul>
+<pre><code class="language-shell">brew update
+</code></pre>
+<ul>
+<li>查看Homebrew版本</li>
+</ul>
+<pre><code class="language-shell">brew -v
+</code></pre>
+<ul>
+<li>Homebrew帮助信息</li>
+</ul>
+<pre><code class="language-shell">brew -h
+</code></pre>
+<p><br />在Mac OS X 10.11系统以后，/usr/local/等系统目录下的文件读写是需要系统root权限的，以往的Homebrew安装如果没有指定安装路径，会默认安装在这些需要系统root用户读写权限的目录下，导致有些指令需要添加sudo前缀来执行，比如升级Homebrew需要：<br /><br>
+<br />如果你不想每次都使用sudo指令，你有两种方法可以选择:<br /></p>
+<p>对/usr/local 目录下的文件读写进行root用户授权</p>
+<pre><code class="language-shell">sudo chown -R $USER /usr/local
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
           
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ofo-ofo.github.io/sun-zi-bing-fa/">孙子兵法</a>
-    </h2>
-    <p class="article-meta">
-      2021-04-22
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ofo-ofo.github.io/sun-zi-bing-fa/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ofo-ofo.github.io/mysql-explain-jie-shao/">MySQL Explain 介绍</a>
-    </h2>
-    <p class="article-meta">
-      2020-12-08
-      
-        <a href="https://ofo-ofo.github.io/tag/IL3tpYoNW/" class="badge secondary">
-          mysql
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ofo-ofo.github.io/mysql-explain-jie-shao/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/">单例模式的实现及破坏方式</a>
-    </h2>
-    <p class="article-meta">
-      2020-11-25
-      
-        <a href="https://ofo-ofo.github.io/tag/lSB73b-6T/" class="badge success">
-          单例模式
-        </a>
-      
-        <a href="https://ofo-ofo.github.io/tag/7CuqCVmOzL/" class="badge ">
-          破环单例模式
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/">Homebrew介绍与使用</a>
-    </h2>
-    <p class="article-meta">
-      2020-11-11
-      
-        <a href="https://ofo-ofo.github.io/tag/KYvhbNE5f/" class="badge ">
-          mac
-        </a>
-      
-        <a href="https://ofo-ofo.github.io/tag/OlN6aUdO8i/" class="badge secondary">
-          homebrew
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
         </div>
         
-        <div class="row flex-edges">
-  
-  
-</div>
-
       </div>
-      
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://ofo-ofo.github.io/images/avatar.png?v=1619065673072" class="no-responsive avatar">
@@ -265,19 +255,19 @@
           mysql
         </a>
       
-        <a href="https://ofo-ofo.github.io/tag/lSB73b-6T/" class="badge secondary">
+        <a href="https://ofo-ofo.github.io/tag/lSB73b-6T/" class="badge warning">
           单例模式
         </a>
       
-        <a href="https://ofo-ofo.github.io/tag/7CuqCVmOzL/" class="badge success">
+        <a href="https://ofo-ofo.github.io/tag/7CuqCVmOzL/" class="badge warning">
           破环单例模式
         </a>
       
-        <a href="https://ofo-ofo.github.io/tag/KYvhbNE5f/" class="badge warning">
+        <a href="https://ofo-ofo.github.io/tag/KYvhbNE5f/" class="badge secondary">
           mac
         </a>
       
-        <a href="https://ofo-ofo.github.io/tag/OlN6aUdO8i/" class="badge secondary">
+        <a href="https://ofo-ofo.github.io/tag/OlN6aUdO8i/" class="badge success">
           homebrew
         </a>
       
@@ -288,7 +278,9 @@
   </div>
 </div>
 
+
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
