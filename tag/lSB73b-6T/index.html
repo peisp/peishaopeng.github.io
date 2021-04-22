@@ -1,233 +1,1426 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" >
 
-<title>单例模式 | bany</title>
+<head>
+  <meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
+<meta name="theme-color" content="#000">
+<title>bany</title>
+<link rel="shortcut icon" href="/favicon.ico?v=1619069193552">
+<link rel="stylesheet" href="/styles/main.css">
+<link rel="stylesheet" href="/media/css/gemini.css">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://ofo-ofo.github.io/favicon.ico?v=1619065673072">
+<link rel="stylesheet" href="/media/fonts/font-awesome.css">
+<link
+  href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Rosario:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext"
+  rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://ofo-ofo.github.io/styles/main.css">
+<link href="/media/hljs/styles/androidstudio.css"
+  rel="stylesheet">
+
+<script src="/media/hljs/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.ui.min.js"></script>
+
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+</head>
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
-  </head>
-  <body>
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://ofo-ofo.github.io">bany</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <h2 class="current-tag">标签: 单例模式</h2>
+<body>
+  <div class="head-top-line"></div>
+  <div class="header-box">
+    
+<div class="gemini">
+  <header class="header  ">
+    <div class="blog-header box-shadow-wrapper bg-color " id="header">
+      <div class="nav-toggle" id="nav_toggle">
+        <div class="toggle-box">
+          <div class="line line-top"></div>
+          <div class="line line-center"></div>
+          <div class="line line-bottom"></div>
+        </div>
+      </div>
+      <div class="site-meta">       
+        <div class="site-title">
           
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/">单例模式的实现及破坏方式</a>
-    </h2>
-    <p class="article-meta">
-      2020-11-25
-      
-        <a href="https://ofo-ofo.github.io/tag/lSB73b-6T/" class="badge ">
-          单例模式
-        </a>
-      
-        <a href="https://ofo-ofo.github.io/tag/7CuqCVmOzL/" class="badge ">
-          破环单例模式
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/" class="readmore-link">
-        <button>
-          Read More
-        </button>
+            <a href="/" class="brand">
+              <span>bany</span>
+            </a>  
+          
+        </div>
+        
+          <p class="subtitle">精于心，简于形</p>
+        
+      </div>
+      <nav class="site-nav" id="site_nav">
+        <ul id="nav_ul">
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/" target="_self">
+                  <i class="fa fa-home"></i> 首页
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/archives/" target="_self">
+                  <i class="fa fa-archive"></i> 归档
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/tags/" target="_self">
+                  <i class="fa fa-tags"></i> 标签
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/post/about/" target="_self">
+                  <i class="fa fa-user"></i> 关于
+                </a>
+              
+            </li>
+          
+          
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> 友情链接
+                  
+                </a>
+              </li>
+            
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<script type="text/javascript"> 
+ 
+  let showNav = true;
+
+  let navToggle = document.querySelector('#nav_toggle'),
+  siteNav = document.querySelector('#site_nav');
+  
+  function navClick() {
+    let sideBar = document.querySelector('.sidebar');
+    let navUl = document.querySelector('#nav_ul');
+    navToggle.classList.toggle('nav-toggle-active');
+    siteNav.classList.toggle('nav-menu-active');
+    if (siteNav.classList.contains('nav-menu-active')) {
+      siteNav.style = "height: " + (navUl.children.length * 42) +"px !important";
+    } else {
+      siteNav.style = "";
+    }
+  }
+
+  navToggle.addEventListener('click',navClick);  
+</script>
+  </div>
+  <div class="main-continer">
+    
+    <div
+      class="section-layout  gemini">
+      <div class="section-layout-wrapper">
+        <div id="sidebarMeta" class="sidebar">
+    
+<div class="sidebar-wrapper box-shadow-wrapper bg-color">
+  <div class="sidebar-item">
+    <img class="site-author-image right-motion" src="/images/avatar.png"/>
+    <p class="site-author-name">适用 Gemini,Pisces 布局,版权说明需配置</p>
+    
+  </div>
+  <div class="sidebar-item side-item-stat right-motion">
+    <div class="sidebar-item-box">
+      <a href="/archives/">
+        
+        <span class="site-item-stat-count">4</span>
+        <span class="site-item-stat-name">文章</span>
       </a>
     </div>
-  </article>
-
-
-        </div>
-        <div class="row flex-edges">
+    <div class="sidebar-item-box">
+      <a href="">
+        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-name">分类</span>
+      </a>
+    </div>
+    <div class="sidebar-item-box">
+      <a href="/tags/">
+        <span class="site-item-stat-count">5</span>
+        <span class="site-item-stat-name">标签</span>
+      </a>
+    </div>
+  </div>
   
-  
-</div>
-
+    
+      <div class="sidebar-item" style="border-top: 1px dotted #ccc; margin-top: 10px;">
       </div>
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://ofo-ofo.github.io/images/avatar.png?v=1619065673072" class="no-responsive avatar">
-    <div class="text-muted">温故而知新</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://ofo-ofo.github.io/sun-zi-bing-fa/">孙子兵法</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://ofo-ofo.github.io/mysql-explain-jie-shao/">MySQL Explain 介绍</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/">单例模式的实现及破坏方式</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/">Homebrew介绍与使用</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://ofo-ofo.github.io/about/">关于</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://ofo-ofo.github.io/hello-gridea/">Hello Gridea</a>
-            </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://ofo-ofo.github.io/tag/IL3tpYoNW/" class="badge secondary">
-          mysql
-        </a>
-      
-        <a href="https://ofo-ofo.github.io/tag/lSB73b-6T/" class="badge secondary">
+    
+  
+  
+
+
+</div>
+</div>
+<script>
+  let sidebarMeta = document.querySelector('#sidebarMeta');
+  let scheme = 'gemini';
+  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
+  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
+    document.addEventListener('scroll', function(e) {
+      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
+        sidebarWrapper.classList.add('home-sidebar-fixed')
+      } else {
+        sidebarWrapper.classList.remove('home-sidebar-fixed')
+      }
+    });
+  }
+  </script>
+        <div class="section-box tag-line box-shadow-wrapper">
+          <section class="section tags-section posts-expand bg-color">
+            <div class="padding-wrapper">
+  <div class="tag-timeline-box">
+    <div class="tag-timeline-wrapper">
+      <div class="tag-timeline-title">
+        <h2>
           单例模式
-        </a>
+          <small>标签</small>
+        </h2>
+      </div>
       
-        <a href="https://ofo-ofo.github.io/tag/7CuqCVmOzL/" class="badge warning">
-          破环单例模式
-        </a>
       
-        <a href="https://ofo-ofo.github.io/tag/KYvhbNE5f/" class="badge secondary">
-          mac
-        </a>
       
-        <a href="https://ofo-ofo.github.io/tag/OlN6aUdO8i/" class="badge ">
-          homebrew
-        </a>
+      
+      
+      
+      
+      
+      
+      <a href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/">
+        <div class="motion-warpper">
+          <div class="tag-post-node">
+            <h1>
+              11-25
+              <small>单例模式的实现及破坏方式</small>
+            </h1>
+          </div>
+        </div>
+      </a>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
     </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://ofo-ofo.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
-
+          </section>
+        </div>
+      </div>
     </div>
+    <div class="footer-box">
+  <footer class="footer">
+    <div class="copyright">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | © 2019-2020 Theme By <a href="https://github.com/hsxyhao/gridea-theme-next" target="_blank">HsxyHao</a>
+    </div>
+    <div class="poweredby">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </footer>
+  
+  
+  <div class="gemini back-to-top" id="back_to_top">
+    <i class="fa fa-arrow-up"></i>
+    
+    <span class="scrollpercent">
+      <span id="back_to_top_text">0</span>%
+    </span>
+    
+  </div>
+  
+    <div class="bg-img">
+      <img src="/media/images/custom-bgImg.png" />
+    </div>
+  
+  
+  
+</div>
+<script>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  let sideBarOpen = 'sidebar-open';
+  let body = document.body;
+  let back2Top = document.querySelector('#back_to_top'),
+  back2TopText = document.querySelector('#back_to_top_text'),
+  drawerBox = document.querySelector('#drawer_box'),
+  rightSideBar = document.querySelector('.sidebar'),
+  viewport = document.querySelector('body');
 
-<script type="application/javascript">
+  function scrollAnimation(currentY, targetY) {
+   
+    let needScrollTop = targetY - currentY
+    let _currentY = currentY
+    setTimeout(() => {
+      const dist = Math.ceil(needScrollTop / 10)
+      _currentY += dist
+      window.scrollTo(_currentY, currentY)
+      if (needScrollTop > 10 || needScrollTop < -10) {
+        scrollAnimation(_currentY, targetY)
+      } else {
+        window.scrollTo(_currentY, targetY)
+      }
+    }, 1)
+  }
 
-AOS.init();
+  back2Top.addEventListener("click", function(e) {
+    scrollAnimation(document.scrollingElement.scrollTop, 0);
+    e.stopPropagation();
+    return false;
+  });
+  
+  window.addEventListener('scroll', function(e) {
+    let percent = document.scrollingElement.scrollTop / (document.scrollingElement.scrollHeight - document.scrollingElement.clientHeight) * 100;
+    if (percent > 1 && !back2Top.classList.contains('back-top-active')) {
+      back2Top.classList.add('back-top-active');
+    }
+    if (percent == 0) {
+      back2Top.classList.remove('back-top-active');
+    }
+    if (back2TopText) {
+      back2TopText.textContent = Math.floor(percent);
+    }
+  });
 
-hljs.initHighlightingOnLoad()
+  
+  let hasCacu = false;
+  window.onresize = function() {
+    if (window.width > 991) {
+      calcuHeight();
+    } else {
+      hasCacu = false;
+    }
+  }
+
+  function calcuHeight() {
+    // 动态调整站点概览高度
+    if (!hasCacu && back2Top.classList.contains('pisces') || back2Top.classList.contains('gemini')) {
+      let sideBar = document.querySelector('.sidebar');
+      let navUl = document.querySelector('#site_nav');
+      sideBar.style = 'margin-top:' + (navUl.offsetHeight + navUl.offsetTop + 15) + 'px;';
+      hasCacu = true;
+    }
+  }
+  calcuHeight();
+  
+  let open = false, MOTION_TIME = 300, RIGHT_MOVE_DIS = '320px';
+
+  if (drawerBox) {
+    let rightMotions = document.querySelectorAll('.right-motion');
+    let right = drawerBox.classList.contains('right');
+
+    let transitionDir = right ? "transition.slideRightIn" : "transition.slideLeftIn";
+
+    let openProp, closeProp;
+    if (right) {
+      openProp = {
+        paddingRight: RIGHT_MOVE_DIS 
+      };
+      closeProp = {
+        paddingRight: '0px'
+      };
+    } else {
+      openProp = {
+        paddingLeft: RIGHT_MOVE_DIS 
+      };
+      closeProp = {
+        paddingLeft: '0px'
+      };
+    }
+
+    drawerBox.onclick = function() {
+      open = !open;
+      window.Velocity(rightSideBar, 'stop');
+      window.Velocity(viewport, 'stop');
+      window.Velocity(rightMotions, 'stop');
+      if (open) {
+        window.Velocity(rightSideBar, {
+          width: RIGHT_MOVE_DIS
+        }, {
+          duration: MOTION_TIME,
+          begin: function() {
+            window.Velocity(rightMotions, transitionDir,{ });
+          }
+        })
+        window.Velocity(viewport, openProp,{
+          duration: MOTION_TIME
+        });
+      } else {
+        window.Velocity(rightSideBar, {
+          width: '0px'
+        }, {
+          duration: MOTION_TIME,
+          begin: function() {
+            window.Velocity(rightMotions, {
+              opacity: 0
+            });
+          }
+        })
+        window.Velocity(viewport, closeProp ,{
+          duration: MOTION_TIME
+        });
+      }
+      for (let i = 0; i < drawerBox.children.length; i++) {
+        drawerBox.children[i].classList.toggle('muse-line');
+      }
+      drawerBox.classList.toggle(sideBarOpen);
+    }
+  }
+
+  // 链接跳转
+  let newWindow = 'true'
+  if (newWindow === 'true') {
+    let links = document.querySelectorAll('.post-body a')
+    links.forEach(item => {
+      if (!item.classList.contains('btn')) {
+        item.setAttribute("target","_blank");
+      }
+    })
+  }
+  // 代码高亮
+  hljs.initHighlightingOnLoad();
 
 </script>
+  </div>
+</body>
+<input hidden id="copy" />
+<script>
+  //拿来主义(真香)^_^，Clipboard 实现摘自掘金 https://juejin.im/post/5aefeb6e6fb9a07aa43c20af
+  window.Clipboard = (function (window, document, navigator) {
+    var textArea,
+      copy;
+
+    // 判断是不是ios端
+    function isOS() {
+      return navigator.userAgent.match(/ipad|iphone/i);
+    }
+    //创建文本元素
+    function createTextArea(text) {
+      textArea = document.createElement('textArea');
+      textArea.value = text;
+      textArea.style.width = 0;
+      textArea.style.height = 0;
+      textArea.clientHeight = 0;
+      textArea.clientWidth = 0;
+      document.body.appendChild(textArea);
+    }
+    //选择内容
+    function selectText() {
+      var range,
+        selection;
+
+      if (isOS()) {
+        range = document.createRange();
+        range.selectNodeContents(textArea);
+        selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textArea.setSelectionRange(0, 999999);
+      } else {
+        textArea.select();
+      }
+    }
+
+    //复制到剪贴板
+    function copyToClipboard() {
+      try {
+        document.execCommand("Copy")
+      } catch (err) {
+        alert("复制错误！请手动复制！")
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copy = function (text) {
+      createTextArea(text);
+      selectText();
+      copyToClipboard();
+    };
+
+    return {
+      copy: copy
+    };
+  })(window, document, navigator);
+
+  function copyCode(e) {
+    if (e.srcElement.tagName === 'SPAN' && e.srcElement.classList.contains('copy-code')) {
+      let code = e.currentTarget.querySelector('code');
+      var text = code.innerText;
+      if (e.srcElement.textContent === '复制成功') {
+        console.log('复制操作频率过高');
+        return;
+      }
+      e.srcElement.textContent = '复制成功';
+      (function (elem) {
+        setTimeout(() => {
+          if (elem.textContent === '复制成功') {
+            elem.textContent = '复制代码'
+          }
+        }, 1000);
+      })(e.srcElement)
+      Clipboard.copy(text);
+    }
+  }
+
+  let pres = document.querySelectorAll('pre');
+  pres.forEach(pre => {
+    let code = pre.querySelector('code');
+    let copyElem = document.createElement('span');
+    copyElem.classList.add('copy-code');
+    copyElem.textContent = '复制代码';
+    pre.appendChild(copyElem);
+    pre.onclick = copyCode
+  })
+</script>
+<script src="/media/js/motion.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script>
+  var scroll = new SmoothScroll('a[href*="#"]', {
+    speed: 500
+  });
+</script>
+
+<!-- <div class="search-mask" id="search_mask">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input type="text" placeholder="搜索">
+      </div>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="result">
+      
+      <div class="item">
+        <a class="result-title" href="https://ofo-ofo.github.io/sun-zi-bing-fa/"" data-c="
+          &lt;h1 id=&#34;第一-始计篇&#34;&gt;第一 始计篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文始计第一&#34;&gt;原文：始计第一&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+兵者，国之大事，死生之地，存亡之道，不可不察也。&lt;br&gt;
+故经之以五事，校之以计，而索其情：一曰道，二曰天，三曰地，四曰将，五曰法。道者，令民于上同意，可与之死，可与之生，而不危也；天者，阴阳、寒暑、时制也；地者，远近、险易、广狭、死生也；将者，智、信、仁、勇、严也；法者，曲制、官道、主用也。凡此五者，将莫不闻，知之者胜，不知之者不胜。故校之以计，而索其情，曰：主孰有道？将孰有能？天地孰得？法令孰行？兵众孰强？士卒孰练？赏罚孰明？吾以此知胜负矣。将听吾计，用之必胜，留之；将不听吾计，用之必败，去之。&lt;br&gt;
+计利以听，乃为之势，以佐其外。势者，因利而制权也。兵者，诡道也。故能而示之不能，用而示之不用，近而示之远，远而示之近。利而诱之，乱而取之，实而备之，强而避之，怒而挠之，卑而骄之，佚而劳之，亲而离之，攻其无备，出其不意。此兵家之胜，不可先传也。&lt;br&gt;
+夫未战而庙算胜者，得算多也；未战而庙算不胜者，得算少也。多算胜少算，而况于无算乎！吾以此观之，胜负见矣。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;译文-始计第一&#34;&gt;译文 ：始计第一&lt;/h2&gt;
+&lt;p&gt;孙子说：战争是一个国家的头等大事，关系到军民的生死，国家的存亡，是不能不慎重周密地观察、分析、研究。&lt;br&gt;
+因此，必须通过敌我双方五个方面的分析，七种情况的比较，得到详情，来预测战争胜负的可能性。&lt;br&gt;
+一是道，二是天，三是地，四是将，五是法。道，指君主和民众目标相同，意志统一，可以同生共死，而不会惧怕危险。天，指昼夜、阴晴、寒暑、四季更替。地，指地势的高低，路程的远近，地势的险要、平坦与否，战场的广阔、狭窄，是生地还是死地等地理条件。将，指将领足智多谋，赏罚有信，对部下真心关爱，勇敢果断，军纪严明。法，指组织结构，责权划分，人员编制，管理制度，资源保障，物资调配。对这五个方面，将领都不能不做深刻了解。了解就能胜利，否则就不能胜利。所以，要通过对双方各种情况的考察分析，并据此加以比较，从而来预测战争胜负。哪一方的君主是有道明君，能得民心？哪一方的将领更有能力？哪一方占有天时地利？哪一方的法规、法令更能严格执行？哪一方资源更充足，装备更精良，兵员更广大？哪一方的士兵训练更有素，更有战斗力？哪一方的赏罚更公正严明？通过这些比较，我就知道了胜负。将领听从我的计策，任用他必胜，我就留下他；将领不听从我的计策，任用他必败，我就辞退他。&lt;br&gt;
+听从了有利于克敌制胜的计策，还要创造一种势态，作为协助我方军事行动的外部条件。势，就是按照我方建立优势、掌握战争主动权的需要，根据具体情况采取不同的相应措施。用兵作战，就是诡诈。因此，有能力而装做没有能力，实际上要攻打而装做不攻打，欲攻打近处却装做攻打远处，攻打远处却装做攻打近处。对方贪利就用利益诱惑他，对方混乱就趁机攻取他，对方强大就要防备他，对方暴躁易怒就可以撩拨他怒而失去理智，对方自卑而谨慎就使他骄傲自大，对方体力充沛就使其劳累，对方内部亲密团结就挑拨离间，要攻打对方没有防备的地方，在对方没有料到的时机发动进攻。这些都是军事家克敌制胜的诀窍，不可先传泄于人也。在未战之前，经过周密的分析、比较、谋划，如果结论是我方占据的有利条件多，有八、九成的胜利把握；或者如果结论是我方占据的有利条件少，只有六、七成的胜利把握，则只有前一种情况在实战时才可能取胜。如果在战前干脆就不做周密的分析、比较，或分析、比较的结论是我方只有五成以下的胜利把握，那在实战中就不可能获胜。仅根据庙算的结果，不用实战，胜负就显而易见了。&lt;/p&gt;
+&lt;h1 id=&#34;第二-作战篇&#34;&gt;第二 作战篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-作战第二&#34;&gt;原文 ：作战第二&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡用兵之法，驰车千驷，革车千乘，带甲十万，千里馈粮。则内外之费，宾客之用，胶漆之材，车甲之奉，日费千金，然后十万之师举矣。&lt;br&gt;
+其用战也，胜久则钝兵挫锐，攻城则力屈，久暴师则国用不足。夫钝兵挫锐，屈力殚货，则诸侯乘其弊而起，虽有智者不能善其后矣。故兵闻拙速，未睹巧之久也。夫兵久而国利者，未之有也。故不尽知用兵之害者，则不能尽知用兵之利也。&lt;br&gt;
+善用兵者，役不再籍，粮不三载，取用于国，因粮于敌，故军食可足也。国之贫于师者远输，远输则百姓贫；近师者贵卖，贵卖则百姓财竭，财竭则急于丘役。力屈中原、内虚于家，百姓之费，十去其七；公家之费，破军罢马，甲胄矢弓，戟盾矛橹，丘牛大车，十去其六。故智将务食于敌，食敌一钟，当吾二十钟；□①杆一石，当吾二十石。故杀敌者，怒也；取敌之利者，货也。车战得车十乘以上，赏其先得者而更其旌旗。车杂而乘之，卒善而养之，是谓胜敌而益强。&lt;br&gt;
+故兵贵胜，不贵久。&lt;br&gt;
+故知兵之将，民之司命。国家安危之主也。&lt;br&gt;
+注 ：&lt;br&gt;
+①：“忌”加“艹”头。&lt;/p&gt;
+&lt;h2 id=&#34;译文-作战第二&#34;&gt;译文 ：作战第二&lt;/h2&gt;
+&lt;p&gt;孙子说：要兴兵作战，需做的物资准备有，轻车千辆，重车千辆，全副武装的士兵十万，并向千里之外运送粮食。那么前后方的军内外开支，招待使节、策士的用度，用于武器维修的胶漆等材料费用，保养战车、甲胄的支出等，每天要消耗千金。按照这样的标准准备之后，十万大军才可出发上战场。&lt;br&gt;
+因此，军队作战就要求速胜，如果拖的很久则军队必然疲惫，挫失锐气。一旦攻城，则兵力将耗尽，长期在外作战还必然导致国家财用不足。如果军队因久战疲惫不堪，锐气受挫，军事实力耗尽，国内物资枯竭，其他诸侯必定趁火打劫。这样，即使足智多谋之士也无良策来挽救危亡了。所以，在实际作战中，只听说将领缺少高招难以速胜，却没有见过指挥高明巧于持久作战的。战争旷日持久而有利于国家的事，从来没有过。所以，不能详尽地了解用兵的害处，就不能全面地了解用兵的益处。&lt;br&gt;
+善于用兵的人，不用再次征集兵员，不用多次运送军粮。武器装备由国内供应，从敌人那里设法夺取粮食，这样军队的粮草就可以充足了。国家之所以因作战而贫困，是由于军队远征，不得不进行长途运输。长途运输必然导致百姓贫穷。驻军附近处物价必然飞涨，物价飞涨，必然导致物资枯竭，物财枯竭，赋税和劳役必然加重。在战场上，军力耗尽，在国内财源枯竭，百姓私家财产损耗十分之七。公家的财产，由于车辆破损，马匹疲惫，盔甲、弓箭、矛戟、盾牌、牛车的损失，而耗去十分之六。所以明智的将军，一定要在敌国解决粮草，从敌国搞到一钟的粮食，就相当于从本国启运时的二十钟，在当地取得饲料一石，相当于从本国启运时的二十石。所以，要使士兵拼死杀敌，就必须怒之，激励之。要使士兵勇于夺取敌方的军需物资，就必须以缴获的财物作奖赏。所以，在车战中，抢夺十辆车以上的，就奖赏最先抢得战车的。而夺得的战车，要立即换上我方的旗帜，把抢得的战车编入我方车队。要善待俘虏，使他们有归顺之心。这就是战胜敌人而使自己越发强大的方法.所以，作战最重要、最有利的是速胜，最不宜的是旷日持久。真正懂得用兵之道、深知用兵利害的将帅，掌握着民众的的生死，主宰着国家的安危。&lt;br&gt;
+#第三 谋攻篇&lt;/p&gt;
+&lt;h2 id=&#34;原文-谋攻第三&#34;&gt;原文 ：谋攻第三&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+夫用兵之法，全国为上，破国次之；全军为上，破军次之；全旅为上，破旅次之；全卒为上，破卒次之；全伍为上，破伍次之。&lt;br&gt;
+是故百战百胜，非善之善也；不战而屈人之兵，善之善者也。故上兵伐谋，其次伐交，其次伐兵，其下攻城。攻城之法，为不得已。修橹□①□②，具器械，三月而后成；距堙，又三月而后已。将不胜其忿而蚁附之，杀士卒三分之一，而城不拔者，此攻之灾也。故善用兵者，屈人之兵而非战也，拔人之城而非攻也，毁人之国而非久也，必以全争于天下，故兵不顿而利可全，此谋攻之法也。&lt;br&gt;
+故用兵之法，十则围之，五则攻之，倍则分之，敌则能战之，少则能逃之，不若则能避之。故小敌之坚，大敌之擒也。&lt;br&gt;
+夫将者，国之辅也。辅周则国必强，辅隙则国必弱。故君之所以患于军者三：不知军之不可以进而谓之进，不知军之不可以退而谓之退，是谓縻军；不知三军之事而同三军之政，则军士惑矣；不知三军之权而同三军之任，则军士疑矣。三军既惑且疑，则诸侯之难至矣。是谓乱军引胜。&lt;br&gt;
+故知胜有五：知可以战与不可以战者胜，识众寡之用者胜，上下同欲者胜，以虞待不虞者胜，将能而君不御者胜。此五者，知胜之道也。故曰：知己知彼，百战不贻；不知彼而知己，一胜一负；不知彼不知己，每战必败。&lt;br&gt;
+注 ：&lt;br&gt;
+①： 车贲 。&lt;br&gt;
+②：“温”字“氵”旁换“车”旁。&lt;/p&gt;
+&lt;h2 id=&#34;译文-谋攻第三&#34;&gt;译文 ：谋攻第三&lt;/h2&gt;
+&lt;p&gt;孙子说：战争的原则是：使敌人举国降服是上策，用武力击破敌国就次一等；使敌人全军降服是上策，击败敌军就次一等；使敌人全旅降服是上策，击破敌旅就次一等；使敌人全卒降服是上策，击破敌卒就次一等；使敌人全伍降服是上策，击破敌伍就次一等。&lt;br&gt;
+所以，百战百胜，算不上是最高明的；不通过交战就降服全体敌人，才是最高明的。所以，上等的军事行动是用谋略挫败敌方的战略意图或战争行为，其次就是用外交战胜敌人，再次是用武力击败敌军，最下之策是攻打敌人的城池。攻城，是不得已而为之，是没有办法的办法。制造大盾牌和四轮车，准备攻城的所有器具，起码得三个月。堆筑攻城的土山，起码又得三个月。如果将领难以拟制焦躁情绪，命令士兵象蚂蚁一样爬墙攻城，尽管士兵死伤三分之一，而城池却依然没有攻下，这就是攻城带来的灾难。所以善用兵者，不通过打仗就使敌人屈服，不通过攻城就使敌城投降，摧毁敌国不需长期作战，一定要用“全胜”的策略争胜于天下，从而既不使国力兵力受挫，又获得了全面胜利的利益。这就是谋攻的方法。&lt;br&gt;
+所以，在实际作战中运用的原则是：我十倍于敌，就实施围歼，五倍于敌就实施进攻，两倍于敌就要努力战胜敌军，势均力敌则设法分散各个击破之。兵力弱于敌人，就避免作战。所以，弱小的一方若死拼固守，那就会成为强大敌人的俘虏。&lt;br&gt;
+将帅，国家之辅助也。辅助之谋缜密周详，则国家必然强大，辅助之谋疏漏失当，则国家必然衰弱。所以，国君对军队的危害有三种：不知道军队不可以前进而下令前进，不知道军队不可以后退而下令后退，这叫做束缚军队；不知道军队的战守之事、内部事务而同理三军之政，将士们会无所适从；不知道军队战略战术的权宜变化，却干预军队的指挥，将士就会疑虑。军队既无所适从，又疑虑重重，诸侯就会趁机兴兵作难。这就是自乱其军，坐失胜机。&lt;br&gt;
+所以，预见胜利有五个方面：能准确判断仗能打或不能打的，胜；知道根据敌我双方兵力的多少采取对策者，胜；全国上下，全军上下，意愿一致、同心协力的，胜；以有充分准备来对付毫无准备的，胜；主将精通军事、精于权变，君主又不加干预的，胜。以上就是预见胜利的方法。所以说：了解敌方也了解自己，每一次战斗都不会有危险；不了解对方但了解自己，胜负的机率各半；既不了解对方又不了解自己，每战必败。&lt;/p&gt;
+&lt;h1 id=&#34;第四-军形篇&#34;&gt;第四 军形篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-军形第四&#34;&gt;原文 ：军形第四&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+昔之善战者，先为不可胜，以待敌之可胜。不可胜在己，可胜在敌。故善战者，能为不可胜，不能使敌之必可胜。故曰：胜可知，而不可为。不可胜者，守也；可胜者，攻也。守则不足，攻则有余。善守者藏于九地之下，善攻者动于九天之上，故能自保而全胜也。见胜不过众人之所知，非善之善者也；战胜而天下曰善，非善之善者也。故举秋毫不为多力，见日月不为明目，闻雷霆不为聪耳。古之所谓善战者，胜于易胜者也。故善战者之胜也，无智名，无勇功，故其战胜不忒。不忒者，其所措胜，胜已败者也。故善战者，立于不败之地，而不失敌之败也。是故胜兵先胜而后求战，败兵先战而后求胜。善用兵者，修道而保法，故能为胜败之政。&lt;br&gt;
+兵法：一曰度，二曰量，三曰数，四曰称，五曰胜。地生度，度生量，量生数，数生称，称生胜。故胜兵若以镒称铢，败兵若以铢称镒。&lt;br&gt;
+称胜者之战民也，若决积水于千仞之溪者，形也。&lt;/p&gt;
+&lt;h2 id=&#34;译文-军形第四&#34;&gt;译文 ：军形第四&lt;/h2&gt;
+&lt;p&gt;孙子说：以前善于用兵作战的人，总是首先创造自己不可战胜的条件，并等待可以战胜敌人的机会。使自己不被战胜，其主动权掌握在自己手中；敌人能否被战胜，在于敌人是否给我们以可乘之机。所以，善于作战的人只能够使自己不被战胜，而不能使敌人一定会被我军战胜。所以说，胜利可以预见，却不能强求.敌人无可乘之机，不能被战胜，且防守以待之；敌人有可乘之机，能够被战胜，则出奇攻而取之。防守是因为我方兵力不足，进攻是因为兵力超过对方。善于防守的，隐藏自己的兵力如同在深不可测的地下；善于进攻的部队就象从天而降，敌不及防。这样，才能保全自己而获得全胜。预见胜利不能超过平常人的见识，算不上最高明：交战而后取胜，即使天下都称赞，也不算上最高明。正如举起秋毫称不上力大，能看见日月算不上视力好，听见雷鸣算不上耳聪。古代所谓善于用兵的人，只是战胜了那些容易战胜的敌人。所以，真正善于用兵的人，没有智慧过人的名声，没有勇武盖世的战功，而他既能打胜仗又不出任何闪失，原因在于其谋划、措施能够保证，他所战胜的是已经注定失败的敌人。所以善于打战的人，不但使自己始终处于不被战胜的境地，也决不会放过任何可以击败敌人的机会。所以，打胜仗的军队总是在具备了必胜的条件之后才交战，而打败仗的部队总是先交战，在战争中企图侥幸取胜。善于用兵的人，潜心研究致胜之道，修明政治，坚持致胜的法制，所以能主宰胜败。&lt;br&gt;
+兵法：一是度，即估算土地的面积，二是量，即推算物资资源的容量，三是数，即统计兵源的数量，四是称，即比较双方的军事综合实力，五是胜，即得出胜负的判断。土地面积的大小决定物力、人力资源的容量，资源的容量决定可投入部队的数目，部队的数目决定双方兵力的强弱，双方兵力的强弱得出胜负的概率。获胜的军队对于失败的一方就如同用“镒”来称“铢”，具有绝对优势优势，而失败的军队对于获胜的一方就如同用“铢”来称“镒”。胜利者一方打仗，就象积水从千仞高的山涧冲决而出，势不可挡，这就是军事实力的表现。&lt;/p&gt;
+&lt;h1 id=&#34;第五-兵势篇&#34;&gt;第五 兵势篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-兵势第五&#34;&gt;原文 ：兵势第五&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡治众如治寡，分数是也；斗众如斗寡，形名是也；三军之众，可使必受敌而无败者，奇正是也；兵之所加，如以□①投卵者，虚实是也。&lt;br&gt;
+凡战者，以正合，以奇胜。故善出奇者，无穷如天地，不竭如江海。终而复始，日月是也。死而更生，四时是也。声不过五，五声之变，不可胜听也；色不过五，五色之变，不可胜观也；味不过五，五味之变，不可胜尝也；战势不过奇正，奇正之变，不可胜穷也。奇正相生，如循环之无端，孰能穷之哉！&lt;br&gt;
+激水之疾，至于漂石者，势也；鸷鸟之疾，至于毁折者，节也。故善战者，其势险，其节短。势如扩弩，节如发机。纷纷纭纭，斗乱而不可乱；浑浑沌沌，形圆而不可败。乱生于治，怯生于勇，弱生于强。治乱，数也；勇怯，势也；强弱，形也。&lt;br&gt;
+故善动敌者，形之，敌必从之；予之，敌必取之。以利动之，以卒待之。故善战者，求之于势，不责于人故能择人而任势。任势者，其战人也，如转木石。木石之性，安则静，危则动，方则止，圆则行。&lt;br&gt;
+故善战人之势，如转圆石于千仞之山者，势也。&lt;br&gt;
+注 ：&lt;br&gt;
+①：“瑕”的“王”旁换“石”旁。&lt;/p&gt;
+&lt;h2 id=&#34;译文-兵势第五&#34;&gt;译文 ：兵势第五&lt;/h2&gt;
+&lt;p&gt;治理大军团就象治理小部队一样有效，是依靠合理的组织、结构、编制；指挥大军团作战就象指挥小部队作战一样到位，是依靠明确、高效的信号指挥系统；整个部队与敌对抗而不会失败，是依靠正确运用“奇正”的变化：攻击敌军，如同用石头砸鸡蛋一样容易，关键在于以实击虚。&lt;br&gt;
+大凡作战，都是以正兵作正面交战，而用奇兵去出奇制胜。善于运用奇兵的人，其战法的变化就象天地运行一样无穷无尽，象江海一样永不枯竭。象日月运行一样，终而复始；与四季更迭一样，去而复来。宫、商、角、徵、羽不过五音，然而五音的组合变化，永远也听不完；红、黄、蓝、白、黑不过五色，但五种色调的组合变化，永远看不完；酸、甜、苦、辣、咸不过五味，而五种味道的组合变化，永远也尝不完。战争中军事实力的运用不过“奇”、“正”两种，而“奇”、“正”的组合变化，永远无穷无尽。奇正相生、相互转化，就好比圆环旋绕，无始无终，谁能穷尽呢。&lt;br&gt;
+湍急的流水所以能漂动大石，是因为使它产生巨大冲击力的势能；猛禽搏击雀鸟，一举可致对手于死地，是因为它掌握了最有利于爆发冲击力的时空位置，节奏迅猛。所以善于作战的指挥者，他所造成的态势是险峻的，进攻的节奏是短促有力的。“势险”就如同满弓待发的弩那样蓄势，“节短”正如搏动弩机那样突然。旌旗纷纷，人马纭纭，双方混战，战场上事态万端，但自己的指挥、组织、阵脚不能乱；混混沌吨，迷迷蒙蒙，两军搅作一团，但胜利在我把握之中。双方交战，一方之乱，是因为对方治军更严整：一方怯懦，是因为对方更勇敢；一方弱小，是因为对方更强大。军队治理有序或者混乱，在于其组织编制；士兵勇敢或者胆怯，在于部队所营造的态势和声势；军力强大或者弱小，在于部队日常训练所造就的内在实力。&lt;br&gt;
+善于调动敌军的人，向敌军展示一种或真或假的军情，敌军必然据此判断而跟从；给予敌军一点实际利益作为诱饵，敌军必然趋利而来，从而听我调动。一方面用这些办法调动敌军，一方面要严阵以待。&lt;br&gt;
+所以，善战者追求形成有利的“势”，而不是苛求士兵，因而能选择人才去适应和利用已形成的“势”。善于创造有利“势”的将领，指挥部队作战就象转动木头和石头。木石的性情是处于平坦地势上就静止不动，处于陡峭的斜坡上就滚动，方形容易静止，圆形容易滚动。所以，善于指挥打仗的人所造就的“势”，就象让圆石从极高极陡的山上滚下来一样，来势凶猛。这就是所谓的“势”。&lt;/p&gt;
+&lt;h1 id=&#34;第六-虚实篇&#34;&gt;第六 虚实篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-虚实第六&#34;&gt;原文 ：虚实第六&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡先处战地而待敌者佚，后处战地而趋战者劳。故善战者，致人而不致于人。能使敌人自至者，利之也；能使敌人不得至者，害之也。故敌佚能劳之，饱能饥之，安能动之。出其所必趋，趋其所不意。&lt;br&gt;
+行千里而不劳者，行于无人之地也；攻而必取者，攻其所不守也。守而必固者，守其所必攻也。故善攻者，敌不知其所守；善守者，敌不知其所攻。微乎微乎，至于无形；神乎神乎，至于无声，故能为敌之司命。进而不可御者，冲其虚也；退而不可追者，速而不可及也。故我欲战，敌虽高垒深沟，不得不与我战者，攻其所必救也；我不欲战，虽画地而守之，敌不得与我战者，乖其所之也。故形人而我无形，则我专而敌分。我专为一，敌分为十，是以十攻其一也。则我众敌寡，能以众击寡者，则吾之所与战者约矣。吾所与战之地不可知，不可知则敌所备者多，敌所备者多，则吾所与战者寡矣。故备前则后寡，备后则前寡，备左则右寡，备右则左寡，无所不备，则无所不寡。寡者，备人者也；众者，使人备己者也。故知战之地，知战之日，则可千里而会战；不知战之地，不知战日，则左不能救右，右不能救左，前不能救后，后不能救前，而况远者数十里，近者数里乎！&lt;br&gt;
+以吾度之，越人之兵虽多，亦奚益于胜哉！&lt;br&gt;
+故曰：胜可为也。敌虽众，可使无斗。故策之而知得失之计，候之而知动静之理，形之而知死生之地，角之而知有余不足之处。故形兵之极，至于无形。无形则深间不能窥，智者不能谋。因形而措胜于众，众不能知。人皆知我所以胜之形，而莫知吾所以制胜之形。故其战胜不复，而应形于无穷。&lt;br&gt;
+夫兵形象水，水之行避高而趋下，兵之形避实而击虚；水因地而制流，兵因敌而制胜。故兵无常势，水无常形。能因敌变化而取胜者，谓之神。故五行无常胜，四时无常位，日有短长，月有死生。&lt;/p&gt;
+&lt;h2 id=&#34;译文-虚实第六&#34;&gt;译文 ：虚实第六&lt;/h2&gt;
+&lt;p&gt;孙子说，大凡先期到达战地等待敌军的就精力充沛、主动安逸，而后到达战地匆忙投入战斗的就被动劳累。所以，善战者调动敌人而决不为敌人所调动。能够调动敌人使之自动前来我预想的战地，是用利益来引诱；能使敌人不能先我来到战场，是设置障碍、多方阻挠的结果。所以，敌人若处军安逸，能使之疲劳；若敌人粮食充足就能使之匮乏；若敌人安然不动，就能使他不得不行动起来。通过敌人不设防的地区进军，在敌人预料不到的时间，向敌人预料不到的地点攻击。进军千里而不疲惫，是因为走在敌军无人抵抗或无力抵抗的地区，如入无人之境。我进攻就一定会获胜，是因为攻击的是敌人疏于防守的地方。我防守一定稳固，是因为守住了敌人一定会进攻的地方。所以善于进攻的，能做到使敌方不知道在哪防守，不知道怎样防守。而善于防守的，使敌人不知道从哪进攻，不知怎样进攻。深奥啊，精妙啊，竟然见不到一点形迹；神奇啊，玄妙啊，居然不漏出一点消息。所以能成为敌人命运的主宰。&lt;br&gt;
+进攻时，敌人无法抵御，那是攻击了敌人兵力空虚的地方；撤退时，敌人无法追击，那是行动迅速敌人无法追上。所以我军要交战，敌人就算垒高墙挖深沟，也不得不出来与我军交战，是因为我军攻击了它非救不可的要害之处；我军不想与敌军交战，虽然只是在地上画出界限权作防守，敌人也无法与我军交战，原因是我已设法改变了敌军进攻的方向。所以，使敌军处于暴露状态而我军处于隐蔽状态，这样我军兵力就可以集中而敌军兵力就不得不分散。（如果敌我总兵力相当），我集中兵力与一点，而敌人分散为十处，我就是以十对一。这样，（在局部战场上）就出现我众敌寡的态势，在这种态势下，则我军所与战者用力少而成功多也。敌军不知道我军所预定的战场在哪里，就会处处分兵防备，防备的地方越多，能够与我军在特定的地点直接交战的敌军就越少。所以防备前面，则后面兵力不足，防备后面，则前面兵力不足，防备左方，则右方兵力不足，防备右方，则左方兵力不足，所有的地方都防备，则所有的地方都兵力不足。兵力不足，全是因为分兵防御敌人；兵力充足，是由于迫使敌人分兵防御我。所以，既预知与敌人交战的地点，又预知交战的时间，即使行军千里也可以与敌人交战。不能预知与敌人交战的地点，又不能预知交战的时间，仓促遇敌，就会左军不能救右军，右军不能救左军，前军不能救后军，后军不能救前军，何况远的相距十里，近的也有好几里呢。依我对吴国所作的分析，越国虽然兵多，但对他的胜利又有什么帮助呢？所以说：胜利是可以创造的，敌人虽然兵多，却可以使敌人无法有效地参加战斗。&lt;br&gt;
+通过仔细分析可以判断敌人作战计划的优劣得失；通过挑动敌人，可以了解敌方的活动规律；通过“示形”，可以弄清地形是否对敌有利；通过试探性进攻，可以探明敌方兵力布置的强弱多寡。所以，示形诱敌的方法运用得极其巧妙时，一点破绽也没有。到这种境地，即使隐藏再深的间谍也不能探明我的虚实，智慧高超的敌手也想不出对付我的办法。根据敌情采取制胜的策略，即使摆在众人面前，众人也理解不了。人们都知道我克敌制胜的方法，却不能知道我是怎样运用这些方法制胜的。所以战胜敌人的战略战术每次都是不一样的，应适应敌情灵活运用。&lt;br&gt;
+兵的性态就象水一样，水流动时是避开高处流向低处，用兵取胜的关键是避开设防严密实力强大的敌人而攻击其薄弱环节；水根据地势来决定流向，军队根据敌情来采取制胜的方略。所以用兵作战没有一成不变的态势，正如流水没有固定的形状和去向。能够根据敌情的变化而取胜的，就叫做用兵如神。金、木、水、火、土这五行相生相克，没有哪一个常胜；四季相继相代，没有哪一个固定不移，白天的时间有长有短，月亮有圆也有缺。万物皆处于流变状态。&lt;/p&gt;
+&lt;h1 id=&#34;第七-军争篇&#34;&gt;第七 军争篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-军争第七&#34;&gt;原文 ：军争第七&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡用兵之法，将受命于君，合军聚众，交和而舍，莫难于军争。军争之难者，以迂为直，以患为利。&lt;br&gt;
+故迂其途，而诱之以利，后人发，先人至，此知迂直之计者也。军争为利，军争为危。举军而争利则不及，委军而争利则辎重捐。是故卷甲而趋，日夜不处，倍道兼行，百里而争利，则擒三将军，劲者先，疲者后，其法十一而至；五十里而争利，则蹶上将军，其法半至；三十里而争利，则三分之二至。是故军无辎重则亡，无粮食则亡，无委积则亡。故不知诸侯之谋者，不能豫交；不知山林、险阻、沮泽之形者，不能行军；不用乡导者，不能得地利。故兵以诈立，以利动，以分和为变者也。故其疾如风，其徐如林，侵掠如火，不动如山，难知如阴，动如雷震。掠乡分众，廓地分利，悬权而动。先知迂直之计者胜，此军争之法也。&lt;br&gt;
+《军政》曰：“言不相闻，故为之金鼓；视不相见，故为之旌旗。”夫金鼓旌旗者，所以一民之耳目也。民既专一，则勇者不得独进，怯者不得独退，此用众之法也。故夜战多金鼓，昼战多旌旗，所以变人之耳目也。&lt;br&gt;
+三军可夺气，将军可夺心。是故朝气锐，昼气惰，暮气归。善用兵者，避其锐气，击其惰归，此治气者也。以治待乱，以静待哗，此治心者也。以近待远，以佚待劳，以饱待饥，此治力者也。无邀正正之旗，无击堂堂之陈，此治变者也。&lt;br&gt;
+故用兵之法，高陵勿向，背丘勿逆，佯北勿从，锐卒勿攻，饵兵勿食，归师勿遏，围师遗阙，穷寇勿迫，此用兵之法也。&lt;/p&gt;
+&lt;h2 id=&#34;译文-军争第七&#34;&gt;译文 ：军争第七&lt;/h2&gt;
+&lt;p&gt;孙子说：用兵的原则，将领接受君命，从召集军队，安营扎寨，到开赴战场与敌对峙，没有比率先争得制胜的条件更难的事了。“军争”中最困难的地方就在于以迂回进军的方式实现更快到达预定战场的目的，把看似不利的条件变为有利的条件。所以，由于我迂回前进，又对敌诱之以利，使敌不知我意欲何去，因而出发虽后，却能先于敌人到达战地。能这么做，就是知道迂直之计的人。“军争”为了有利，但“军争”也有危险。带着全部辎重去争利，就会影响行军速度，不能先敌到达战地；丢下辎重轻装去争利，装备辎重就会损失。卷甲急进，白天黑夜不休息地急行军，奔跑百里去争利，则三军的将领有可能会被俘获。健壮的士兵能够先到战场，疲惫的士兵必然落后，只有十分之一的人马如期到达；强行军五十里去争利，先头部队的主将必然受挫，而军士一般仅有一半如期到达；强行军三十里去争利，一般只有三分之二的人马如期到达。这样，部队没有辎重就不能生存，没有粮食供应就不能生存，没有战备物资储备就无以生存。&lt;br&gt;
+所以不了解诸侯各国的图谋，就不要和他们结成联盟；不知道山林、险阻和沼泽的地形分布，不能行军；不使用向导，就不能掌握和利用有利的地形。所以，用兵是凭借施诡诈出奇兵而获胜的，根据是否有利于获胜决定行动，根据双方情势或分兵或集中为主要变化。按照战场形势的需要，部队行动迅速时，如狂风飞旋；行进从容时，如森林徐徐展开；攻城掠地时，如烈火迅猛；驻守防御时，如大山岿然；军情隐蔽时，如乌云蔽日；大军出动时，如雷霆万钧。夺取敌方的财物，掳掠百姓，应分兵行动。开拓疆土，分夺利益，应该分兵扼守要害。这些都应该权衡利弊，根据实际情况，相机行事。率先知道“迂直之计”的将获胜，这就是军争的原则。&lt;br&gt;
+《军政》说：“在战场上用语言来指挥，听不清或听不见，所以设置了金鼓；用动作来指挥，看不清或看不见，所以用旌旗。金鼓、旌旗，是用来统一士兵的视听，统一作战行动的。既然士兵都服从统一指挥，那么勇敢的将士不会单独前进，胆怯的也不会独自退却。这就是指挥大军作战的方法。所以，夜间作战，要多处点火，频频击鼓；白天打仗要多处设置旌旗。这些是用来扰乱敌方的视听的。&lt;br&gt;
+对于敌方三军，可以挫伤其锐气，可使丧失其士气，对于敌方的将帅，可以动摇他的决心，可使其丧失斗志。所以，敌人早朝初至，其气必盛；陈兵至中午，则人力困倦而气亦怠惰；待至日暮，人心思归，其气益衰。善于用兵的人，敌之气锐则避之，趁其士气衰竭时才发起猛攻。这就是正确运用士气的原则。用治理严整的我军来对付军政混乱的敌军，用我镇定平稳的军心来对付军心躁动的敌人。这是掌握并运用军心的方法。以我就近进入战场而待长途奔袭之敌；以我从容稳定对仓促疲劳之敌；以我饱食之师对饥饿之敌。这是懂得并利用治己之力以困敌人之力。不要去迎击旗帜整齐、部伍统一的军队，不要去攻击阵容整肃、士气饱满的军队，这是懂得战场上的随机应变。&lt;br&gt;
+所以，用兵的原则是：对占据高地、背倚丘陵之敌，不要作正面仰攻；对于假装败逃之敌，不要跟踪追击；敌人的精锐部队不要强攻；敌人的诱饵之兵，不要贪食；对正在向本土撤退的部队不要去阻截；对被包围的敌军，要预留缺口；对于陷入绝境的敌人，不要过分逼迫，这些都是用兵的基本原则。&lt;/p&gt;
+&lt;h1 id=&#34;第八-九变篇&#34;&gt;第八 九变篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-九变第八&#34;&gt;原文 ： 九变第八&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡用兵之法，将受命于君，合军聚合。泛地无舍，衢地合交，绝地无留，围地则谋，死地则战，途有所不由，军有所不击，城有所不攻，地有所不争，君命有所不受。&lt;br&gt;
+故将通于九变之利者，知用兵矣；将不通九变之利，虽知地形，不能得地之利矣；治兵不知九变之术，虽知五利，不能得人之用矣。&lt;br&gt;
+是故智者之虑，必杂于利害，杂于利而务可信也，杂于害而患可解也。是故屈诸侯者以害，役诸侯者以业，趋诸侯者以利。故用兵之法，无恃其不来，恃吾有以待之；无恃其不攻，恃吾有所不可攻也。&lt;br&gt;
+故将有五危，必死可杀，必生可虏，忿速可侮，廉洁可辱，爱民可烦。凡此五者，将之过也，用兵之灾也。覆军杀将，必以五危，不可不察也。&lt;/p&gt;
+&lt;h2 id=&#34;译文-九变第八&#34;&gt;译文 ： 九变第八&lt;/h2&gt;
+&lt;p&gt;孙子说：用兵的原则，将接受国君的命令，召集人马组建军队，在难于通行之地不要驻扎，在四通八达的交通要道要与四邻结交，在难以生存的地区不要停留，要赶快通过，在四周有险阻容易被包围的地区要精于谋划，误入死地则须坚决作战。有的道路不要走，有些敌军不要攻，有些城池不要占，有些地域不要争，君主的某些命令也可以不接受。&lt;br&gt;
+所以将帅精通“九变”的具体运用，就是真懂得用兵了；将帅不精通“九变”的具体运用，就算熟悉地形，也不能得到地利。指挥作战如果不懂“九变”的方法，即使知道“五利”，也不能充分发挥部队的战斗力。&lt;br&gt;
+智慧明达的将帅考虑问题，必然把利与害一起权衡。在考虑不利条件时，同时考虑有利条件，大事就能顺利进行；在看到有利因素时同时考虑到不利因素，祸患就可以排除。因此，用最另人头痛的事去使敌国屈服，用复杂的事变去使敌国穷于应付，以利益为钓饵引诱敌国疲于奔命。所以用兵的原则是：不抱敌人不会来的侥幸心理，而要依靠我方有充分准备，严阵以待；不抱敌人不会攻击的侥幸心理，而要依靠我方坚不可摧的防御，不会被战胜。&lt;br&gt;
+所以，将领有五种致命的弱点：坚持死拼硬打，可能招致杀身之祸；临阵畏缩，贪生怕死，则可能被俘；性情暴躁易怒，可能受敌轻侮而失去理智；过分洁身自好，珍惜声名，可能会被羞辱引发冲动；由于爱护民众，受不了敌方的扰民行动而不能采取相应的对敌行动。所有这五种情况，都是将领最容易有的过失，是用兵的灾难。军队覆没，将领牺牲，必定是因为这五种危害，因此一定要认识到这五种危害的严重性。&lt;/p&gt;
+&lt;h1 id=&#34;第九-行军篇&#34;&gt;第九 行军篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-行军第九&#34;&gt;原文 ：行军第九&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡处军相敌，绝山依谷，视生处高，战隆无登，此处山之军也。绝水必远水，客绝水而来，勿迎之于水内，令半渡而击之利，欲战者，无附于水而迎客，视生处高，无迎水流，此处水上之军也。绝斥泽，唯亟去无留，若交军于斥泽之中，必依水草而背众树，此处斥泽之军也。平陆处易，右背高，前死后生，此处平陆之军也。凡此四军之利，黄帝之所以胜四帝也。凡军好高而恶下，贵阳而贱阴，养生而处实，军无百疾，是谓必胜。丘陵堤防，必处其阳而右背之，此兵之利，地之助也。上雨水流至，欲涉者，待其定也。凡地有绝涧、天井、天牢、天罗、天陷、天隙，必亟去之，勿近也。吾远之，敌近之；吾迎之，敌背之。军旁有险阻、潢井、蒹葭、小林、□①荟者，必谨覆索之，此伏奸之所处也。&lt;br&gt;
+敌近而静者，恃其险也；远而挑战者，欲人之进也；其所居易者，利也；众树动者，来也；众草多障者，疑也；鸟起者，伏也；兽骇者，覆也；尘高而锐者，车来也；卑而广者，徒来也；散而条达者，樵采也；少而往来者，营军也；辞卑而备者，进也；辞强而进驱者，退也；轻车先出居其侧者，陈也；无约而请和者，谋也；奔走而陈兵者，期也；半进半退者，诱也；杖而立者，饥也；汲而先饮者，渴也；见利而不进者，劳也；鸟集者，虚也；夜呼者，恐也；军扰者，将不重也；旌旗动者，乱也；吏怒者，倦也；杀马肉食者，军无粮也；悬□②不返其舍者，穷寇也；谆谆□③□③，徐与人言者，失众也；数赏者，窘也；数罚者，困也；先暴而后畏其众者，不精之至也；来委谢者，欲休息也。兵怒而相迎，久而不合，又不相去，必谨察之。&lt;br&gt;
+兵非贵益多也，惟无武进，足以并力料敌取人而已。夫惟无虑而易敌者，必擒于人。卒未亲而罚之，则不服，不服则难用。卒已亲附而罚不行，则不可用。故合之以文，齐之以武，是谓必取。令素行以教其民，则民服；令素不行以教其民，则民不服。令素行者，与众相得也。&lt;br&gt;
+注 ：&lt;br&gt;
+①：“翳”加“艹”头。&lt;br&gt;
+②： 垂瓦 。&lt;br&gt;
+③： 讠翕 。&lt;/p&gt;
+&lt;h2 id=&#34;译文-行军第九&#34;&gt;译文 ：行军第九&lt;/h2&gt;
+&lt;p&gt;孙子说：在各种不同地形上处置军队和观察判断敌情时，应该注意：通过山地，必须依靠有水草的山谷，驻扎在居高向阳的地方，敌人占领高地，不要仰攻，这是在山地上对军队的处置原则。横渡江河，应远离水流驻扎，敌人渡水来战，不要在江河中迎击，而要等它渡过一半时再攻击，这样较为有利。如果要同敌人决战，不要紧靠水边列阵；在江河地带扎营，也要居高向阳，不要面迎水流，这是在江河地带上对军队处置的原则。通过盐碱沼泽地带，要迅速离开，不要逗留；如果同敌军相遇于盐碱沼泽地带，那就必须靠近水草而背靠树林，这是在盐碱沼泽地带上对军队处置的原则。在平原上应占领开阔地域，而侧翼要依托高地，前低后高。这是在平原地带上对军队处置的原则。以上四中“处军”原则的好处，就是黄帝之所以能战胜其他四帝的原因。&lt;br&gt;
+大凡驻军总是喜欢干燥的高地，避开潮湿的洼地；重视向阳之处，避开阴暗之地；靠近水草地区，军需供应充足，将士百病不生，这样就有了胜利的保证。在丘陵堤防行军，必须占领它向阳的一面，并把主要侧翼背靠着它。这些对于用兵有利的措施，是利用地形作为辅助条件的。上游下雨，洪水突至，禁止徒涉，应等待水流稍平缓以后。凡遇到或通过“绝涧”、“天井”、“天牢”、“天罗”、“天陷”、“天隙”这几种地形，必须迅速离开，不要接近。我们应该远离这些地形，而让敌人去靠近它；我们应面向这些地形，而让敌人去背靠它。军队两旁遇到有险峻的隘路、湖沼、水网、芦苇、山林和草木茂盛的地方，必须谨慎地反复搜索，这些都是敌人可能埋设伏兵和隐伏奸细的地方。&lt;br&gt;
+敌人离我很近而安静的，是依仗它占领险要地形；敌人离我很远但挑战不休，是想诱我前进；敌人之所以驻扎在平坦地方，是因为对它有某种好处。许多树木摇动，是敌人隐蔽前来；草丛中有许多遮障物，是敌人布下的疑阵；群鸟惊飞，是下面有伏兵；野兽骇奔，是敌人大举突袭；尘土高而尖，是敌人战车驶来；尘土低而宽广，是敌人的步兵开来；尘土疏散飞扬，是敌人正在拽柴而走；尘土少而时起时落；是敌人正在扎营。敌人使者措辞谦卑却又在加紧战备的，是准备进攻；措辞强硬而军队又做出前进姿态的，是准备撤退；轻车先出动，部署在两翼的，是在布列阵势；敌人尚未受挫而来讲和的，是另有阴谋；敌人急速奔跑并排并列阵的，是企图约期同我决战；敌人半进半退的，是企图引诱我军。抵兵倚着兵器而站立的，是饥饿的表现；供水兵打水自己先饮的，是干渴的表现；敌人见利而不进兵争夺的，是疲劳的表现；敌人营寨上聚集鸟雀的，下面是空营；敌人夜间惊叫的，是恐慌的表现；敌营惊扰纷乱的，是敌将没有威严的表现；旌旗摇动不整齐的，是敌人队伍已经混乱。敌人军官易怒的，是全军疲倦的表现；用粮食喂马，杀马吃肉，收拾起汲水器具，部队不返营房的，是要拼死的穷寇；低声下气同部下讲话的，是敌将失去人心；不断犒赏士卒的，是敌军没有办法；不断惩罚部属的，是敌人处境困难；先粗暴然后又害怕部下的，是最不精明的将领；派来使者送礼言好的，是敌人想休兵息战；敌人逞怒同我对阵，但久不交锋又不撤退的，必须谨慎地观察他的企图。&lt;br&gt;
+打仗不在于兵力越多越好，只要不轻敌冒进，并集中兵力、判明敌情，取得部下的信任和支持，也就足够了。那种既无深谋远虑而又轻敌的人，必定会被敌人俘虏。士卒还没有亲近依附就执行惩罚，那么他们会不服，不服就很难使用。士卒已经亲近依附，如果不执行军纪军法，也不能用来作战。所以，要用怀柔宽仁使他们思想统一，用军纪军法使他们行动一致，这样就必能取得部下的敬畏和拥戴。平素严格贯彻命令，管教士卒，士卒就能养成服从的习惯；平素从来不严格贯彻命令，管教士卒，士卒就会养成不服从的习惯。平时命令能贯彻执行的，表明将帅同士卒之间相处融洽。&lt;/p&gt;
+&lt;h1 id=&#34;第十-地形篇&#34;&gt;第十 地形篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-地形第十&#34;&gt;原文 ：地形第十&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+地形有通者、有挂者、有支者、有隘者、有险者、有远者。我可以往，彼可以来，曰通。通形者，先居高阳，利粮道，以战则利。可以往，难以返，曰挂。挂形者，敌无备，出而胜之，敌若有备，出而不胜，难以返，不利。我出而不利，彼出而不利，曰支。支形者，敌虽利我，我无出也，引而去之，令敌半出而击之利。隘形者，我先居之，必盈之以待敌。若敌先居之，盈而勿从，不盈而从之。险形者，我先居之，必居高阳以待敌；若敌先居之，引而去之，勿从也。远形者，势均难以挑战，战而不利。凡此六者，地之道也，将之至任，不可不察也。&lt;br&gt;
+凡兵有走者、有驰者、有陷者、有崩者、有乱者、有北者。凡此六者，非天地之灾，将之过也。夫势均，以一击十，曰走；卒强吏弱，曰驰；吏强卒弱，曰陷；大吏怒而不服，遇敌怼而自战，将不知其能，曰崩；将弱不严，教道不明，吏卒无常，陈兵纵横，曰乱；将不能料敌，以少合众，以弱击强，兵无选锋，曰北。凡此六者，败之道也，将之至任，不可不察也。&lt;br&gt;
+夫地形者，兵之助也。料敌制胜，计险隘远近，上将之道也。知此而用战者必胜，不知此而用战者必败。故战道必胜，主曰无战，必战可也；战道不胜，主曰必战，无战可也。故进不求名，退不避罪，唯民是保，而利于主，国之宝也。&lt;br&gt;
+视卒如婴儿，故可以与之赴深溪；视卒如爱子，故可与之俱死。厚而不能使，爱而不能令，乱而不能治，譬若骄子，不可用也。&lt;br&gt;
+知吾卒之可以击，而不知敌之不可击，胜之半也；知敌之可击，而不知吾卒之不可以击，胜之半也；知敌之可击，知吾卒之可以击，而不知地形之不可以战，胜之半也。故知兵者，动而不迷，举而不穷。故曰：知彼知己，胜乃不殆；知天知地，胜乃可全。&lt;/p&gt;
+&lt;h2 id=&#34;译文-地形第十&#34;&gt;译文 ：地形第十&lt;/h2&gt;
+&lt;p&gt;孙子说：地形有“通”、“挂”、“支”、“隘”、“险”、“远”等六种。凡是我们可以去，敌人也可以来的地域，叫做“通”；在“通”形地域上，应抢先占开阔向阳的高地，保持粮道畅通，这样作战就有利。凡是可以前进，难以返回的地域，称作“挂”；在挂形的地域上，假如敌人没有防备，我们就能突击取胜。假如敌人有防备，出击又不能取胜，而且难以回师，这就不利了。凡是我军出击不利，敌人出击不利的地域叫做“支”。在“支”形地域上，敌人虽然以利相诱，我们也不要出击，而应该率军假装退却，诱使敌人出击一半时再回师反击，这样就有利。在“隘”形地域上，我们应该抢先占领，并用重兵封锁隘口，以等待敌人的到来；如果敌人已先占据了隘口，并用重兵把守，我们就不要去进攻；如果敌人没有用重兵据守隘口，那么就可以进攻。在“险”形地域上，如果我军先敌占领，就必须控制开阔向阳的高地，以等待敌人来犯；如果敌人先我占领，就应该率军撤离，不要去攻打它。在“远”形地域上，敌我双方地势均同，就不宜去挑战，勉强求战，很是不利。以上六点，是利用地形的原则。这是将帅的重大责任所在，不可不认真考察研究。&lt;br&gt;
+军队打败仗有“走”、“驰”、“陷”、“崩”、“乱”、“北”六种情况。这六种情况的发生，不是天时地理的灾害，而是将帅自身的过错。地势均同的情况下，以一击十而导致失败的，叫做“走”。士卒强捍，军官懦弱而造成失败的，叫做“驰”。将帅强悍，士卒儒弱而失败的，叫做“陷”。偏将怨仇不服从指挥，遇到敌人擅自出战，主将又不了解他们能力，因而失败的，叫做“崩”。将帅懦弱缺乏威严，治军没有章法，官兵关系混乱紧张，列兵布阵杂乱无常，因此而致败的，叫做“乱”。将帅不能正确判断敌情，以少击众，以弱击强，作战又没有精锐先锋部队，因而落败的，叫做“北”。以上六种情况，均是导致失败的原因。这是将帅的重大责任之所在，是不可不认真考察研究的。&lt;br&gt;
+地形是用兵打仗的辅助条件。正确判断敌情，考察地形险易，计算道路远近，这是高明的将领必须掌握的方法，懂得这些道理去指挥作战的，必定能够胜利；不了解这些道理去指挥作战的，必定失败。所以，根据分析有必胜把握的，即使国君主张不打，坚持打也是可以的；根据分析没有必胜把握的，即使国君主张打，不打也是可以的。所以，战不谋求胜利的名声，退不回避失利的罪责，只求保全百姓，符合国君利益，这样的将帅，才是国家的宝贵财富。&lt;br&gt;
+对待士卒象对待婴儿，士卒就可以同他共患难：对待士卒象对待自己的儿子，士卒就可以跟他同生共死。如果对士卒厚待却不能使用，溺爱却不能指挥，违法而不能惩治，那就如同骄惯了的子女，是不可以用来同敌作战的。只了解自己的部队可以打，而不了解敌人不可打，取胜的可能只有一半；只了解敌人可以打，而不了解自己的部队不可以打，取胜的可能也只有一半。知道敌人可以打，也知道自己的部队能打，但是不了解地形不利于作战，取胜的可能性仍然只有一半。所以，懂得用兵的人，他行动起来不会迷惑，他的战术变化无穷。&lt;br&gt;
+所以说：知彼知己，胜乃不殆；知天知地，胜乃可全。&lt;/p&gt;
+&lt;h1 id=&#34;第十一-九地篇&#34;&gt;第十一 九地篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-九地第十一&#34;&gt;原文 ：九地第十一&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+用兵之法，有散地，有轻地，有争地，有交地，有衢地，有重地，有泛地，有围地，有死地。诸侯自战其地者，为散地；入人之地不深者，为轻地；我得亦利，彼得亦利者，为争地；我可以往，彼可以来者，为交地；诸侯之地三属，先至而得天下众者，为衢地；入人之地深，背城邑多者，为重地；山林、险阻、沮泽，凡难行之道者，为泛地；所由入者隘，所从归者迂，彼寡可以击吾之众者，为围地；疾战则存，不疾战则亡者，为死地。是故散地则无战，轻地则无止，争地则无攻，交地则无绝，衢地则合交，重地则掠，泛地则行，围地则谋，死地则战。&lt;br&gt;
+古之善用兵者，能使敌人前后不相及，众寡不相恃，贵贱不相救，上下不相收，卒离而不集，兵合而不齐。合于利而动，不合于利而止。敢问敌众而整将来，待之若何曰：先夺其所爱则听矣。兵之情主速，乘人之不及。由不虞之道，攻其所不戒也。&lt;br&gt;
+凡为客之道，深入则专。主人不克，掠于饶野，三军足食。谨养而勿劳，并气积力，运兵计谋，为不可测。&lt;br&gt;
+投之无所往，死且不北。死焉不得，士人尽力。兵士甚陷则不惧，无所往则固，深入则拘，不得已则斗。是故其兵不修而戒，不求而得，不约而亲，不令而信，禁祥去疑，至死无所之。&lt;br&gt;
+吾士无余财，非恶货也；无余命，非恶寿也。令发之日，士卒坐者涕沾襟，偃卧者涕交颐，投之无所往，诸、刿之勇也。故善用兵者，譬如率然。率然者，常山之蛇也。击其首则尾至，击其尾则首至，击其中则首尾俱至。敢问兵可使如率然乎？曰可。夫吴人与越人相恶也，当其同舟而济而遇风，其相救也如左右手。是故方马埋轮，未足恃也；齐勇如一，政之道也；刚柔皆得，地之理也。故善用兵者，携手若使一人，不得已也。&lt;br&gt;
+将军之事，静以幽，正以治，能愚士卒之耳目，使之无知；易其事，革其谋，使人无识；易其居，迂其途，使民不得虑。帅与之期，如登高而去其梯；帅与之深入诸侯之地，而发其机。若驱群羊，驱而往，驱而来，莫知所之。聚三军之众，投之于险，此谓将军之事也。&lt;br&gt;
+九地之变，屈伸之力，人情之理，不可不察也。&lt;br&gt;
+凡为客之道，深则专，浅则散。去国越境而师者，绝地也；四彻者，衢地也；入深者，重地也；入浅者，轻地也；背固前隘者，围地也；无所往者，死地也。&lt;br&gt;
+是故散地吾将一其志，轻地吾将使之属，争地吾将趋其后，交地吾将谨其守，交地吾将固其结，衢地吾将谨其恃，重地吾将继其食，泛地吾将进其途，围地吾将塞其阙，死地吾将示之以不活。&lt;br&gt;
+故兵之情：围则御，不得已则斗，过则从。&lt;br&gt;
+是故不知诸侯之谋者，不能预交；不知山林、险阻、沮泽之形者，不能行军；不用乡导，不能得地利。四五者，一不知，非霸王之兵也。夫霸王之兵，伐大国，则其众不得聚；威加于敌，则其交不得合。是故不争天下之交，不养天下之权，信己之私，威加于敌，则其城可拔，其国可隳。&lt;br&gt;
+施无法之赏，悬无政之令。犯三军之众，若使一人。犯之以事，勿告以言；犯之以害，勿告以利。投之亡地然后存，陷之死地然后生。夫众陷于害，然后能为胜败。&lt;br&gt;
+故为兵之事，在顺详敌之意，并敌一向，千里杀将，是谓巧能成事。是故政举之日，夷关折符，无通其使，厉于廊庙之上，以诛其事。敌人开阖，必亟入之，先其所爱，微与之期，践墨随敌，以决战事。是故始如处女，敌人开户；后如脱兔，敌不及拒。&lt;/p&gt;
+&lt;h2 id=&#34;译文-九地第十一&#34;&gt;译文 ：九地第十一&lt;/h2&gt;
+&lt;p&gt;孙子说：按照用兵的原则，军事地理有散地、轻地、争地、交地、衢地、重地、圮地、围地、死地。诸侯在本国境内作战的地区，叫做散地。在敌国浅近纵深作战的地区，叫做轻地。我方得到有利，敌人得到也有利的地区，叫做争地。我军可以前往，敌军也可以前来的地区，叫做交地。多国相毗邻，先到就可以获得诸侯列国援助的地区，叫做衢地。深入敌国腹地，背靠敌人众多城邑的地区，叫做重地。山林险阻沼泽等难于通行的地区，叫做圮地。行军的道路狭窄，退兵的道路迂远，敌人可以用少量兵力攻击我方众多兵力的地区，叫做围地。迅速奋战就能生存，不迅速奋战就会全军覆灭的地区，叫做死地。因此，处于散地就不宜作战，处于轻地就不宜停留，遇上争地就不要勉强强攻，遇上交地就不要断绝联络，进入衢地就应该结交诸侯，深入重地就要掠取粮草，碰到圮地就必须迅速通过，陷入围地就要设谋脱险，处于死地就要力战求生。&lt;br&gt;
+从前善于指挥作战的人，能使敌人前后部队不能相互策应，主力和小部队无法相互依靠，官兵之间不能相互救援，上下级之间不能互相联络，士兵分散不能集中，合兵布阵也不整齐。对我有利就打，对我无利就停止行动。试问：敌人兵员众多且又阵势严整向我发起进攻，那该用什么办法对付它呢？回答是：先夺取敌人最关心爱护的，这样就听从我们的摆布了。用兵之理贵在神速，要乘敌人措手不及的时机，走敌人意料不到的道路，攻击敌人没有戒备的地方。&lt;br&gt;
+在敌国境内进行作战的一般规律是：越深入敌国腹地，我军军心就越坚固，敌人就不易战胜我们。在敌国丰饶地区掠取粮草，部队给养就有了保障。要注意休整部队，不要使其过于疲劳，保持土气，养精蓄锐。部署兵力，巧设计谋，使敌人无法判断我军的意图。将部队置于无路可走的绝境，士卒就会宁死不退。士卒既能宁死不退，那么他们怎么会不殊死作战呢！士卒深陷危险的境地，就不再存在恐惧，一旦无路可走，军心就会牢固。深入敌境军队就不会离散。遇到迫不得已的情况，军队就会殊死奋战。因此，不须整饬就能注意戒备，不用强求就能完成任务，无须约束就能亲密团结，不待申令就会遵守纪律。禁止占卜迷信，消除士卒的疑虑，他们至死也不会逃避。我军士卒没有多余的钱财，并不是不爱钱财；士卒置生死于度外，也不是不想长寿。当作战命令颁布之时，坐着的士卒泪沾衣襟，躺着的士卒泪流满面，但把士卒置于无路可走的绝境，他们就都会象专诸、曹刿一样的勇敢。&lt;br&gt;
+善于指挥作战的人，能使部队自我策应如同“率然”蛇一样。“率然”是常山地方一种蛇，打它的头部，尾巴就来救应；打它的尾，头就来救应；打它的腰，头尾都来救应。试问：可以使军队象“率然”一样吧？回答是：可以。那吴国人和越国人是互相仇视的，但当他们同船渡河而遇上大风时，他们相互救援，就如同人的左右手一样。所以，想用缚住马缰、深埋车轮这种显示死战决心的办法来稳定部队，是靠不住的。要使部队能够齐心协力奋勇作战如同一人，关键在于部队管理教育有方。要使强弱不同的士卒都能发挥作用，在于恰当地利用地形。所以善于用兵的人，能使全军上下携手团结如同一人，这是因为客观形势迫使部队不得不这样。&lt;br&gt;
+主持军事行动，要做到考虑谋略沉着冷静而幽深莫测，管理部队公正严明而有条不紊。要能蒙蔽士卒的视听，使他们对于军事行动毫无所知；变更作战部署，改变原定计划，使人无法识破真相；不时变换驻地，故意迂回前进，使人无从推测意图。将帅向军队赋予作战任务，要象使其登高而抽去梯子一样。将帅率领士卒深入诸侯国土，要象弩机发出的箭一样一往无前。对待士卒要能如驱赶羊群一样，赶过去又赶过来，使他们不知道要到哪里去。集结全军，把他们置于险境，这就是统帅军队的要点。九种地形的应变处置，攻防进退的利害得失，全军上下的心理状态，这些都是作为将帅不能不认真研究和周密考察的。&lt;br&gt;
+在敌国境内作战的规律是：深入敌境则军心稳固，浅入敌境则军心容易涣散。进入敌境进行作战的称为绝地；四通八达的地区叫做衢地；进入敌境纵深的地区叫做重地；进入敌境浅的地区叫做轻地；背有险阻前有隘路的地区叫围地；无路可走的地区就是死地。因此，在散地，要统一军队意志；在轻地，要使营阵紧密相连；在争地，要迅速出兵抄到敌人的后面；在交地，就要谨慎防守；在衢地，就要巩固与列国的结盟；入重地，就要保障军粮供应；在圮地，就必须迅速通过；陷入围地，就要堵塞缺口；到了死地，就要显示死战的决心。所以，士卒的心理状态是：陷入包围就会竭力抵抗，形势逼迫就会拚死战斗，身处绝境就会听从指挥。不了解诸侯列国的战略意图，就不要与之结交；不熟悉山林、险阻、沼泽等地形情况，就不能行军；不使用向导，就无法得到地利。这些情况，如有一样不了解，都不能成为称王争霸的军队。凡是王霸的军队，进攻大国，能使敌国的军民来不及动员集中；兵威加在敌人头上，能够使敌方的盟国无法配合策应。因此，没有必要去争着同天下诸侯结交，也用不着在各诸侯国里培植自己的势力，只要施展自己的战略意图，把兵威施加在敌人头上，就可以拔取敌人的城邑，摧毁敌人的国都。施行超越惯例的奖赏，颁布不拘常规的号令，指挥全军就如同使用一个人一样。向部下布置作战任务，但不说明其中意图。只告知利益而不指出危害。将士卒置于危地，才能转危为安；使士卒陷于死地，才能起死回生。军队深陷绝境，然后才能赢得胜利。所以，指导战争的关键，在于谨慎地观察敌人的战略意图，集中兵力攻击敌人一部，千里奔袭，斩杀敌将，这就是所谓巧妙用兵，实现克敌制胜的目的。&lt;br&gt;
+因此，在决定战争方略的时候，就要封锁关口，废除通行符证，不充许敌国使者往来；要在庙堂里再三谋划，作出战略决策。敌人一旦出现间隙，就要迅速乘机而入。首先夺取敌人战略要地，但不要轻易与敌约期决战。要灵活机动，因敌情来决定自己的作战行动。因此，战争开始之前要象处女那样显得沉静柔弱，诱使敌人放松戒备；战斗展开之后，则要象脱逃的野兔一样行动迅速，使敌人措手不及，无从抵抗。&lt;/p&gt;
+&lt;h1 id=&#34;第十二-火攻篇&#34;&gt;第十二 火攻篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-火攻第十二&#34;&gt;原文 ：火攻第十二&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡火攻有五：一曰火人，二曰火积，三曰火辎，四曰火库，五曰火队。&lt;br&gt;
+行火必有因，因必素具。发火有时，起火有日。时者，天之燥也。日者，月在箕、壁、翼、轸也。凡此四宿者，风起之日也。凡火攻，必因五火之变而应之：火发于内，则早应之于外；火发而其兵静者，待而勿攻，极其火力，可从而从之，不可从则上。火可发于外，无待于内，以时发之，火发上风，无攻下风，昼风久，夜风止。凡军必知五火之变，以数守之。&lt;br&gt;
+故以火佐攻者明，以水佐攻者强。水可以绝，不可以夺。&lt;br&gt;
+夫战胜攻取而不惰其功者凶，命曰“费留”。故曰：明主虑之，良将惰之，非利不动，非得不用，非危不战。主不可以怒而兴师，将不可以愠而攻战。合于利而动，不合于利而上。怒可以复喜，愠可以复说，亡国不可以复存，死者不可以复生。故明主慎之，良将警之。此安国全军之道也。&lt;/p&gt;
+&lt;h2 id=&#34;译文-火攻第十二&#34;&gt;译文 ：火攻第十二&lt;/h2&gt;
+&lt;p&gt;孙子说：火攻形式共有五种，一是火烧敌军人马，二是焚烧敌军粮草，三是焚烧敌军辎重，四是焚烧敌军仓库，五是火烧敌军运输设施。实施火攻必须具备条件，火攻器材必须随时准备。放火要看准天时，起火要选好日子。天时是指气候干燥，日子是指月亮行经“箕”、“壁”、“翼”、“轸”四个星宿位置的时候。月亮经过这四个星宿的时候，就是起风的日子。&lt;br&gt;
+凡用火攻，必须根据五种火攻所引起的不同变化，灵活部署兵力策应。在敌营内部放火，就要及时派兵从外面策应。火已烧起而敌军依然保持镇静，就应等待，不可立即发起进攻。待火势旺盛后，再根据情况作出决定，可以进攻就进攻，不可进攻就停止。火可从外面放，这时就不必等待内应，只要适时放火就行。从上风放火时，不可从下风进攻。白天风刮久了，夜晚就容易停止。军队都必须掌握这五种火攻形式，等待条件具备时进行火攻。用火来辅助军队进攻，效果显著；用水来辅助军队进攻，攻势必能加强。水可以把敌军分割隔绝，但却不能焚毁敌人的军需物资。&lt;br&gt;
+凡打了胜仗，攻取了土地城邑，而不能巩固战果的，会很危险，这种情况叫做“费留”。所以说，明智的国君要慎重地考虑这个问题，贤良的将帅要严肃地对待这个问题。没有好处不要行动，没有取胜的把握不能用兵，不到危急关头不要开战。国君不可因一时愤怒而发动战争，将帅不可因一时的气忿而出阵求战。符合国家利益才用兵，不符合国家利益就停止。愤怒还可以重新变为欢喜，气忿也可以重新转为高兴，但是国家灭亡了就不能复存，人死了也不能再生。所以，对待战争，明智的国君应该慎重，贤良的将帅应该警惕，这是安定国家和保全军队的基本道理。&lt;/p&gt;
+&lt;h1 id=&#34;第十三-用间篇&#34;&gt;第十三 用间篇&lt;/h1&gt;
+&lt;h2 id=&#34;原文-用间第十三&#34;&gt;原文 ：用间第十三&lt;/h2&gt;
+&lt;p&gt;孙子曰：&lt;br&gt;
+凡兴师十万，出征千里，百姓之费，公家之奉，日费千金，内外骚动，怠于道路，不得操事者，七十万家。相守数年，以争一日之胜，而爱爵禄百金，不知敌之情者，不仁之至也，非民之将也，非主之佐也，非胜之主也。故明君贤将所以动而胜人，成功出于众者，先知也。先知者，不可取于鬼神，不可象于事，不可验于度，必取于人，知敌之情者也。&lt;br&gt;
+故用间有五：有因间，有内间，有反间，有死间，有生间。五间俱起，莫知其道，是谓神纪，人君之宝也。乡间者，因其乡人而用之；内间者，因其官人而用之；反间者，因其敌间而用之；死间者，为诳事于外，令吾闻知之而传于敌间也；生间者，反报也。故三军之事，莫亲于间，赏莫厚于间，事莫密于间，非圣贤不能用间，非仁义不能使间，非微妙不能得间之实。微哉微哉！无所不用间也。间事未发而先闻者，间与所告者兼死。凡军之所欲击，城之所欲攻，人之所欲杀，必先知其守将、左右、谒者、门者、舍人之姓名，令吾间必索知之。敌间之来间我者，因而利之，导而舍之，故反间可得而用也；因是而知之，故乡间、内间可得而使也；因是而知之，故死间为诳事，可使告敌；因是而知之，故生间可使如期。五间之事，主必知之，知之必在于反间，故反间不可不厚也。&lt;br&gt;
+昔殷之兴也，伊挚在夏；周之兴也，吕牙在殷。故明君贤将，能以上智为间者，必成大功。此兵之要，三军之所恃而动也。&lt;/p&gt;
+&lt;h2 id=&#34;译文-用间第十三&#34;&gt;译文 ：用间第十三&lt;/h2&gt;
+&lt;p&gt;孙子说：凡兴兵十万，征战千里，百姓的耗费，国家的开支，每天都要花费千金，前后方动乱不安，戌卒疲备地在路上奔波，不能从事正常生产的有七十万家。这样相持数年，就是为了决胜于一旦，如果吝惜爵禄和金钱，不肯用来重用间谍，以致因为不能掌握敌情而导致失败，那就是不仁到极点了。这种人不配作军队的统帅，算不上国家的辅佐，也不是胜利的主宰。所以，明君和贤将之所以一出兵就能战胜敌人，功业超越众人，就在于能预先掌握敌情。要事先了解敌情，不可求神问鬼，也不可用相似的现象作类比推测，不可用日月星辰运行的位置去验证，一定要取之于人，从那些熟悉敌情的人的口中去获取。&lt;br&gt;
+间谍的运用有五种，即乡间、内间、反间、死间、生间。五种间谍同时用起来，使敌人无从捉摸我用间的规律，这是使用间谍神妙莫测的方法，也正是国君克敌制胜的法宝。所谓乡间，是指利用敌人的同乡做间谍；所谓内间，就是利用敌方官吏做间谍；所谓反间，就是使敌方间谍为我所用；所谓死间，是指制造散布假情报，通过我方间谍将假情报传给敌间，诱使敌人上当，一旦真情败露，我间难免一死；所谓生间，就是侦察后能活着回来报告敌情的人。所以在军队中，没有比间谍更亲近的人，没有比间谍更为优厚奖赏的，没有比间谍更为秘密的事情了。不是睿智超群的人不能使用间谍，不是仁慈慷慨的人不能指使间谍，不是谋虑精细的人不能得到间谍提供的真实情报。微妙啊，微妙！无时无处不可以使用间谍。间谍的工作还未开展，而已泄露出去的，那么间谍和了解内情的人都要处死。凡是要攻打的敌方军队，要攻占的敌方城市，要刺杀的敌方人员，都须预先了解其主管将领、左右亲信、负责传达的官员、守门官吏和门客幕僚的姓名，指令我方间谍一定要将这些情况侦察清楚。&lt;br&gt;
+一定要搜查出敌方派来侦察我方军情的间谍，从而用重金收买他，引诱开导他，然后再放他回去，这样，反间就可以为我所用了。通过反间了解敌情，乡间、内间也就可以利用起来了。通过反间了解敌倩，就能使死间传播假情报给敌人了。通过反间了解敌情，就能使生间按预定时间报告敌情了。五种间谍的使用，国君都必须了解掌握。了解情况的关键在于使用反间，所以对反间不可不给予优厚的待遇。&lt;br&gt;
+从前殷商的兴起，在于重用了在夏朝为臣的伊挚，他熟悉并了解夏朝的情况；周朝的兴起，是由于周武王重用了了解商朝情况的吕牙。所以，明智的国君，贤能的将帅，能用智慧高超的人充当间谍，就一定能建树大功。这是用兵的关键，整个军队都要依靠间谍提供的敌情来决定军事行动。&lt;/p&gt;
+&lt;!-- more --&gt;
+">孙子兵法</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" href="https://ofo-ofo.github.io/mysql-explain-jie-shao/"" data-c="
+          &lt;h2 id=&#34;explain有什么用&#34;&gt;Explain有什么用&lt;/h2&gt;
+&lt;p&gt;当&lt;code&gt;Explain&lt;/code&gt; 与 &lt;code&gt;SQL&lt;/code&gt;语句一起使用时，&lt;code&gt;MySQL&lt;/code&gt; 会显示来自优化器关于SQL执行的信息。也就是说，&lt;code&gt;MySQL&lt;/code&gt;解释了它将如何处理该语句，包括如何连接表以及什么顺序连接表等。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;表的加载顺序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sql&lt;/code&gt; 的查询类型&lt;/li&gt;
+&lt;li&gt;可能用到哪些索引，哪些索引又被实际使用&lt;/li&gt;
+&lt;li&gt;表与表之间的引用关系&lt;/li&gt;
+&lt;li&gt;一个表中有多少行被优化器查询 .....&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;explain有哪些信息&#34;&gt;Explain有哪些信息&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Explain&lt;/code&gt; 执行计划包含字段信息如下：分别是 &lt;code&gt;id&lt;/code&gt;、&lt;code&gt;select_type&lt;/code&gt;、&lt;code&gt;table&lt;/code&gt;、&lt;code&gt;partitions&lt;/code&gt;、&lt;code&gt;type&lt;/code&gt;、&lt;code&gt;possible_keys&lt;/code&gt;、&lt;code&gt;key&lt;/code&gt;、&lt;code&gt;key_len&lt;/code&gt;、&lt;code&gt;ref&lt;/code&gt;、&lt;code&gt;rows&lt;/code&gt;、&lt;code&gt;filtered&lt;/code&gt;、&lt;code&gt;Extra&lt;/code&gt; 12个字段。&lt;br&gt;
+下边我们会结合具体的&lt;code&gt;SQL&lt;/code&gt;示例，详细的解读&lt;img src=&#34;https://i.loli.net/2020/11/21/PA3nR5zoTJ6IDqM.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;每个字段以及每个字段中不同参数的含义，以下所有示例数据库版本为 &lt;code&gt;MySQL.5.7.17&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; select version() from dual;
++------------+
+| version()  |
++------------+
+| 5.7.17-log |
++------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们创建三张表 &lt;code&gt;one&lt;/code&gt;、&lt;code&gt;two&lt;/code&gt;、&lt;code&gt;three&lt;/code&gt;，表之间的关系 &lt;code&gt;one.two_id = two.two_id AND two.three_id = three.three_id&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;explain执行计划详解&#34;&gt;Explain执行计划详解&lt;/h2&gt;
+&lt;h3 id=&#34;一-id&#34;&gt;一、id&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;id：&lt;/code&gt; ：表示查询中执行select子句或者操作表的顺序，&lt;strong&gt;&lt;code&gt;id&lt;/code&gt;的值越大，代表优先级越高，越先执行&lt;/strong&gt;。&lt;code&gt;id&lt;/code&gt;大致会出现 3种情况：&lt;/p&gt;
+&lt;h5 id=&#34;1-id相同&#34;&gt;1、&lt;code&gt;id&lt;/code&gt;相同&lt;/h5&gt;
+&lt;p&gt;看到三条记录的&lt;code&gt;id&lt;/code&gt;都相同，可以理解成这三个表为一组，具有同样的优先级，执行顺序由上而下，具体顺序由优化器决定。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * FROM one o,two t, three r WHERE o.two_id = t.two_id AND t.three_id = r.three_id;
++----+-------------+-------+------------+--------+---------------+---------+---------+----------------------+------+----------+----------------------------------------------------+
+| id | select_type | table | partitions | type   | possible_keys | key     | key_len | ref                  | rows | filtered | Extra                                              |
++----+-------------+-------+------------+--------+---------------+---------+---------+----------------------+------+----------+----------------------------------------------------+
+|  1 | SIMPLE      | o     | NULL       | ALL    | NULL          | NULL    | NULL    | NULL                 |    2 |      100 | NULL                                               ||  1 | SIMPLE      | t     | NULL       | ALL    | PRIMARY       | NULL    | NULL    | NULL                 |    2 |       50 | Using where; Using join buffer (Block Nested Loop) |
+|  1 | SIMPLE      | r     | NULL       | eq_ref | PRIMARY       | PRIMARY | 4       | xin-slave.t.three_id |    1 |      100 | NULL                                               |
++----+-------------+-------+------------+--------+---------------+---------+---------+----------------------+------+----------+----------------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;2-id不同&#34;&gt;2、&lt;code&gt;id&lt;/code&gt;不同&lt;/h5&gt;
+&lt;p&gt;如果我们的 &lt;code&gt;SQL&lt;/code&gt; 中存在子查询，那么 &lt;code&gt;id&lt;/code&gt;的序号会递增，&lt;code&gt;id&lt;/code&gt;值越大优先级越高，越先被执行 。当三个表依次嵌套，发现最里层的子查询 &lt;code&gt;id&lt;/code&gt;最大，最先执行。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN select * from one o where o.two_id = (select t.two_id from two t where t.three_id = (select r.three_id  from three r where r.three_name=&#39;我是第三表2&#39;));
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | PRIMARY     | o     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |       50 | Using where |
+|  2 | SUBQUERY    | t     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |       50 | Using where |
+|  3 | SUBQUERY    | r     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |       50 | Using where |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;3-以上两种同时存在&#34;&gt;3、以上两种同时存在&lt;/h5&gt;
+&lt;p&gt;将上边的 &lt;code&gt;SQL&lt;/code&gt; 稍微修改一下，增加一个子查询，发现 &lt;code&gt;id&lt;/code&gt;的以上两种同时存在。相同&lt;code&gt;id&lt;/code&gt;划分为一组，这样就有三个组，同组的从上往下顺序执行，不同组 &lt;code&gt;id&lt;/code&gt;值越大，优先级越高，越先执行。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt;  EXPLAIN select * from one o where o.two_id = (select t.two_id from two t where t.three_id = (select r.three_id  from three r where r.three_name=&#39;我是第三表2&#39;)) AND o.one_id in(select one_id from one where o.one_name=&amp;quot;我是第一表2&amp;quot;);
++----+-------------+-------+------------+--------+---------------+---------+---------+--------------------+------+----------+-------------+
+| id | select_type | table | partitions | type   | possible_keys | key     | key_len | ref                | rows | filtered | Extra       |
++----+-------------+-------+------------+--------+---------------+---------+---------+--------------------+------+----------+-------------+
+|  1 | PRIMARY     | o     | NULL       | ALL    | PRIMARY       | NULL    | NULL    | NULL               |    2 |       50 | Using where |
+|  1 | PRIMARY     | one   | NULL       | eq_ref | PRIMARY       | PRIMARY | 4       | xin-slave.o.one_id |    1 |      100 | Using index |
+|  2 | SUBQUERY    | t     | NULL       | ALL    | NULL          | NULL    | NULL    | NULL               |    2 |       50 | Using where |
+|  3 | SUBQUERY    | r     | NULL       | ALL    | NULL          | NULL    | NULL    | NULL               |    2 |       50 | Using where |
++----+-------------+-------+------------+--------+---------------+---------+---------+--------------------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;二-select_type&#34;&gt;二、select_type&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;select_type&lt;/code&gt;：表示 &lt;code&gt;select&lt;/code&gt; 查询的类型，主要是用于区分各种复杂的查询，例如：&lt;code&gt;普通查询&lt;/code&gt;、&lt;code&gt;联合查询&lt;/code&gt;、&lt;code&gt;子查询&lt;/code&gt;等。&lt;/p&gt;
+&lt;h5 id=&#34;1-simple&#34;&gt;1、SIMPLE&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;SIMPLE&lt;/code&gt;：表示最简单的 select 查询语句，也就是在查询中不包含子查询或者 &lt;code&gt;union&lt;/code&gt;交并差集等操作。&lt;/p&gt;
+&lt;h5 id=&#34;2-primary&#34;&gt;2、PRIMARY&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;PRIMARY&lt;/code&gt;：当查询语句中包含任何复杂的子部分，最外层查询则被标记为&lt;code&gt;PRIMARY&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;3-subquery&#34;&gt;3、SUBQUERY&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;SUBQUERY&lt;/code&gt;：当 &lt;code&gt;select&lt;/code&gt; 或 &lt;code&gt;where&lt;/code&gt; 列表中包含了子查询，该子查询被标记为：&lt;code&gt;SUBQUERY&lt;/code&gt; 。&lt;/p&gt;
+&lt;h5 id=&#34;4-derived&#34;&gt;4、DERIVED&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;DERIVED&lt;/code&gt;：表示包含在&lt;code&gt;from&lt;/code&gt;子句中的子查询的select，在我们的 &lt;code&gt;from&lt;/code&gt; 列表中包含的子查询会被标记为&lt;code&gt;derived&lt;/code&gt; 。&lt;/p&gt;
+&lt;h5 id=&#34;5-union&#34;&gt;5、UNION&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;UNION&lt;/code&gt;：如果&lt;code&gt;union&lt;/code&gt;后边又出现的&lt;code&gt;select&lt;/code&gt; 语句，则会被标记为&lt;code&gt;union&lt;/code&gt;；若 &lt;code&gt;union&lt;/code&gt; 包含在 &lt;code&gt;from&lt;/code&gt; 子句的子查询中，外层 &lt;code&gt;select&lt;/code&gt; 将被标记为 &lt;code&gt;derived&lt;/code&gt;。&lt;/p&gt;
+&lt;h5 id=&#34;6-union-result&#34;&gt;6、UNION RESULT&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;UNION RESULT&lt;/code&gt;：代表从&lt;code&gt;union&lt;/code&gt;的临时表中读取数据，而&lt;code&gt;table&lt;/code&gt;列的&lt;code&gt;&amp;lt;union1,4&amp;gt;&lt;/code&gt;表示用第一个和第四个&lt;code&gt;select&lt;/code&gt;的结果进行&lt;code&gt;union&lt;/code&gt;操作。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN select t.two_name, ( select one.one_id from one) o from (select two_id,two_name from two where two_name =&#39;&#39;) t  union (select r.three_name,r.three_id from three r);+------+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+| id   | select_type  | table      | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra           |+------+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+|    1 | PRIMARY      | two        | NULL       | ALL   | NULL          | NULL    | NULL    | NULL |    2 |       50 | Using where     ||    2 | SUBQUERY     | one        | NULL       | index | NULL          | PRIMARY | 4       | NULL |    2 |      100 | Using index     ||    4 | UNION        | r          | NULL       | ALL   | NULL          | NULL    | NULL    | NULL |    2 |      100 | NULL            || NULL | UNION RESULT | &amp;lt;union1,4&amp;gt; | NULL       | ALL   | NULL          | NULL    | NULL    | NULL | NULL | NULL     | Using temporary |+------+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;三-table&#34;&gt;三、table&lt;/h3&gt;
+&lt;p&gt;查询的表名，并不一定是真实存在的表，有别名显示别名，也可能为临时表，例如上边的&lt;code&gt;DERIVED&lt;/code&gt;、 &lt;code&gt;&amp;lt;union1,4&amp;gt;&lt;/code&gt;等。&lt;/p&gt;
+&lt;h3 id=&#34;四-partitions&#34;&gt;四、partitions&lt;/h3&gt;
+&lt;p&gt;查询时匹配到的分区信息，对于非分区表值为&lt;code&gt;NULL&lt;/code&gt;，当查询的是分区表时，&lt;code&gt;partitions&lt;/code&gt;显示分区表命中的分区情况。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;+----+-------------+----------------+---------------------------------+-------+---------------+---------+---------+------+------+----------+-------------+
+| id | select_type | table          | partitions                      | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |
++----+-------------+----------------+---------------------------------+-------+---------------+---------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | one            | p201801,p201802,p201803,p300012 | index | NULL          | PRIMARY | 9       | NULL |    3 |      100 | Using index |
++----+-------------+----------------+---------------------------------+-------+---------------+---------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;五-type&#34;&gt;五、type&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;type&lt;/code&gt;：查询使用了何种类型，它在 &lt;code&gt;SQL&lt;/code&gt;优化中是一个非常重要的指标，以下性能从好到坏依次是：&lt;code&gt;system&lt;/code&gt; &amp;gt; &lt;code&gt;const&lt;/code&gt; &amp;gt; &lt;code&gt;eq_ref&lt;/code&gt; &amp;gt; &lt;code&gt;ref&lt;/code&gt; &amp;gt; &lt;code&gt;ref_or_null&lt;/code&gt; &amp;gt; &lt;code&gt;index_merge&lt;/code&gt; &amp;gt; &lt;code&gt;unique_subquery&lt;/code&gt; &amp;gt; &lt;code&gt;index_subquery&lt;/code&gt; &amp;gt; &lt;code&gt;range&lt;/code&gt; &amp;gt; &lt;code&gt;index&lt;/code&gt; &amp;gt; &lt;code&gt;ALL&lt;/code&gt;&lt;/p&gt;
+&lt;h5 id=&#34;1-system&#34;&gt;1、system&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;system&lt;/code&gt;：当表仅有一行记录时(系统表)，数据量很少，往往不需要进行磁盘IO，速度非常快。&lt;/p&gt;
+&lt;h5 id=&#34;2-const&#34;&gt;2、const&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;const&lt;/code&gt;：表示查询时命中 &lt;code&gt;primary key&lt;/code&gt; 主键或者 &lt;code&gt;unique&lt;/code&gt; 唯一索引，或者被连接的部分是一个常量(&lt;code&gt;const&lt;/code&gt;)值。这类扫描效率极高，返回数据量少，速度非常快。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three where three_id=1;
++----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
+| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref   | rows | filtered | Extra |
++----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
+|  1 | SIMPLE      | three | NULL       | const | PRIMARY       | PRIMARY | 4       | const |    1 |      100 | NULL  |
++----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;3-eq_ref&#34;&gt;3、eq_ref&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;eq_ref&lt;/code&gt;：查询时命中主键&lt;code&gt;primary key&lt;/code&gt; 或者 &lt;code&gt;unique key&lt;/code&gt;索引， &lt;code&gt;type&lt;/code&gt; 就是 &lt;code&gt;eq_ref&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;mysql&amp;gt; EXPLAIN select o.one_name from one o ,two t where o.one_id = t.two_id ; 
++----+-------------+-------+------------+--------+---------------+----------+---------+--------------------+------+----------+-------------+
+| id | select_type | table | partitions | type   | possible_keys | key      | key_len | ref                | rows | filtered | Extra       |
++----+-------------+-------+------------+--------+---------------+----------+---------+--------------------+------+----------+-------------+
+|  1 | SIMPLE      | o     | NULL       | index  | PRIMARY       | idx_name | 768     | NULL               |    2 |      100 | Using index |
+|  1 | SIMPLE      | t     | NULL       | eq_ref | PRIMARY       | PRIMARY  | 4       | xin-slave.o.one_id |    1 |      100 | Using index |
++----+-------------+-------+------------+--------+---------------+----------+---------+--------------------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;4-ref&#34;&gt;4、ref&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;ref&lt;/code&gt;：区别于&lt;code&gt;eq_ref&lt;/code&gt; ，&lt;code&gt;ref&lt;/code&gt;表示使用非唯一性索引，会找到很多个符合条件的行。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; select o.one_id from one o where o.one_name = &amp;quot;xin&amp;quot; ; 
++--------+
+| one_id |
++--------+
+|      1 |
+|      3 |
++--------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN select o.one_id from one o where o.one_name = &amp;quot;xin&amp;quot; ; 
++----+-------------+-------+------------+------+---------------+----------+---------+-------+------+----------+-------------+
+| id | select_type | table | partitions | type | possible_keys | key      | key_len | ref   | rows | filtered | Extra       |
++----+-------------+-------+------------+------+---------------+----------+---------+-------+------+----------+-------------+
+|  1 | SIMPLE      | o     | NULL       | ref  | idx_name      | idx_name | 768     | const |    1 |      100 | Using index |
++----+-------------+-------+------------+------+---------------+----------+---------+-------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;5-ref_or_null&#34;&gt;5、ref_or_null&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;ref_or_null&lt;/code&gt;：这种连接类型类似于 ref，区别在于 &lt;code&gt;MySQL&lt;/code&gt;会额外搜索包含&lt;code&gt;NULL&lt;/code&gt;值的行。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN select o.one_id from one o where o.one_name = &amp;quot;xin&amp;quot; OR o.one_name IS NULL; 
++----+-------------+-------+------------+-------------+---------------+----------+---------+-------+------+----------+--------------------------+
+| id | select_type | table | partitions | type        | possible_keys | key      | key_len | ref   | rows | filtered | Extra.                   |
++----+-------------+-------+------------+-------------+---------------+----------+---------+-------+------+----------+--------------------------+
+|  1 | SIMPLE      | o     | NULL       | ref_or_null | idx_name      | idx_name | 768     | const |    3 |      100 | Using where; Using index |
++----+-------------+-------+------------+-------------+---------------+----------+---------+-------+------+----------+--------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;6-index_merge&#34;&gt;6、index_merge&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;index_merge&lt;/code&gt;：使用了索引合并优化方法，查询使用了两个以上的索引。&lt;/p&gt;
+&lt;p&gt;下边示例中同时使用到主键&lt;code&gt;one_id&lt;/code&gt; 和 字段&lt;code&gt;one_name&lt;/code&gt;的&lt;code&gt;idx_name&lt;/code&gt; 索引 。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN select * from one o where o.one_id &amp;gt;1 and o.one_name =&#39;xin&#39;; 
++----+-------------+-------+------------+-------------+------------------+------------------+---------+------+------+----------+------------------------------------------------+
+| id | select_type | table | partitions | type        | possible_keys    | key              | key_len | ref  | rows | filtered | Extra                                          |
++----+-------------+-------+------------+-------------+------------------+------------------+---------+------+------+----------+------------------------------------------------+
+|  1 | SIMPLE      | o     | NULL       | index_merge | PRIMARY,idx_name | idx_name,PRIMARY | 772,4   | NULL |    1 |      100 | Using intersect(idx_name,PRIMARY); Using where |
++----+-------------+-------+------------+-------------+------------------+------------------+---------+------+------+----------+------------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;7-unique_subquery&#34;&gt;7、unique_subquery&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;unique_subquery&lt;/code&gt;：替换下面的 &lt;code&gt;IN&lt;/code&gt;子查询，子查询返回不重复的集合。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;value IN (SELECT primary_key FROM single_table WHERE some_expr)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;8-index_subquery&#34;&gt;8、index_subquery&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;index_subquery&lt;/code&gt;：区别于&lt;code&gt;unique_subquery&lt;/code&gt;，用于非唯一索引，可以返回重复值。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;value IN (SELECT key_column FROM single_table WHERE some_expr)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;9-range&#34;&gt;9、range&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;range&lt;/code&gt;：使用索引选择行，仅检索给定范围内的行。简单点说就是针对一个有索引的字段，给定范围检索数据。在&lt;code&gt;where&lt;/code&gt;语句中使用 &lt;code&gt;bettween...and&lt;/code&gt;、&lt;code&gt;&amp;lt;&lt;/code&gt;、&lt;code&gt;&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;=&lt;/code&gt;、&lt;code&gt;in&lt;/code&gt; 等条件查询 &lt;code&gt;type&lt;/code&gt; 都是 &lt;code&gt;range&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;举个栗子：&lt;code&gt;three&lt;/code&gt;表中&lt;code&gt;three_id&lt;/code&gt;为唯一主键，&lt;code&gt;user_id&lt;/code&gt;普通字段未建索引。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three where three_id BETWEEN 2 AND 3;
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+|  1 | SIMPLE      | three | NULL       | range | PRIMARY       | PRIMARY | 4       | NULL |    1 |      100 | Using where |
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;从结果中看到只有对设置了索引的字段，做范围检索 &lt;code&gt;type&lt;/code&gt; 才是 &lt;code&gt;range&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three where user_id BETWEEN 2 AND 3;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | three | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;10-index&#34;&gt;10、index&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;index&lt;/code&gt;：&lt;code&gt;Index&lt;/code&gt; 与&lt;code&gt;ALL&lt;/code&gt; 其实都是读全表，区别在于&lt;code&gt;index&lt;/code&gt;是遍历索引树读取，而&lt;code&gt;ALL&lt;/code&gt;是从硬盘中读取。&lt;/p&gt;
+&lt;p&gt;下边示例：&lt;code&gt;three_id&lt;/code&gt; 为主键，不带 &lt;code&gt;where&lt;/code&gt; 条件全表查询 ，&lt;code&gt;type&lt;/code&gt;结果为&lt;code&gt;index&lt;/code&gt; 。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT three_id from three ;
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | three | NULL       | index | NULL          | PRIMARY | 4       | NULL |    1 |      100 | Using index |
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;11-all&#34;&gt;11、ALL&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;ALL&lt;/code&gt;：将遍历全表以找到匹配的行，性能最差。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from two ;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | two   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |      100 | NULL  |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;六-possible_keys&#34;&gt;六、possible_keys&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;possible_keys&lt;/code&gt;：表示在&lt;code&gt;MySQL&lt;/code&gt;中通过哪些索引，能让我们在表中找到想要的记录，一旦查询涉及到的某个字段上存在索引，则索引将被列出，&lt;strong&gt;但这个索引并不定一会是最终查询数据时所被用到的索引&lt;/strong&gt;。具体请参考上边的例子。&lt;/p&gt;
+&lt;h3 id=&#34;七-key&#34;&gt;七、key&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;key&lt;/code&gt;：区别于&lt;code&gt;possible_keys&lt;/code&gt;，key是查询中实际使用到的索引，若没有使用索引，显示为&lt;code&gt;NULL&lt;/code&gt;。具体请参考上边的例子。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当 &lt;code&gt;type&lt;/code&gt; 为 &lt;code&gt;index_merge&lt;/code&gt; 时，可能会显示多个索引。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;八-key_len&#34;&gt;八、key_len&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;key_len&lt;/code&gt;：表示查询用到的索引长度（字节数），原则上长度越短越好 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单列索引，那么需要将整个索引长度算进去；&lt;/li&gt;
+&lt;li&gt;多列索引，不是所有列都能用到，需要计算查询中实际用到的列。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：&lt;code&gt;key_len&lt;/code&gt;只计算&lt;code&gt;where&lt;/code&gt;条件中用到的索引长度，而排序和分组即便是用到了索引，也不会计算到&lt;code&gt;key_len&lt;/code&gt;中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;九-ref&#34;&gt;九、ref&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ref&lt;/code&gt;：常见的有：&lt;code&gt;const&lt;/code&gt;，&lt;code&gt;func&lt;/code&gt;，&lt;code&gt;null&lt;/code&gt;，字段名。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当使用常量等值查询，显示&lt;code&gt;const&lt;/code&gt;，&lt;/li&gt;
+&lt;li&gt;当关联查询时，会显示相应关联表的&lt;code&gt;关联字段&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果查询条件使用了&lt;code&gt;表达式&lt;/code&gt;、&lt;code&gt;函数&lt;/code&gt;，或者条件列发生内部隐式转换，可能显示为&lt;code&gt;func&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;其他情况&lt;code&gt;null&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;十-rows&#34;&gt;十、rows&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;rows&lt;/code&gt;：以表的统计信息和索引使用情况，估算要找到我们所需的记录，需要读取的行数。&lt;/p&gt;
+&lt;p&gt;这是评估&lt;code&gt;SQL&lt;/code&gt; 性能的一个比较重要的数据，&lt;code&gt;mysql&lt;/code&gt;需要扫描的行数，很直观的显示 &lt;code&gt;SQL&lt;/code&gt; 性能的好坏，一般情况下 &lt;code&gt;rows&lt;/code&gt; 值越小越好。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | three | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |      100 | NULL  |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;十一-filtered&#34;&gt;十一、filtered&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;filtered&lt;/code&gt; 这个是一个百分比的值，表里符合条件的记录数的百分比。简单点说，这个字段表示存储引擎返回的数据在经过过滤后，剩下满足条件的记录数量的比例。&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;MySQL.5.7&lt;/code&gt;版本以前想要显示&lt;code&gt;filtered&lt;/code&gt;需要使用&lt;code&gt;explain extended&lt;/code&gt;命令。&lt;code&gt;MySQL.5.7&lt;/code&gt;后，默认&lt;code&gt;explain&lt;/code&gt;直接显示&lt;code&gt;partitions&lt;/code&gt;和&lt;code&gt;filtered&lt;/code&gt;的信息。&lt;/p&gt;
+&lt;h3 id=&#34;十二-extra&#34;&gt;十二、Extra&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Extra&lt;/code&gt; ：不适合在其他列中显示的信息，&lt;code&gt;Explain&lt;/code&gt; 中的很多额外的信息会在 &lt;code&gt;Extra&lt;/code&gt; 字段显示。&lt;/p&gt;
+&lt;h5 id=&#34;1-using-index&#34;&gt;1、Using index&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Using index&lt;/code&gt;：我们在相应的 &lt;code&gt;select&lt;/code&gt; 操作中使用了覆盖索引，通俗一点讲就是查询的列被索引覆盖，使用到覆盖索引查询速度会非常快，&lt;code&gt;SQl&lt;/code&gt;优化中理想的状态。&lt;/p&gt;
+&lt;p&gt;什么又是覆盖索引?&lt;/p&gt;
+&lt;p&gt;一条 &lt;code&gt;SQL&lt;/code&gt;只需要通过索引就可以返回，我们所需要查询的数据（一个或几个字段），而不必通过二级索引，查到主键之后再通过主键查询整行数据（&lt;code&gt;select *&lt;/code&gt; ）。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;one_id&lt;/code&gt;表为主键&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_id from one ;
++----+-------------+-------+------------+-------+---------------+------------+---------+------+------+----------+-------------+
+| id | select_type | table | partitions | type  | possible_keys | key        | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+-------+---------------+------------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | one   | NULL       | index | NULL          | idx_two_id | 5       | NULL |    3 |      100 | Using index |
++----+-------------+-------+------------+-------+---------------+------------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：想要使用到覆盖索引，我们在 &lt;code&gt;select&lt;/code&gt; 时只取出需要的字段，不可&lt;code&gt;select *&lt;/code&gt;，而且该字段建了索引。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from one ;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | one   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |      100 | NULL  |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;2-using-where&#34;&gt;2、Using where&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Using where&lt;/code&gt;：查询时未找到可用的索引，进而通过&lt;code&gt;where&lt;/code&gt;条件过滤获取所需数据，但要注意的是并不是所有带&lt;code&gt;where&lt;/code&gt;语句的查询都会显示&lt;code&gt;Using where&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;下边示例&lt;code&gt;create_time&lt;/code&gt; 并未用到索引，&lt;code&gt;type&lt;/code&gt; 为 &lt;code&gt;ALL&lt;/code&gt;，即&lt;code&gt;MySQL&lt;/code&gt;通过全表扫描后再按&lt;code&gt;where&lt;/code&gt;条件筛选数据。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one where create_time =&#39;2020-05-18&#39;;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | one   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;3-using-temporary&#34;&gt;3、Using temporary&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Using temporary&lt;/code&gt;：表示查询后结果需要使用临时表来存储，一般在排序或者分组查询时用到。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one where one_id in (1,2) group by one_name;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra                                        |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------+
+|  1 | SIMPLE      | one   | NULL       | range| NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where; Using temporary; Using filesort |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;4-using-filesort&#34;&gt;4、Using filesort&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Using filesort&lt;/code&gt;：表示无法利用索引完成的排序操作，也就是&lt;code&gt;ORDER BY&lt;/code&gt;的字段没有索引，通常这样的SQL都是需要优化的。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_id from one  ORDER BY create_time;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra          |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
+|  1 | SIMPLE      | one   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |      100 | Using filesort |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果&lt;code&gt;ORDER BY&lt;/code&gt;字段有索引就会用到覆盖索引，相比执行速度快很多。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_id from one  ORDER BY one_id;
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | one   | NULL       | index | NULL          | PRIMARY | 4       | NULL |    3 |      100 | Using index |
++----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;5-using-join-buffer&#34;&gt;5、Using join buffer&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Using join buffer&lt;/code&gt;：在我们联表查询的时候，如果表的连接条件没有用到索引，需要有一个连接缓冲区来存储中间结果。&lt;/p&gt;
+&lt;p&gt;先看一下有索引的情况：连接条件 &lt;code&gt;one_name&lt;/code&gt; 、&lt;code&gt;two_name&lt;/code&gt; 都用到索引。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one o,two t where o.one_name = t.two_name;
++----+-------------+-------+------------+-------+---------------+----------+---------+----------------------+------+----------+--------------------------+
+| id | select_type | table | partitions | type  | possible_keys | key      | key_len | ref                  | rows | filtered | Extra                    |
++----+-------------+-------+------------+-------+---------------+----------+---------+----------------------+------+----------+--------------------------+
+|  1 | SIMPLE      | o     | NULL       | index | idx_name      | idx_name | 768     | NULL                 |    3 |      100 | Using where; Using index |
+|  1 | SIMPLE      | t     | NULL       | ref   | idx_name      | idx_name | 768     | xin-slave.o.one_name |    1 |      100 | Using index              |
++----+-------------+-------+------------+-------+---------------+----------+---------+----------------------+------+----------+--------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来删掉 连接条件 &lt;code&gt;one_name&lt;/code&gt; 、&lt;code&gt;two_name&lt;/code&gt; 的字段索引。发现&lt;code&gt;Extra&lt;/code&gt; 列变成 &lt;code&gt;Using join buffer&lt;/code&gt;，&lt;code&gt;type&lt;/code&gt;均为全表扫描，这也是&lt;code&gt;SQL&lt;/code&gt;优化中需要注意的地方。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one o,two t where o.one_name = t.two_name;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra                                              |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+|  1 | SIMPLE      | t     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |      100 | NULL                                               |
+|  1 | SIMPLE      | o     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where; Using join buffer (Block Nested Loop) |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;6-impossible-where&#34;&gt;6、Impossible where&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;Impossible where&lt;/code&gt;：表示在我们用不太正确的&lt;code&gt;where&lt;/code&gt;语句，导致没有符合条件的行。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one WHERE 1=2;
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+------------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra            |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+------------------+
+|  1 | SIMPLE      | NULL  | NULL       | NULL | NULL          | NULL | NULL    | NULL | NULL | NULL     | Impossible WHERE |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;7-no-tables-used&#34;&gt;7、No tables used&lt;/h5&gt;
+&lt;p&gt;&lt;code&gt;No tables used&lt;/code&gt;：我们的查询语句中没有&lt;code&gt;FROM&lt;/code&gt;子句，或者有 &lt;code&gt;FROM DUAL&lt;/code&gt;子句。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;mysql&amp;gt; EXPLAIN select now();
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
+| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra          |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
+|  1 | SIMPLE      | NULL  | NULL       | NULL | NULL          | NULL | NULL    | NULL | NULL | NULL     | No tables used |
++----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Extra&lt;/code&gt;列的信息非常非常多，这里就不再一一列举了，详见 &lt;code&gt;MySQL&lt;/code&gt;官方文档 ：&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#jointype_index_merge&#34;&gt;https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#jointype_index_merge&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;&#34;&gt;&lt;/h2&gt;
+&lt;hr&gt;
+">MySQL Explain 介绍</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/"" data-c="
+          &lt;h1 id=&#34;单例模式&#34;&gt;单例模式&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;单例类只能有一个实例&lt;/li&gt;
+&lt;li&gt;单例类必须自己创建自己的唯一实例&lt;/li&gt;
+&lt;li&gt;单例类必须给所有其他对象提供这一实例&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;意图&lt;/strong&gt;：保证一个类仅有一个实例，并提供一个访问它的全局访问点&lt;br&gt;
+&lt;strong&gt;主要解决&lt;/strong&gt;：一个全局使用的类频繁地创建与销毁&lt;br&gt;
+&lt;strong&gt;如何解决&lt;/strong&gt;：判断系统是否已经有这个单例，如果有则返回，没有则创建&lt;br&gt;
+&lt;strong&gt;关键代码&lt;/strong&gt;：私有化构造函数&lt;/p&gt;
+&lt;h2 id=&#34;单例模式的常见实现方式&#34;&gt;单例模式的常见实现方式&lt;/h2&gt;
+&lt;h3 id=&#34;1-懒汉式&#34;&gt;1 懒汉式&lt;/h3&gt;
+&lt;h4 id=&#34;11-懒汉式线程不安全&#34;&gt;1.1 懒汉式，线程不安全&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;是否多线程安全&lt;/strong&gt;：否&lt;br&gt;
+&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;br&gt;
+&lt;strong&gt;描述&lt;/strong&gt;：单例模式最基本的实现方式，最大的问题是不支持多线程。因为没有加锁 synchronized，所以严格意义（多线程下）上并不算是单例模式。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Singleton {
+    private static Singleton instance;  
+    private Singleton (){}  
+  
+    public static Singleton getInstance() {  
+    if (instance == null) {  
+        instance = new Singleton();  
+    }  
+    return instance;  
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;12-懒汉式线程安全&#34;&gt;1.2 懒汉式，线程安全&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;br&gt;
+&lt;strong&gt;描述&lt;/strong&gt;：懒加载，能够在多线程中很好的工作，但是效率低&lt;br&gt;
+优点：第一次调用才会实例化，避免浪费内存&lt;br&gt;
+缺点：需要加锁synchronized才能保证单例，单加锁会影响效率&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-Java&#34;&gt;public class Singleton {  
+    private static Singleton instance;  
+    private Singleton (){}  
+    public static synchronized Singleton getInstance() {  
+    if (instance == null) {  
+        instance = new Singleton();  
+    }  
+    return instance;  
+    }  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2-饿汉式&#34;&gt;2 饿汉式&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：否&lt;br&gt;
+&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;br&gt;
+&lt;strong&gt;描述&lt;/strong&gt;：较常用，但是容易产生垃圾对象&lt;br&gt;
+优点：没有加锁，执行效率高&lt;br&gt;
+缺点：类加载时就会初始化，浪费内存&lt;/p&gt;
+&lt;p&gt;基于classloader机制避免了多线程同步的问题，但是没有延迟加载的效果&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Singleton {  
+    private static Singleton instance = new Singleton();  
+    private Singleton (){}  
+    public static Singleton getInstance() {  
+    return instance;  
+    }  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3-双检锁双重校验锁也属于懒汉式&#34;&gt;3 双检锁/双重校验锁(也属于懒汉式)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;实现难度&lt;/strong&gt;：较复杂&lt;br&gt;
+&lt;strong&gt;描述&lt;/strong&gt;：这种方式采用双锁机制，安全且在多线程情况下能保持高性能。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+    if (singleton == null) {  
+        synchronized (Singleton.class) {  
+            if (singleton == null) {  
+                singleton = new Singleton();  
+            }  
+        }  
+    }  
+    return singleton;  
+    }  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4-登记式静态内部类&#34;&gt;4 登记式/静态内部类&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;实现难度&lt;/strong&gt;：一般&lt;br&gt;
+这种方式能达到双检锁方式一样的功效，但实现更简单。对静态域使用延迟初始化，应使用这种方式而不是双检锁方式。这种方式只适用于静态域的情况，双检锁方式可在实例域需要延迟初始化时使用。&lt;br&gt;
+这种方式同样利用了 classloader 机制来保证初始化 instance 时只有一个线程，它跟饿汉式不同的是：第 3 种方式只要 Singleton 类被装载了，那么 instance 就会被实例化（没有达到 lazy loading 效果），而这种方式是 Singleton 类被装载了，instance 不一定被初始化。因为 SingletonHolder 类没有被主动使用，只有通过显式调用 getInstance 方法时，才会显式装载 SingletonHolder 类，从而实例化 instance。想象一下，如果实例化 instance 很消耗资源，所以想让它延迟加载，另外一方面，又不希望在 Singleton 类加载时就实例化，因为不能确保 Singleton 类还可能在其他的地方被主动使用从而被加载，那么这个时候实例化 instance 显然是不合适的。这个时候，这种方式相比饿汉式就显得很合理。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Singleton {  
+    private static class SingletonHolder {  
+    private static final Singleton INSTANCE = new Singleton();  
+    }  
+    private Singleton (){}  
+    public static final Singleton getInstance() {  
+    return SingletonHolder.INSTANCE;  
+    }  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;5-枚举&#34;&gt;5 枚举&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;
+&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public enum Singleton {  
+    INSTANCE;  
+    public void whateverMethod() {  
+    }  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;单例模式的破坏&#34;&gt;单例模式的破坏&lt;/h2&gt;
+&lt;h3 id=&#34;1-通过反射破坏&#34;&gt;1 通过反射破坏&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;通过反射是可以获取单例模式的私有化构造函数，就可以创建新的对象了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static class Singleton {
+        private static class SingletonHolder {
+            private static final Singleton INSTANCE = new Singleton();
+        }
+        private Singleton (){}
+        public static final Singleton getInstance() {
+            return SingletonHolder.INSTANCE;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        //正常单例创建的实例
+        Singleton instance = Singleton.getInstance();
+        Singleton instance1 = Singleton.getInstance();
+
+        Class&amp;lt;Singleton&amp;gt; singletonClass = Singleton.class;
+        //获得默认构造函数
+        Constructor&amp;lt;Singleton&amp;gt; declaredConstructor = singletonClass.getDeclaredConstructor();
+        //关闭访问权限检查
+        declaredConstructor.setAccessible(true);
+        //通过反射创建的实例
+        Singleton singleton = declaredConstructor.newInstance();
+
+        System.out.println(instance.hashCode());
+        System.out.println(instance1.hashCode());
+        System.out.println(singleton.hashCode());
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;执行结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;1555093762
+1555093762
+1190900417
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;11-阻止反射破坏单例&#34;&gt;1.1 阻止反射破坏单例&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;思路：组织外部调用构造函数多次，可以增加一个标识来判断构造函数是否北条用过&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public class Test {
+    public static class Singleton {
+
+        //用于标识构造函数是否被调用过
+        private static Boolean flag = false;
+
+        private static class SingletonHolder {
+            private static final Singleton INSTANCE = new Singleton();
+        }
+        private Singleton (){
+            //加锁防止并发
+            synchronized (SingletonHolder.class){
+                if (flag){
+                    throw new RuntimeException(&amp;quot;单例模式被破坏！&amp;quot;);
+                }
+                flag = true;
+            }
+        }
+
+        public static final Singleton getInstance() {
+            return SingletonHolder.INSTANCE;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        //正常单例创建的实例
+        Singleton instance = Singleton.getInstance();
+
+        Class&amp;lt;Singleton&amp;gt; singletonClass = Singleton.class;
+        //获得默认构造函数
+        Constructor&amp;lt;Singleton&amp;gt; declaredConstructor = singletonClass.getDeclaredConstructor();
+        //关闭访问权限检查
+        declaredConstructor.setAccessible(true);
+        //通过反射创建的实例
+        Singleton singleton = declaredConstructor.newInstance();
+
+        System.out.println(instance.hashCode());
+        System.out.println(singleton.hashCode());
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;执行结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-log&#34;&gt;Exception in thread &amp;quot;main&amp;quot; java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.goldnurse.commons.utils.wechat.pay.Test.main(Test.java:48)
+Caused by: java.lang.RuntimeException: 单例模式被破坏！
+	at com.goldnurse.commons.utils.wechat.pay.Test$Singleton.&amp;lt;init&amp;gt;(Test.java:27)
+	... 5 more
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;增加标识为防止单例被破坏的方式有BUG，实例没有被实例化时，通过反射创建实例会成功，但此时标志微已记录构造器调用，这是通过正常的方法获取实例时就会报错。因此这总方式只适用于能够保证正方方法先于反射执行的情况&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-通过反序列化破坏&#34;&gt;2 通过反序列化破坏&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;通过Object的构造函数，反射出单例类对象，从而创建了新的实例。解决方案是：在单例类中写一个readResolve()方法，在这个方法中返回我们想要的单例，就可以解决序列化破坏单例&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jianshu.com/p/57613ff96aa5&#34;&gt;源码解析&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+">单例模式的实现及破坏方式</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" href="https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/"" data-c="
+          &lt;p&gt;Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。&lt;/p&gt;
+&lt;p&gt;引用&lt;a href=&#34;https://brew.sh/index_zh-cn&#34;&gt;官方&lt;/a&gt;的一句话：又提示缺少套件啦？别担心，Homebrew 随时守候。Homebrew —— OS X 不可或缺的套件管理器&lt;/p&gt;
+&lt;h2 id=&#34;1-要求&#34;&gt;1. 要求&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel CPU&lt;/li&gt;
+&lt;li&gt;OS X 10.9 or higher&lt;/li&gt;
+&lt;li&gt;Xcode命令行工具&lt;/li&gt;
+&lt;li&gt;支持shell (sh或者bash)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a name=&#34;c3a27555&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;2-安装和卸载&#34;&gt;2. 安装和卸载&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;卸载&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd `brew --prefix`
+rm -rf Cellar
+brew prune
+rm `git ls-files`
+rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
+rm -rf .git
+rm -rf ~/Library/Caches/Homebrew
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;3常用命令&#34;&gt;3.常用命令&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;安装任意包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew install &amp;lt;packageName&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;卸载任意包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew uninstall &amp;lt;packageName&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;查询可用包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew search &amp;lt;packageName&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;查看已安装包列表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;查看任意包信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew info &amp;lt;packageName&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;更新Homebrew&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;查看Homebrew版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Homebrew帮助信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew -h
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;br /&gt;在Mac OS X 10.11系统以后，/usr/local/等系统目录下的文件读写是需要系统root权限的，以往的Homebrew安装如果没有指定安装路径，会默认安装在这些需要系统root用户读写权限的目录下，导致有些指令需要添加sudo前缀来执行，比如升级Homebrew需要：&lt;br /&gt;&lt;br&gt;
+&lt;br /&gt;如果你不想每次都使用sudo指令，你有两种方法可以选择:&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;对/usr/local 目录下的文件读写进行root用户授权&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo chown -R $USER /usr/local
+&lt;/code&gt;&lt;/pre&gt;
+">Homebrew介绍与使用</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" href="https://ofo-ofo.github.io/about/"" data-c="
+          &lt;blockquote&gt;
+&lt;p&gt;欢迎来到我的小站呀，很高兴遇见你！🤝&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;关于本站&#34;&gt;🏠 关于本站&lt;/h2&gt;
+&lt;h2 id=&#34;博主是谁&#34;&gt;👨‍💻 博主是谁&lt;/h2&gt;
+&lt;h2 id=&#34;兴趣爱好&#34;&gt;⛹ 兴趣爱好&lt;/h2&gt;
+&lt;h2 id=&#34;联系我呀&#34;&gt;📬 联系我呀&lt;/h2&gt;
+">关于</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" href="https://ofo-ofo.github.io/hello-gridea/"" data-c="
+          &lt;p&gt;👏  欢迎使用 &lt;strong&gt;Gridea&lt;/strong&gt; ！&lt;br&gt;
+✍️  &lt;strong&gt;Gridea&lt;/strong&gt; 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/getgridea/gridea&#34;&gt;Github&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://gridea.dev/&#34;&gt;Gridea 主页&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;http://fehey.com/&#34;&gt;示例网站&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;特性&#34;&gt;特性👇&lt;/h2&gt;
+&lt;p&gt;📝  你可以使用最酷的 &lt;strong&gt;Markdown&lt;/strong&gt; 语法，进行快速创作&lt;/p&gt;
+&lt;p&gt;🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片&lt;/p&gt;
+&lt;p&gt;🏷️  你可以对文章进行标签分组&lt;/p&gt;
+&lt;p&gt;📋  你可以自定义菜单，甚至可以创建外部链接菜单&lt;/p&gt;
+&lt;p&gt;💻  你可以在 &lt;strong&gt;Windows&lt;/strong&gt;，&lt;strong&gt;MacOS&lt;/strong&gt; 或 &lt;strong&gt;Linux&lt;/strong&gt; 设备上使用此客户端&lt;/p&gt;
+&lt;p&gt;🌎  你可以使用 &lt;strong&gt;𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌&lt;/strong&gt; 或 &lt;strong&gt;Coding Pages&lt;/strong&gt; 向世界展示，未来将支持更多平台&lt;/p&gt;
+&lt;p&gt;💬  你可以进行简单的配置，接入 &lt;a href=&#34;https://github.com/gitalk/gitalk&#34;&gt;Gitalk&lt;/a&gt; 或 &lt;a href=&#34;https://github.com/SukkaW/DisqusJS&#34;&gt;DisqusJS&lt;/a&gt; 评论系统&lt;/p&gt;
+&lt;p&gt;🇬🇧  你可以使用&lt;strong&gt;中文简体&lt;/strong&gt;或&lt;strong&gt;英语&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力&lt;/p&gt;
+&lt;p&gt;🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步&lt;/p&gt;
+&lt;p&gt;🌱 当然 &lt;strong&gt;Gridea&lt;/strong&gt; 还很年轻，有很多不足，但请相信，它会不停向前 🏃&lt;/p&gt;
+&lt;p&gt;未来，它一定会成为你离不开的伙伴&lt;/p&gt;
+&lt;p&gt;尽情发挥你的才华吧！&lt;/p&gt;
+&lt;p&gt;😘 Enjoy~&lt;/p&gt;
+">Hello Gridea</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+  // var escape = "[{&#34;content&#34;:&#34;&lt;h1 id=\&#34;第一-始计篇\&#34;&gt;第一 始计篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文始计第一\&#34;&gt;原文：始计第一&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n兵者，国之大事，死生之地，存亡之道，不可不察也。&lt;br&gt;\n故经之以五事，校之以计，而索其情：一曰道，二曰天，三曰地，四曰将，五曰法。道者，令民于上同意，可与之死，可与之生，而不危也；天者，阴阳、寒暑、时制也；地者，远近、险易、广狭、死生也；将者，智、信、仁、勇、严也；法者，曲制、官道、主用也。凡此五者，将莫不闻，知之者胜，不知之者不胜。故校之以计，而索其情，曰：主孰有道？将孰有能？天地孰得？法令孰行？兵众孰强？士卒孰练？赏罚孰明？吾以此知胜负矣。将听吾计，用之必胜，留之；将不听吾计，用之必败，去之。&lt;br&gt;\n计利以听，乃为之势，以佐其外。势者，因利而制权也。兵者，诡道也。故能而示之不能，用而示之不用，近而示之远，远而示之近。利而诱之，乱而取之，实而备之，强而避之，怒而挠之，卑而骄之，佚而劳之，亲而离之，攻其无备，出其不意。此兵家之胜，不可先传也。&lt;br&gt;\n夫未战而庙算胜者，得算多也；未战而庙算不胜者，得算少也。多算胜少算，而况于无算乎！吾以此观之，胜负见矣。&lt;/p&gt;\n&lt;!-- more --&gt;\n&lt;h2 id=\&#34;译文-始计第一\&#34;&gt;译文 ：始计第一&lt;/h2&gt;\n&lt;p&gt;孙子说：战争是一个国家的头等大事，关系到军民的生死，国家的存亡，是不能不慎重周密地观察、分析、研究。&lt;br&gt;\n因此，必须通过敌我双方五个方面的分析，七种情况的比较，得到详情，来预测战争胜负的可能性。&lt;br&gt;\n一是道，二是天，三是地，四是将，五是法。道，指君主和民众目标相同，意志统一，可以同生共死，而不会惧怕危险。天，指昼夜、阴晴、寒暑、四季更替。地，指地势的高低，路程的远近，地势的险要、平坦与否，战场的广阔、狭窄，是生地还是死地等地理条件。将，指将领足智多谋，赏罚有信，对部下真心关爱，勇敢果断，军纪严明。法，指组织结构，责权划分，人员编制，管理制度，资源保障，物资调配。对这五个方面，将领都不能不做深刻了解。了解就能胜利，否则就不能胜利。所以，要通过对双方各种情况的考察分析，并据此加以比较，从而来预测战争胜负。哪一方的君主是有道明君，能得民心？哪一方的将领更有能力？哪一方占有天时地利？哪一方的法规、法令更能严格执行？哪一方资源更充足，装备更精良，兵员更广大？哪一方的士兵训练更有素，更有战斗力？哪一方的赏罚更公正严明？通过这些比较，我就知道了胜负。将领听从我的计策，任用他必胜，我就留下他；将领不听从我的计策，任用他必败，我就辞退他。&lt;br&gt;\n听从了有利于克敌制胜的计策，还要创造一种势态，作为协助我方军事行动的外部条件。势，就是按照我方建立优势、掌握战争主动权的需要，根据具体情况采取不同的相应措施。用兵作战，就是诡诈。因此，有能力而装做没有能力，实际上要攻打而装做不攻打，欲攻打近处却装做攻打远处，攻打远处却装做攻打近处。对方贪利就用利益诱惑他，对方混乱就趁机攻取他，对方强大就要防备他，对方暴躁易怒就可以撩拨他怒而失去理智，对方自卑而谨慎就使他骄傲自大，对方体力充沛就使其劳累，对方内部亲密团结就挑拨离间，要攻打对方没有防备的地方，在对方没有料到的时机发动进攻。这些都是军事家克敌制胜的诀窍，不可先传泄于人也。在未战之前，经过周密的分析、比较、谋划，如果结论是我方占据的有利条件多，有八、九成的胜利把握；或者如果结论是我方占据的有利条件少，只有六、七成的胜利把握，则只有前一种情况在实战时才可能取胜。如果在战前干脆就不做周密的分析、比较，或分析、比较的结论是我方只有五成以下的胜利把握，那在实战中就不可能获胜。仅根据庙算的结果，不用实战，胜负就显而易见了。&lt;/p&gt;\n&lt;h1 id=\&#34;第二-作战篇\&#34;&gt;第二 作战篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-作战第二\&#34;&gt;原文 ：作战第二&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡用兵之法，驰车千驷，革车千乘，带甲十万，千里馈粮。则内外之费，宾客之用，胶漆之材，车甲之奉，日费千金，然后十万之师举矣。&lt;br&gt;\n其用战也，胜久则钝兵挫锐，攻城则力屈，久暴师则国用不足。夫钝兵挫锐，屈力殚货，则诸侯乘其弊而起，虽有智者不能善其后矣。故兵闻拙速，未睹巧之久也。夫兵久而国利者，未之有也。故不尽知用兵之害者，则不能尽知用兵之利也。&lt;br&gt;\n善用兵者，役不再籍，粮不三载，取用于国，因粮于敌，故军食可足也。国之贫于师者远输，远输则百姓贫；近师者贵卖，贵卖则百姓财竭，财竭则急于丘役。力屈中原、内虚于家，百姓之费，十去其七；公家之费，破军罢马，甲胄矢弓，戟盾矛橹，丘牛大车，十去其六。故智将务食于敌，食敌一钟，当吾二十钟；□①杆一石，当吾二十石。故杀敌者，怒也；取敌之利者，货也。车战得车十乘以上，赏其先得者而更其旌旗。车杂而乘之，卒善而养之，是谓胜敌而益强。&lt;br&gt;\n故兵贵胜，不贵久。&lt;br&gt;\n故知兵之将，民之司命。国家安危之主也。&lt;br&gt;\n注 ：&lt;br&gt;\n①：“忌”加“艹”头。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-作战第二\&#34;&gt;译文 ：作战第二&lt;/h2&gt;\n&lt;p&gt;孙子说：要兴兵作战，需做的物资准备有，轻车千辆，重车千辆，全副武装的士兵十万，并向千里之外运送粮食。那么前后方的军内外开支，招待使节、策士的用度，用于武器维修的胶漆等材料费用，保养战车、甲胄的支出等，每天要消耗千金。按照这样的标准准备之后，十万大军才可出发上战场。&lt;br&gt;\n因此，军队作战就要求速胜，如果拖的很久则军队必然疲惫，挫失锐气。一旦攻城，则兵力将耗尽，长期在外作战还必然导致国家财用不足。如果军队因久战疲惫不堪，锐气受挫，军事实力耗尽，国内物资枯竭，其他诸侯必定趁火打劫。这样，即使足智多谋之士也无良策来挽救危亡了。所以，在实际作战中，只听说将领缺少高招难以速胜，却没有见过指挥高明巧于持久作战的。战争旷日持久而有利于国家的事，从来没有过。所以，不能详尽地了解用兵的害处，就不能全面地了解用兵的益处。&lt;br&gt;\n善于用兵的人，不用再次征集兵员，不用多次运送军粮。武器装备由国内供应，从敌人那里设法夺取粮食，这样军队的粮草就可以充足了。国家之所以因作战而贫困，是由于军队远征，不得不进行长途运输。长途运输必然导致百姓贫穷。驻军附近处物价必然飞涨，物价飞涨，必然导致物资枯竭，物财枯竭，赋税和劳役必然加重。在战场上，军力耗尽，在国内财源枯竭，百姓私家财产损耗十分之七。公家的财产，由于车辆破损，马匹疲惫，盔甲、弓箭、矛戟、盾牌、牛车的损失，而耗去十分之六。所以明智的将军，一定要在敌国解决粮草，从敌国搞到一钟的粮食，就相当于从本国启运时的二十钟，在当地取得饲料一石，相当于从本国启运时的二十石。所以，要使士兵拼死杀敌，就必须怒之，激励之。要使士兵勇于夺取敌方的军需物资，就必须以缴获的财物作奖赏。所以，在车战中，抢夺十辆车以上的，就奖赏最先抢得战车的。而夺得的战车，要立即换上我方的旗帜，把抢得的战车编入我方车队。要善待俘虏，使他们有归顺之心。这就是战胜敌人而使自己越发强大的方法.所以，作战最重要、最有利的是速胜，最不宜的是旷日持久。真正懂得用兵之道、深知用兵利害的将帅，掌握着民众的的生死，主宰着国家的安危。&lt;br&gt;\n#第三 谋攻篇&lt;/p&gt;\n&lt;h2 id=\&#34;原文-谋攻第三\&#34;&gt;原文 ：谋攻第三&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n夫用兵之法，全国为上，破国次之；全军为上，破军次之；全旅为上，破旅次之；全卒为上，破卒次之；全伍为上，破伍次之。&lt;br&gt;\n是故百战百胜，非善之善也；不战而屈人之兵，善之善者也。故上兵伐谋，其次伐交，其次伐兵，其下攻城。攻城之法，为不得已。修橹□①□②，具器械，三月而后成；距堙，又三月而后已。将不胜其忿而蚁附之，杀士卒三分之一，而城不拔者，此攻之灾也。故善用兵者，屈人之兵而非战也，拔人之城而非攻也，毁人之国而非久也，必以全争于天下，故兵不顿而利可全，此谋攻之法也。&lt;br&gt;\n故用兵之法，十则围之，五则攻之，倍则分之，敌则能战之，少则能逃之，不若则能避之。故小敌之坚，大敌之擒也。&lt;br&gt;\n夫将者，国之辅也。辅周则国必强，辅隙则国必弱。故君之所以患于军者三：不知军之不可以进而谓之进，不知军之不可以退而谓之退，是谓縻军；不知三军之事而同三军之政，则军士惑矣；不知三军之权而同三军之任，则军士疑矣。三军既惑且疑，则诸侯之难至矣。是谓乱军引胜。&lt;br&gt;\n故知胜有五：知可以战与不可以战者胜，识众寡之用者胜，上下同欲者胜，以虞待不虞者胜，将能而君不御者胜。此五者，知胜之道也。故曰：知己知彼，百战不贻；不知彼而知己，一胜一负；不知彼不知己，每战必败。&lt;br&gt;\n注 ：&lt;br&gt;\n①： 车贲 。&lt;br&gt;\n②：“温”字“氵”旁换“车”旁。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-谋攻第三\&#34;&gt;译文 ：谋攻第三&lt;/h2&gt;\n&lt;p&gt;孙子说：战争的原则是：使敌人举国降服是上策，用武力击破敌国就次一等；使敌人全军降服是上策，击败敌军就次一等；使敌人全旅降服是上策，击破敌旅就次一等；使敌人全卒降服是上策，击破敌卒就次一等；使敌人全伍降服是上策，击破敌伍就次一等。&lt;br&gt;\n所以，百战百胜，算不上是最高明的；不通过交战就降服全体敌人，才是最高明的。所以，上等的军事行动是用谋略挫败敌方的战略意图或战争行为，其次就是用外交战胜敌人，再次是用武力击败敌军，最下之策是攻打敌人的城池。攻城，是不得已而为之，是没有办法的办法。制造大盾牌和四轮车，准备攻城的所有器具，起码得三个月。堆筑攻城的土山，起码又得三个月。如果将领难以拟制焦躁情绪，命令士兵象蚂蚁一样爬墙攻城，尽管士兵死伤三分之一，而城池却依然没有攻下，这就是攻城带来的灾难。所以善用兵者，不通过打仗就使敌人屈服，不通过攻城就使敌城投降，摧毁敌国不需长期作战，一定要用“全胜”的策略争胜于天下，从而既不使国力兵力受挫，又获得了全面胜利的利益。这就是谋攻的方法。&lt;br&gt;\n所以，在实际作战中运用的原则是：我十倍于敌，就实施围歼，五倍于敌就实施进攻，两倍于敌就要努力战胜敌军，势均力敌则设法分散各个击破之。兵力弱于敌人，就避免作战。所以，弱小的一方若死拼固守，那就会成为强大敌人的俘虏。&lt;br&gt;\n将帅，国家之辅助也。辅助之谋缜密周详，则国家必然强大，辅助之谋疏漏失当，则国家必然衰弱。所以，国君对军队的危害有三种：不知道军队不可以前进而下令前进，不知道军队不可以后退而下令后退，这叫做束缚军队；不知道军队的战守之事、内部事务而同理三军之政，将士们会无所适从；不知道军队战略战术的权宜变化，却干预军队的指挥，将士就会疑虑。军队既无所适从，又疑虑重重，诸侯就会趁机兴兵作难。这就是自乱其军，坐失胜机。&lt;br&gt;\n所以，预见胜利有五个方面：能准确判断仗能打或不能打的，胜；知道根据敌我双方兵力的多少采取对策者，胜；全国上下，全军上下，意愿一致、同心协力的，胜；以有充分准备来对付毫无准备的，胜；主将精通军事、精于权变，君主又不加干预的，胜。以上就是预见胜利的方法。所以说：了解敌方也了解自己，每一次战斗都不会有危险；不了解对方但了解自己，胜负的机率各半；既不了解对方又不了解自己，每战必败。&lt;/p&gt;\n&lt;h1 id=\&#34;第四-军形篇\&#34;&gt;第四 军形篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-军形第四\&#34;&gt;原文 ：军形第四&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n昔之善战者，先为不可胜，以待敌之可胜。不可胜在己，可胜在敌。故善战者，能为不可胜，不能使敌之必可胜。故曰：胜可知，而不可为。不可胜者，守也；可胜者，攻也。守则不足，攻则有余。善守者藏于九地之下，善攻者动于九天之上，故能自保而全胜也。见胜不过众人之所知，非善之善者也；战胜而天下曰善，非善之善者也。故举秋毫不为多力，见日月不为明目，闻雷霆不为聪耳。古之所谓善战者，胜于易胜者也。故善战者之胜也，无智名，无勇功，故其战胜不忒。不忒者，其所措胜，胜已败者也。故善战者，立于不败之地，而不失敌之败也。是故胜兵先胜而后求战，败兵先战而后求胜。善用兵者，修道而保法，故能为胜败之政。&lt;br&gt;\n兵法：一曰度，二曰量，三曰数，四曰称，五曰胜。地生度，度生量，量生数，数生称，称生胜。故胜兵若以镒称铢，败兵若以铢称镒。&lt;br&gt;\n称胜者之战民也，若决积水于千仞之溪者，形也。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-军形第四\&#34;&gt;译文 ：军形第四&lt;/h2&gt;\n&lt;p&gt;孙子说：以前善于用兵作战的人，总是首先创造自己不可战胜的条件，并等待可以战胜敌人的机会。使自己不被战胜，其主动权掌握在自己手中；敌人能否被战胜，在于敌人是否给我们以可乘之机。所以，善于作战的人只能够使自己不被战胜，而不能使敌人一定会被我军战胜。所以说，胜利可以预见，却不能强求.敌人无可乘之机，不能被战胜，且防守以待之；敌人有可乘之机，能够被战胜，则出奇攻而取之。防守是因为我方兵力不足，进攻是因为兵力超过对方。善于防守的，隐藏自己的兵力如同在深不可测的地下；善于进攻的部队就象从天而降，敌不及防。这样，才能保全自己而获得全胜。预见胜利不能超过平常人的见识，算不上最高明：交战而后取胜，即使天下都称赞，也不算上最高明。正如举起秋毫称不上力大，能看见日月算不上视力好，听见雷鸣算不上耳聪。古代所谓善于用兵的人，只是战胜了那些容易战胜的敌人。所以，真正善于用兵的人，没有智慧过人的名声，没有勇武盖世的战功，而他既能打胜仗又不出任何闪失，原因在于其谋划、措施能够保证，他所战胜的是已经注定失败的敌人。所以善于打战的人，不但使自己始终处于不被战胜的境地，也决不会放过任何可以击败敌人的机会。所以，打胜仗的军队总是在具备了必胜的条件之后才交战，而打败仗的部队总是先交战，在战争中企图侥幸取胜。善于用兵的人，潜心研究致胜之道，修明政治，坚持致胜的法制，所以能主宰胜败。&lt;br&gt;\n兵法：一是度，即估算土地的面积，二是量，即推算物资资源的容量，三是数，即统计兵源的数量，四是称，即比较双方的军事综合实力，五是胜，即得出胜负的判断。土地面积的大小决定物力、人力资源的容量，资源的容量决定可投入部队的数目，部队的数目决定双方兵力的强弱，双方兵力的强弱得出胜负的概率。获胜的军队对于失败的一方就如同用“镒”来称“铢”，具有绝对优势优势，而失败的军队对于获胜的一方就如同用“铢”来称“镒”。胜利者一方打仗，就象积水从千仞高的山涧冲决而出，势不可挡，这就是军事实力的表现。&lt;/p&gt;\n&lt;h1 id=\&#34;第五-兵势篇\&#34;&gt;第五 兵势篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-兵势第五\&#34;&gt;原文 ：兵势第五&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡治众如治寡，分数是也；斗众如斗寡，形名是也；三军之众，可使必受敌而无败者，奇正是也；兵之所加，如以□①投卵者，虚实是也。&lt;br&gt;\n凡战者，以正合，以奇胜。故善出奇者，无穷如天地，不竭如江海。终而复始，日月是也。死而更生，四时是也。声不过五，五声之变，不可胜听也；色不过五，五色之变，不可胜观也；味不过五，五味之变，不可胜尝也；战势不过奇正，奇正之变，不可胜穷也。奇正相生，如循环之无端，孰能穷之哉！&lt;br&gt;\n激水之疾，至于漂石者，势也；鸷鸟之疾，至于毁折者，节也。故善战者，其势险，其节短。势如扩弩，节如发机。纷纷纭纭，斗乱而不可乱；浑浑沌沌，形圆而不可败。乱生于治，怯生于勇，弱生于强。治乱，数也；勇怯，势也；强弱，形也。&lt;br&gt;\n故善动敌者，形之，敌必从之；予之，敌必取之。以利动之，以卒待之。故善战者，求之于势，不责于人故能择人而任势。任势者，其战人也，如转木石。木石之性，安则静，危则动，方则止，圆则行。&lt;br&gt;\n故善战人之势，如转圆石于千仞之山者，势也。&lt;br&gt;\n注 ：&lt;br&gt;\n①：“瑕”的“王”旁换“石”旁。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-兵势第五\&#34;&gt;译文 ：兵势第五&lt;/h2&gt;\n&lt;p&gt;治理大军团就象治理小部队一样有效，是依靠合理的组织、结构、编制；指挥大军团作战就象指挥小部队作战一样到位，是依靠明确、高效的信号指挥系统；整个部队与敌对抗而不会失败，是依靠正确运用“奇正”的变化：攻击敌军，如同用石头砸鸡蛋一样容易，关键在于以实击虚。&lt;br&gt;\n大凡作战，都是以正兵作正面交战，而用奇兵去出奇制胜。善于运用奇兵的人，其战法的变化就象天地运行一样无穷无尽，象江海一样永不枯竭。象日月运行一样，终而复始；与四季更迭一样，去而复来。宫、商、角、徵、羽不过五音，然而五音的组合变化，永远也听不完；红、黄、蓝、白、黑不过五色，但五种色调的组合变化，永远看不完；酸、甜、苦、辣、咸不过五味，而五种味道的组合变化，永远也尝不完。战争中军事实力的运用不过“奇”、“正”两种，而“奇”、“正”的组合变化，永远无穷无尽。奇正相生、相互转化，就好比圆环旋绕，无始无终，谁能穷尽呢。&lt;br&gt;\n湍急的流水所以能漂动大石，是因为使它产生巨大冲击力的势能；猛禽搏击雀鸟，一举可致对手于死地，是因为它掌握了最有利于爆发冲击力的时空位置，节奏迅猛。所以善于作战的指挥者，他所造成的态势是险峻的，进攻的节奏是短促有力的。“势险”就如同满弓待发的弩那样蓄势，“节短”正如搏动弩机那样突然。旌旗纷纷，人马纭纭，双方混战，战场上事态万端，但自己的指挥、组织、阵脚不能乱；混混沌吨，迷迷蒙蒙，两军搅作一团，但胜利在我把握之中。双方交战，一方之乱，是因为对方治军更严整：一方怯懦，是因为对方更勇敢；一方弱小，是因为对方更强大。军队治理有序或者混乱，在于其组织编制；士兵勇敢或者胆怯，在于部队所营造的态势和声势；军力强大或者弱小，在于部队日常训练所造就的内在实力。&lt;br&gt;\n善于调动敌军的人，向敌军展示一种或真或假的军情，敌军必然据此判断而跟从；给予敌军一点实际利益作为诱饵，敌军必然趋利而来，从而听我调动。一方面用这些办法调动敌军，一方面要严阵以待。&lt;br&gt;\n所以，善战者追求形成有利的“势”，而不是苛求士兵，因而能选择人才去适应和利用已形成的“势”。善于创造有利“势”的将领，指挥部队作战就象转动木头和石头。木石的性情是处于平坦地势上就静止不动，处于陡峭的斜坡上就滚动，方形容易静止，圆形容易滚动。所以，善于指挥打仗的人所造就的“势”，就象让圆石从极高极陡的山上滚下来一样，来势凶猛。这就是所谓的“势”。&lt;/p&gt;\n&lt;h1 id=\&#34;第六-虚实篇\&#34;&gt;第六 虚实篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-虚实第六\&#34;&gt;原文 ：虚实第六&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡先处战地而待敌者佚，后处战地而趋战者劳。故善战者，致人而不致于人。能使敌人自至者，利之也；能使敌人不得至者，害之也。故敌佚能劳之，饱能饥之，安能动之。出其所必趋，趋其所不意。&lt;br&gt;\n行千里而不劳者，行于无人之地也；攻而必取者，攻其所不守也。守而必固者，守其所必攻也。故善攻者，敌不知其所守；善守者，敌不知其所攻。微乎微乎，至于无形；神乎神乎，至于无声，故能为敌之司命。进而不可御者，冲其虚也；退而不可追者，速而不可及也。故我欲战，敌虽高垒深沟，不得不与我战者，攻其所必救也；我不欲战，虽画地而守之，敌不得与我战者，乖其所之也。故形人而我无形，则我专而敌分。我专为一，敌分为十，是以十攻其一也。则我众敌寡，能以众击寡者，则吾之所与战者约矣。吾所与战之地不可知，不可知则敌所备者多，敌所备者多，则吾所与战者寡矣。故备前则后寡，备后则前寡，备左则右寡，备右则左寡，无所不备，则无所不寡。寡者，备人者也；众者，使人备己者也。故知战之地，知战之日，则可千里而会战；不知战之地，不知战日，则左不能救右，右不能救左，前不能救后，后不能救前，而况远者数十里，近者数里乎！&lt;br&gt;\n以吾度之，越人之兵虽多，亦奚益于胜哉！&lt;br&gt;\n故曰：胜可为也。敌虽众，可使无斗。故策之而知得失之计，候之而知动静之理，形之而知死生之地，角之而知有余不足之处。故形兵之极，至于无形。无形则深间不能窥，智者不能谋。因形而措胜于众，众不能知。人皆知我所以胜之形，而莫知吾所以制胜之形。故其战胜不复，而应形于无穷。&lt;br&gt;\n夫兵形象水，水之行避高而趋下，兵之形避实而击虚；水因地而制流，兵因敌而制胜。故兵无常势，水无常形。能因敌变化而取胜者，谓之神。故五行无常胜，四时无常位，日有短长，月有死生。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-虚实第六\&#34;&gt;译文 ：虚实第六&lt;/h2&gt;\n&lt;p&gt;孙子说，大凡先期到达战地等待敌军的就精力充沛、主动安逸，而后到达战地匆忙投入战斗的就被动劳累。所以，善战者调动敌人而决不为敌人所调动。能够调动敌人使之自动前来我预想的战地，是用利益来引诱；能使敌人不能先我来到战场，是设置障碍、多方阻挠的结果。所以，敌人若处军安逸，能使之疲劳；若敌人粮食充足就能使之匮乏；若敌人安然不动，就能使他不得不行动起来。通过敌人不设防的地区进军，在敌人预料不到的时间，向敌人预料不到的地点攻击。进军千里而不疲惫，是因为走在敌军无人抵抗或无力抵抗的地区，如入无人之境。我进攻就一定会获胜，是因为攻击的是敌人疏于防守的地方。我防守一定稳固，是因为守住了敌人一定会进攻的地方。所以善于进攻的，能做到使敌方不知道在哪防守，不知道怎样防守。而善于防守的，使敌人不知道从哪进攻，不知怎样进攻。深奥啊，精妙啊，竟然见不到一点形迹；神奇啊，玄妙啊，居然不漏出一点消息。所以能成为敌人命运的主宰。&lt;br&gt;\n进攻时，敌人无法抵御，那是攻击了敌人兵力空虚的地方；撤退时，敌人无法追击，那是行动迅速敌人无法追上。所以我军要交战，敌人就算垒高墙挖深沟，也不得不出来与我军交战，是因为我军攻击了它非救不可的要害之处；我军不想与敌军交战，虽然只是在地上画出界限权作防守，敌人也无法与我军交战，原因是我已设法改变了敌军进攻的方向。所以，使敌军处于暴露状态而我军处于隐蔽状态，这样我军兵力就可以集中而敌军兵力就不得不分散。（如果敌我总兵力相当），我集中兵力与一点，而敌人分散为十处，我就是以十对一。这样，（在局部战场上）就出现我众敌寡的态势，在这种态势下，则我军所与战者用力少而成功多也。敌军不知道我军所预定的战场在哪里，就会处处分兵防备，防备的地方越多，能够与我军在特定的地点直接交战的敌军就越少。所以防备前面，则后面兵力不足，防备后面，则前面兵力不足，防备左方，则右方兵力不足，防备右方，则左方兵力不足，所有的地方都防备，则所有的地方都兵力不足。兵力不足，全是因为分兵防御敌人；兵力充足，是由于迫使敌人分兵防御我。所以，既预知与敌人交战的地点，又预知交战的时间，即使行军千里也可以与敌人交战。不能预知与敌人交战的地点，又不能预知交战的时间，仓促遇敌，就会左军不能救右军，右军不能救左军，前军不能救后军，后军不能救前军，何况远的相距十里，近的也有好几里呢。依我对吴国所作的分析，越国虽然兵多，但对他的胜利又有什么帮助呢？所以说：胜利是可以创造的，敌人虽然兵多，却可以使敌人无法有效地参加战斗。&lt;br&gt;\n通过仔细分析可以判断敌人作战计划的优劣得失；通过挑动敌人，可以了解敌方的活动规律；通过“示形”，可以弄清地形是否对敌有利；通过试探性进攻，可以探明敌方兵力布置的强弱多寡。所以，示形诱敌的方法运用得极其巧妙时，一点破绽也没有。到这种境地，即使隐藏再深的间谍也不能探明我的虚实，智慧高超的敌手也想不出对付我的办法。根据敌情采取制胜的策略，即使摆在众人面前，众人也理解不了。人们都知道我克敌制胜的方法，却不能知道我是怎样运用这些方法制胜的。所以战胜敌人的战略战术每次都是不一样的，应适应敌情灵活运用。&lt;br&gt;\n兵的性态就象水一样，水流动时是避开高处流向低处，用兵取胜的关键是避开设防严密实力强大的敌人而攻击其薄弱环节；水根据地势来决定流向，军队根据敌情来采取制胜的方略。所以用兵作战没有一成不变的态势，正如流水没有固定的形状和去向。能够根据敌情的变化而取胜的，就叫做用兵如神。金、木、水、火、土这五行相生相克，没有哪一个常胜；四季相继相代，没有哪一个固定不移，白天的时间有长有短，月亮有圆也有缺。万物皆处于流变状态。&lt;/p&gt;\n&lt;h1 id=\&#34;第七-军争篇\&#34;&gt;第七 军争篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-军争第七\&#34;&gt;原文 ：军争第七&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡用兵之法，将受命于君，合军聚众，交和而舍，莫难于军争。军争之难者，以迂为直，以患为利。&lt;br&gt;\n故迂其途，而诱之以利，后人发，先人至，此知迂直之计者也。军争为利，军争为危。举军而争利则不及，委军而争利则辎重捐。是故卷甲而趋，日夜不处，倍道兼行，百里而争利，则擒三将军，劲者先，疲者后，其法十一而至；五十里而争利，则蹶上将军，其法半至；三十里而争利，则三分之二至。是故军无辎重则亡，无粮食则亡，无委积则亡。故不知诸侯之谋者，不能豫交；不知山林、险阻、沮泽之形者，不能行军；不用乡导者，不能得地利。故兵以诈立，以利动，以分和为变者也。故其疾如风，其徐如林，侵掠如火，不动如山，难知如阴，动如雷震。掠乡分众，廓地分利，悬权而动。先知迂直之计者胜，此军争之法也。&lt;br&gt;\n《军政》曰：“言不相闻，故为之金鼓；视不相见，故为之旌旗。”夫金鼓旌旗者，所以一民之耳目也。民既专一，则勇者不得独进，怯者不得独退，此用众之法也。故夜战多金鼓，昼战多旌旗，所以变人之耳目也。&lt;br&gt;\n三军可夺气，将军可夺心。是故朝气锐，昼气惰，暮气归。善用兵者，避其锐气，击其惰归，此治气者也。以治待乱，以静待哗，此治心者也。以近待远，以佚待劳，以饱待饥，此治力者也。无邀正正之旗，无击堂堂之陈，此治变者也。&lt;br&gt;\n故用兵之法，高陵勿向，背丘勿逆，佯北勿从，锐卒勿攻，饵兵勿食，归师勿遏，围师遗阙，穷寇勿迫，此用兵之法也。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-军争第七\&#34;&gt;译文 ：军争第七&lt;/h2&gt;\n&lt;p&gt;孙子说：用兵的原则，将领接受君命，从召集军队，安营扎寨，到开赴战场与敌对峙，没有比率先争得制胜的条件更难的事了。“军争”中最困难的地方就在于以迂回进军的方式实现更快到达预定战场的目的，把看似不利的条件变为有利的条件。所以，由于我迂回前进，又对敌诱之以利，使敌不知我意欲何去，因而出发虽后，却能先于敌人到达战地。能这么做，就是知道迂直之计的人。“军争”为了有利，但“军争”也有危险。带着全部辎重去争利，就会影响行军速度，不能先敌到达战地；丢下辎重轻装去争利，装备辎重就会损失。卷甲急进，白天黑夜不休息地急行军，奔跑百里去争利，则三军的将领有可能会被俘获。健壮的士兵能够先到战场，疲惫的士兵必然落后，只有十分之一的人马如期到达；强行军五十里去争利，先头部队的主将必然受挫，而军士一般仅有一半如期到达；强行军三十里去争利，一般只有三分之二的人马如期到达。这样，部队没有辎重就不能生存，没有粮食供应就不能生存，没有战备物资储备就无以生存。&lt;br&gt;\n所以不了解诸侯各国的图谋，就不要和他们结成联盟；不知道山林、险阻和沼泽的地形分布，不能行军；不使用向导，就不能掌握和利用有利的地形。所以，用兵是凭借施诡诈出奇兵而获胜的，根据是否有利于获胜决定行动，根据双方情势或分兵或集中为主要变化。按照战场形势的需要，部队行动迅速时，如狂风飞旋；行进从容时，如森林徐徐展开；攻城掠地时，如烈火迅猛；驻守防御时，如大山岿然；军情隐蔽时，如乌云蔽日；大军出动时，如雷霆万钧。夺取敌方的财物，掳掠百姓，应分兵行动。开拓疆土，分夺利益，应该分兵扼守要害。这些都应该权衡利弊，根据实际情况，相机行事。率先知道“迂直之计”的将获胜，这就是军争的原则。&lt;br&gt;\n《军政》说：“在战场上用语言来指挥，听不清或听不见，所以设置了金鼓；用动作来指挥，看不清或看不见，所以用旌旗。金鼓、旌旗，是用来统一士兵的视听，统一作战行动的。既然士兵都服从统一指挥，那么勇敢的将士不会单独前进，胆怯的也不会独自退却。这就是指挥大军作战的方法。所以，夜间作战，要多处点火，频频击鼓；白天打仗要多处设置旌旗。这些是用来扰乱敌方的视听的。&lt;br&gt;\n对于敌方三军，可以挫伤其锐气，可使丧失其士气，对于敌方的将帅，可以动摇他的决心，可使其丧失斗志。所以，敌人早朝初至，其气必盛；陈兵至中午，则人力困倦而气亦怠惰；待至日暮，人心思归，其气益衰。善于用兵的人，敌之气锐则避之，趁其士气衰竭时才发起猛攻。这就是正确运用士气的原则。用治理严整的我军来对付军政混乱的敌军，用我镇定平稳的军心来对付军心躁动的敌人。这是掌握并运用军心的方法。以我就近进入战场而待长途奔袭之敌；以我从容稳定对仓促疲劳之敌；以我饱食之师对饥饿之敌。这是懂得并利用治己之力以困敌人之力。不要去迎击旗帜整齐、部伍统一的军队，不要去攻击阵容整肃、士气饱满的军队，这是懂得战场上的随机应变。&lt;br&gt;\n所以，用兵的原则是：对占据高地、背倚丘陵之敌，不要作正面仰攻；对于假装败逃之敌，不要跟踪追击；敌人的精锐部队不要强攻；敌人的诱饵之兵，不要贪食；对正在向本土撤退的部队不要去阻截；对被包围的敌军，要预留缺口；对于陷入绝境的敌人，不要过分逼迫，这些都是用兵的基本原则。&lt;/p&gt;\n&lt;h1 id=\&#34;第八-九变篇\&#34;&gt;第八 九变篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-九变第八\&#34;&gt;原文 ： 九变第八&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡用兵之法，将受命于君，合军聚合。泛地无舍，衢地合交，绝地无留，围地则谋，死地则战，途有所不由，军有所不击，城有所不攻，地有所不争，君命有所不受。&lt;br&gt;\n故将通于九变之利者，知用兵矣；将不通九变之利，虽知地形，不能得地之利矣；治兵不知九变之术，虽知五利，不能得人之用矣。&lt;br&gt;\n是故智者之虑，必杂于利害，杂于利而务可信也，杂于害而患可解也。是故屈诸侯者以害，役诸侯者以业，趋诸侯者以利。故用兵之法，无恃其不来，恃吾有以待之；无恃其不攻，恃吾有所不可攻也。&lt;br&gt;\n故将有五危，必死可杀，必生可虏，忿速可侮，廉洁可辱，爱民可烦。凡此五者，将之过也，用兵之灾也。覆军杀将，必以五危，不可不察也。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-九变第八\&#34;&gt;译文 ： 九变第八&lt;/h2&gt;\n&lt;p&gt;孙子说：用兵的原则，将接受国君的命令，召集人马组建军队，在难于通行之地不要驻扎，在四通八达的交通要道要与四邻结交，在难以生存的地区不要停留，要赶快通过，在四周有险阻容易被包围的地区要精于谋划，误入死地则须坚决作战。有的道路不要走，有些敌军不要攻，有些城池不要占，有些地域不要争，君主的某些命令也可以不接受。&lt;br&gt;\n所以将帅精通“九变”的具体运用，就是真懂得用兵了；将帅不精通“九变”的具体运用，就算熟悉地形，也不能得到地利。指挥作战如果不懂“九变”的方法，即使知道“五利”，也不能充分发挥部队的战斗力。&lt;br&gt;\n智慧明达的将帅考虑问题，必然把利与害一起权衡。在考虑不利条件时，同时考虑有利条件，大事就能顺利进行；在看到有利因素时同时考虑到不利因素，祸患就可以排除。因此，用最另人头痛的事去使敌国屈服，用复杂的事变去使敌国穷于应付，以利益为钓饵引诱敌国疲于奔命。所以用兵的原则是：不抱敌人不会来的侥幸心理，而要依靠我方有充分准备，严阵以待；不抱敌人不会攻击的侥幸心理，而要依靠我方坚不可摧的防御，不会被战胜。&lt;br&gt;\n所以，将领有五种致命的弱点：坚持死拼硬打，可能招致杀身之祸；临阵畏缩，贪生怕死，则可能被俘；性情暴躁易怒，可能受敌轻侮而失去理智；过分洁身自好，珍惜声名，可能会被羞辱引发冲动；由于爱护民众，受不了敌方的扰民行动而不能采取相应的对敌行动。所有这五种情况，都是将领最容易有的过失，是用兵的灾难。军队覆没，将领牺牲，必定是因为这五种危害，因此一定要认识到这五种危害的严重性。&lt;/p&gt;\n&lt;h1 id=\&#34;第九-行军篇\&#34;&gt;第九 行军篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-行军第九\&#34;&gt;原文 ：行军第九&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡处军相敌，绝山依谷，视生处高，战隆无登，此处山之军也。绝水必远水，客绝水而来，勿迎之于水内，令半渡而击之利，欲战者，无附于水而迎客，视生处高，无迎水流，此处水上之军也。绝斥泽，唯亟去无留，若交军于斥泽之中，必依水草而背众树，此处斥泽之军也。平陆处易，右背高，前死后生，此处平陆之军也。凡此四军之利，黄帝之所以胜四帝也。凡军好高而恶下，贵阳而贱阴，养生而处实，军无百疾，是谓必胜。丘陵堤防，必处其阳而右背之，此兵之利，地之助也。上雨水流至，欲涉者，待其定也。凡地有绝涧、天井、天牢、天罗、天陷、天隙，必亟去之，勿近也。吾远之，敌近之；吾迎之，敌背之。军旁有险阻、潢井、蒹葭、小林、□①荟者，必谨覆索之，此伏奸之所处也。&lt;br&gt;\n敌近而静者，恃其险也；远而挑战者，欲人之进也；其所居易者，利也；众树动者，来也；众草多障者，疑也；鸟起者，伏也；兽骇者，覆也；尘高而锐者，车来也；卑而广者，徒来也；散而条达者，樵采也；少而往来者，营军也；辞卑而备者，进也；辞强而进驱者，退也；轻车先出居其侧者，陈也；无约而请和者，谋也；奔走而陈兵者，期也；半进半退者，诱也；杖而立者，饥也；汲而先饮者，渴也；见利而不进者，劳也；鸟集者，虚也；夜呼者，恐也；军扰者，将不重也；旌旗动者，乱也；吏怒者，倦也；杀马肉食者，军无粮也；悬□②不返其舍者，穷寇也；谆谆□③□③，徐与人言者，失众也；数赏者，窘也；数罚者，困也；先暴而后畏其众者，不精之至也；来委谢者，欲休息也。兵怒而相迎，久而不合，又不相去，必谨察之。&lt;br&gt;\n兵非贵益多也，惟无武进，足以并力料敌取人而已。夫惟无虑而易敌者，必擒于人。卒未亲而罚之，则不服，不服则难用。卒已亲附而罚不行，则不可用。故合之以文，齐之以武，是谓必取。令素行以教其民，则民服；令素不行以教其民，则民不服。令素行者，与众相得也。&lt;br&gt;\n注 ：&lt;br&gt;\n①：“翳”加“艹”头。&lt;br&gt;\n②： 垂瓦 。&lt;br&gt;\n③： 讠翕 。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-行军第九\&#34;&gt;译文 ：行军第九&lt;/h2&gt;\n&lt;p&gt;孙子说：在各种不同地形上处置军队和观察判断敌情时，应该注意：通过山地，必须依靠有水草的山谷，驻扎在居高向阳的地方，敌人占领高地，不要仰攻，这是在山地上对军队的处置原则。横渡江河，应远离水流驻扎，敌人渡水来战，不要在江河中迎击，而要等它渡过一半时再攻击，这样较为有利。如果要同敌人决战，不要紧靠水边列阵；在江河地带扎营，也要居高向阳，不要面迎水流，这是在江河地带上对军队处置的原则。通过盐碱沼泽地带，要迅速离开，不要逗留；如果同敌军相遇于盐碱沼泽地带，那就必须靠近水草而背靠树林，这是在盐碱沼泽地带上对军队处置的原则。在平原上应占领开阔地域，而侧翼要依托高地，前低后高。这是在平原地带上对军队处置的原则。以上四中“处军”原则的好处，就是黄帝之所以能战胜其他四帝的原因。&lt;br&gt;\n大凡驻军总是喜欢干燥的高地，避开潮湿的洼地；重视向阳之处，避开阴暗之地；靠近水草地区，军需供应充足，将士百病不生，这样就有了胜利的保证。在丘陵堤防行军，必须占领它向阳的一面，并把主要侧翼背靠着它。这些对于用兵有利的措施，是利用地形作为辅助条件的。上游下雨，洪水突至，禁止徒涉，应等待水流稍平缓以后。凡遇到或通过“绝涧”、“天井”、“天牢”、“天罗”、“天陷”、“天隙”这几种地形，必须迅速离开，不要接近。我们应该远离这些地形，而让敌人去靠近它；我们应面向这些地形，而让敌人去背靠它。军队两旁遇到有险峻的隘路、湖沼、水网、芦苇、山林和草木茂盛的地方，必须谨慎地反复搜索，这些都是敌人可能埋设伏兵和隐伏奸细的地方。&lt;br&gt;\n敌人离我很近而安静的，是依仗它占领险要地形；敌人离我很远但挑战不休，是想诱我前进；敌人之所以驻扎在平坦地方，是因为对它有某种好处。许多树木摇动，是敌人隐蔽前来；草丛中有许多遮障物，是敌人布下的疑阵；群鸟惊飞，是下面有伏兵；野兽骇奔，是敌人大举突袭；尘土高而尖，是敌人战车驶来；尘土低而宽广，是敌人的步兵开来；尘土疏散飞扬，是敌人正在拽柴而走；尘土少而时起时落；是敌人正在扎营。敌人使者措辞谦卑却又在加紧战备的，是准备进攻；措辞强硬而军队又做出前进姿态的，是准备撤退；轻车先出动，部署在两翼的，是在布列阵势；敌人尚未受挫而来讲和的，是另有阴谋；敌人急速奔跑并排并列阵的，是企图约期同我决战；敌人半进半退的，是企图引诱我军。抵兵倚着兵器而站立的，是饥饿的表现；供水兵打水自己先饮的，是干渴的表现；敌人见利而不进兵争夺的，是疲劳的表现；敌人营寨上聚集鸟雀的，下面是空营；敌人夜间惊叫的，是恐慌的表现；敌营惊扰纷乱的，是敌将没有威严的表现；旌旗摇动不整齐的，是敌人队伍已经混乱。敌人军官易怒的，是全军疲倦的表现；用粮食喂马，杀马吃肉，收拾起汲水器具，部队不返营房的，是要拼死的穷寇；低声下气同部下讲话的，是敌将失去人心；不断犒赏士卒的，是敌军没有办法；不断惩罚部属的，是敌人处境困难；先粗暴然后又害怕部下的，是最不精明的将领；派来使者送礼言好的，是敌人想休兵息战；敌人逞怒同我对阵，但久不交锋又不撤退的，必须谨慎地观察他的企图。&lt;br&gt;\n打仗不在于兵力越多越好，只要不轻敌冒进，并集中兵力、判明敌情，取得部下的信任和支持，也就足够了。那种既无深谋远虑而又轻敌的人，必定会被敌人俘虏。士卒还没有亲近依附就执行惩罚，那么他们会不服，不服就很难使用。士卒已经亲近依附，如果不执行军纪军法，也不能用来作战。所以，要用怀柔宽仁使他们思想统一，用军纪军法使他们行动一致，这样就必能取得部下的敬畏和拥戴。平素严格贯彻命令，管教士卒，士卒就能养成服从的习惯；平素从来不严格贯彻命令，管教士卒，士卒就会养成不服从的习惯。平时命令能贯彻执行的，表明将帅同士卒之间相处融洽。&lt;/p&gt;\n&lt;h1 id=\&#34;第十-地形篇\&#34;&gt;第十 地形篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-地形第十\&#34;&gt;原文 ：地形第十&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n地形有通者、有挂者、有支者、有隘者、有险者、有远者。我可以往，彼可以来，曰通。通形者，先居高阳，利粮道，以战则利。可以往，难以返，曰挂。挂形者，敌无备，出而胜之，敌若有备，出而不胜，难以返，不利。我出而不利，彼出而不利，曰支。支形者，敌虽利我，我无出也，引而去之，令敌半出而击之利。隘形者，我先居之，必盈之以待敌。若敌先居之，盈而勿从，不盈而从之。险形者，我先居之，必居高阳以待敌；若敌先居之，引而去之，勿从也。远形者，势均难以挑战，战而不利。凡此六者，地之道也，将之至任，不可不察也。&lt;br&gt;\n凡兵有走者、有驰者、有陷者、有崩者、有乱者、有北者。凡此六者，非天地之灾，将之过也。夫势均，以一击十，曰走；卒强吏弱，曰驰；吏强卒弱，曰陷；大吏怒而不服，遇敌怼而自战，将不知其能，曰崩；将弱不严，教道不明，吏卒无常，陈兵纵横，曰乱；将不能料敌，以少合众，以弱击强，兵无选锋，曰北。凡此六者，败之道也，将之至任，不可不察也。&lt;br&gt;\n夫地形者，兵之助也。料敌制胜，计险隘远近，上将之道也。知此而用战者必胜，不知此而用战者必败。故战道必胜，主曰无战，必战可也；战道不胜，主曰必战，无战可也。故进不求名，退不避罪，唯民是保，而利于主，国之宝也。&lt;br&gt;\n视卒如婴儿，故可以与之赴深溪；视卒如爱子，故可与之俱死。厚而不能使，爱而不能令，乱而不能治，譬若骄子，不可用也。&lt;br&gt;\n知吾卒之可以击，而不知敌之不可击，胜之半也；知敌之可击，而不知吾卒之不可以击，胜之半也；知敌之可击，知吾卒之可以击，而不知地形之不可以战，胜之半也。故知兵者，动而不迷，举而不穷。故曰：知彼知己，胜乃不殆；知天知地，胜乃可全。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-地形第十\&#34;&gt;译文 ：地形第十&lt;/h2&gt;\n&lt;p&gt;孙子说：地形有“通”、“挂”、“支”、“隘”、“险”、“远”等六种。凡是我们可以去，敌人也可以来的地域，叫做“通”；在“通”形地域上，应抢先占开阔向阳的高地，保持粮道畅通，这样作战就有利。凡是可以前进，难以返回的地域，称作“挂”；在挂形的地域上，假如敌人没有防备，我们就能突击取胜。假如敌人有防备，出击又不能取胜，而且难以回师，这就不利了。凡是我军出击不利，敌人出击不利的地域叫做“支”。在“支”形地域上，敌人虽然以利相诱，我们也不要出击，而应该率军假装退却，诱使敌人出击一半时再回师反击，这样就有利。在“隘”形地域上，我们应该抢先占领，并用重兵封锁隘口，以等待敌人的到来；如果敌人已先占据了隘口，并用重兵把守，我们就不要去进攻；如果敌人没有用重兵据守隘口，那么就可以进攻。在“险”形地域上，如果我军先敌占领，就必须控制开阔向阳的高地，以等待敌人来犯；如果敌人先我占领，就应该率军撤离，不要去攻打它。在“远”形地域上，敌我双方地势均同，就不宜去挑战，勉强求战，很是不利。以上六点，是利用地形的原则。这是将帅的重大责任所在，不可不认真考察研究。&lt;br&gt;\n军队打败仗有“走”、“驰”、“陷”、“崩”、“乱”、“北”六种情况。这六种情况的发生，不是天时地理的灾害，而是将帅自身的过错。地势均同的情况下，以一击十而导致失败的，叫做“走”。士卒强捍，军官懦弱而造成失败的，叫做“驰”。将帅强悍，士卒儒弱而失败的，叫做“陷”。偏将怨仇不服从指挥，遇到敌人擅自出战，主将又不了解他们能力，因而失败的，叫做“崩”。将帅懦弱缺乏威严，治军没有章法，官兵关系混乱紧张，列兵布阵杂乱无常，因此而致败的，叫做“乱”。将帅不能正确判断敌情，以少击众，以弱击强，作战又没有精锐先锋部队，因而落败的，叫做“北”。以上六种情况，均是导致失败的原因。这是将帅的重大责任之所在，是不可不认真考察研究的。&lt;br&gt;\n地形是用兵打仗的辅助条件。正确判断敌情，考察地形险易，计算道路远近，这是高明的将领必须掌握的方法，懂得这些道理去指挥作战的，必定能够胜利；不了解这些道理去指挥作战的，必定失败。所以，根据分析有必胜把握的，即使国君主张不打，坚持打也是可以的；根据分析没有必胜把握的，即使国君主张打，不打也是可以的。所以，战不谋求胜利的名声，退不回避失利的罪责，只求保全百姓，符合国君利益，这样的将帅，才是国家的宝贵财富。&lt;br&gt;\n对待士卒象对待婴儿，士卒就可以同他共患难：对待士卒象对待自己的儿子，士卒就可以跟他同生共死。如果对士卒厚待却不能使用，溺爱却不能指挥，违法而不能惩治，那就如同骄惯了的子女，是不可以用来同敌作战的。只了解自己的部队可以打，而不了解敌人不可打，取胜的可能只有一半；只了解敌人可以打，而不了解自己的部队不可以打，取胜的可能也只有一半。知道敌人可以打，也知道自己的部队能打，但是不了解地形不利于作战，取胜的可能性仍然只有一半。所以，懂得用兵的人，他行动起来不会迷惑，他的战术变化无穷。&lt;br&gt;\n所以说：知彼知己，胜乃不殆；知天知地，胜乃可全。&lt;/p&gt;\n&lt;h1 id=\&#34;第十一-九地篇\&#34;&gt;第十一 九地篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-九地第十一\&#34;&gt;原文 ：九地第十一&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n用兵之法，有散地，有轻地，有争地，有交地，有衢地，有重地，有泛地，有围地，有死地。诸侯自战其地者，为散地；入人之地不深者，为轻地；我得亦利，彼得亦利者，为争地；我可以往，彼可以来者，为交地；诸侯之地三属，先至而得天下众者，为衢地；入人之地深，背城邑多者，为重地；山林、险阻、沮泽，凡难行之道者，为泛地；所由入者隘，所从归者迂，彼寡可以击吾之众者，为围地；疾战则存，不疾战则亡者，为死地。是故散地则无战，轻地则无止，争地则无攻，交地则无绝，衢地则合交，重地则掠，泛地则行，围地则谋，死地则战。&lt;br&gt;\n古之善用兵者，能使敌人前后不相及，众寡不相恃，贵贱不相救，上下不相收，卒离而不集，兵合而不齐。合于利而动，不合于利而止。敢问敌众而整将来，待之若何曰：先夺其所爱则听矣。兵之情主速，乘人之不及。由不虞之道，攻其所不戒也。&lt;br&gt;\n凡为客之道，深入则专。主人不克，掠于饶野，三军足食。谨养而勿劳，并气积力，运兵计谋，为不可测。&lt;br&gt;\n投之无所往，死且不北。死焉不得，士人尽力。兵士甚陷则不惧，无所往则固，深入则拘，不得已则斗。是故其兵不修而戒，不求而得，不约而亲，不令而信，禁祥去疑，至死无所之。&lt;br&gt;\n吾士无余财，非恶货也；无余命，非恶寿也。令发之日，士卒坐者涕沾襟，偃卧者涕交颐，投之无所往，诸、刿之勇也。故善用兵者，譬如率然。率然者，常山之蛇也。击其首则尾至，击其尾则首至，击其中则首尾俱至。敢问兵可使如率然乎？曰可。夫吴人与越人相恶也，当其同舟而济而遇风，其相救也如左右手。是故方马埋轮，未足恃也；齐勇如一，政之道也；刚柔皆得，地之理也。故善用兵者，携手若使一人，不得已也。&lt;br&gt;\n将军之事，静以幽，正以治，能愚士卒之耳目，使之无知；易其事，革其谋，使人无识；易其居，迂其途，使民不得虑。帅与之期，如登高而去其梯；帅与之深入诸侯之地，而发其机。若驱群羊，驱而往，驱而来，莫知所之。聚三军之众，投之于险，此谓将军之事也。&lt;br&gt;\n九地之变，屈伸之力，人情之理，不可不察也。&lt;br&gt;\n凡为客之道，深则专，浅则散。去国越境而师者，绝地也；四彻者，衢地也；入深者，重地也；入浅者，轻地也；背固前隘者，围地也；无所往者，死地也。&lt;br&gt;\n是故散地吾将一其志，轻地吾将使之属，争地吾将趋其后，交地吾将谨其守，交地吾将固其结，衢地吾将谨其恃，重地吾将继其食，泛地吾将进其途，围地吾将塞其阙，死地吾将示之以不活。&lt;br&gt;\n故兵之情：围则御，不得已则斗，过则从。&lt;br&gt;\n是故不知诸侯之谋者，不能预交；不知山林、险阻、沮泽之形者，不能行军；不用乡导，不能得地利。四五者，一不知，非霸王之兵也。夫霸王之兵，伐大国，则其众不得聚；威加于敌，则其交不得合。是故不争天下之交，不养天下之权，信己之私，威加于敌，则其城可拔，其国可隳。&lt;br&gt;\n施无法之赏，悬无政之令。犯三军之众，若使一人。犯之以事，勿告以言；犯之以害，勿告以利。投之亡地然后存，陷之死地然后生。夫众陷于害，然后能为胜败。&lt;br&gt;\n故为兵之事，在顺详敌之意，并敌一向，千里杀将，是谓巧能成事。是故政举之日，夷关折符，无通其使，厉于廊庙之上，以诛其事。敌人开阖，必亟入之，先其所爱，微与之期，践墨随敌，以决战事。是故始如处女，敌人开户；后如脱兔，敌不及拒。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-九地第十一\&#34;&gt;译文 ：九地第十一&lt;/h2&gt;\n&lt;p&gt;孙子说：按照用兵的原则，军事地理有散地、轻地、争地、交地、衢地、重地、圮地、围地、死地。诸侯在本国境内作战的地区，叫做散地。在敌国浅近纵深作战的地区，叫做轻地。我方得到有利，敌人得到也有利的地区，叫做争地。我军可以前往，敌军也可以前来的地区，叫做交地。多国相毗邻，先到就可以获得诸侯列国援助的地区，叫做衢地。深入敌国腹地，背靠敌人众多城邑的地区，叫做重地。山林险阻沼泽等难于通行的地区，叫做圮地。行军的道路狭窄，退兵的道路迂远，敌人可以用少量兵力攻击我方众多兵力的地区，叫做围地。迅速奋战就能生存，不迅速奋战就会全军覆灭的地区，叫做死地。因此，处于散地就不宜作战，处于轻地就不宜停留，遇上争地就不要勉强强攻，遇上交地就不要断绝联络，进入衢地就应该结交诸侯，深入重地就要掠取粮草，碰到圮地就必须迅速通过，陷入围地就要设谋脱险，处于死地就要力战求生。&lt;br&gt;\n从前善于指挥作战的人，能使敌人前后部队不能相互策应，主力和小部队无法相互依靠，官兵之间不能相互救援，上下级之间不能互相联络，士兵分散不能集中，合兵布阵也不整齐。对我有利就打，对我无利就停止行动。试问：敌人兵员众多且又阵势严整向我发起进攻，那该用什么办法对付它呢？回答是：先夺取敌人最关心爱护的，这样就听从我们的摆布了。用兵之理贵在神速，要乘敌人措手不及的时机，走敌人意料不到的道路，攻击敌人没有戒备的地方。&lt;br&gt;\n在敌国境内进行作战的一般规律是：越深入敌国腹地，我军军心就越坚固，敌人就不易战胜我们。在敌国丰饶地区掠取粮草，部队给养就有了保障。要注意休整部队，不要使其过于疲劳，保持土气，养精蓄锐。部署兵力，巧设计谋，使敌人无法判断我军的意图。将部队置于无路可走的绝境，士卒就会宁死不退。士卒既能宁死不退，那么他们怎么会不殊死作战呢！士卒深陷危险的境地，就不再存在恐惧，一旦无路可走，军心就会牢固。深入敌境军队就不会离散。遇到迫不得已的情况，军队就会殊死奋战。因此，不须整饬就能注意戒备，不用强求就能完成任务，无须约束就能亲密团结，不待申令就会遵守纪律。禁止占卜迷信，消除士卒的疑虑，他们至死也不会逃避。我军士卒没有多余的钱财，并不是不爱钱财；士卒置生死于度外，也不是不想长寿。当作战命令颁布之时，坐着的士卒泪沾衣襟，躺着的士卒泪流满面，但把士卒置于无路可走的绝境，他们就都会象专诸、曹刿一样的勇敢。&lt;br&gt;\n善于指挥作战的人，能使部队自我策应如同“率然”蛇一样。“率然”是常山地方一种蛇，打它的头部，尾巴就来救应；打它的尾，头就来救应；打它的腰，头尾都来救应。试问：可以使军队象“率然”一样吧？回答是：可以。那吴国人和越国人是互相仇视的，但当他们同船渡河而遇上大风时，他们相互救援，就如同人的左右手一样。所以，想用缚住马缰、深埋车轮这种显示死战决心的办法来稳定部队，是靠不住的。要使部队能够齐心协力奋勇作战如同一人，关键在于部队管理教育有方。要使强弱不同的士卒都能发挥作用，在于恰当地利用地形。所以善于用兵的人，能使全军上下携手团结如同一人，这是因为客观形势迫使部队不得不这样。&lt;br&gt;\n主持军事行动，要做到考虑谋略沉着冷静而幽深莫测，管理部队公正严明而有条不紊。要能蒙蔽士卒的视听，使他们对于军事行动毫无所知；变更作战部署，改变原定计划，使人无法识破真相；不时变换驻地，故意迂回前进，使人无从推测意图。将帅向军队赋予作战任务，要象使其登高而抽去梯子一样。将帅率领士卒深入诸侯国土，要象弩机发出的箭一样一往无前。对待士卒要能如驱赶羊群一样，赶过去又赶过来，使他们不知道要到哪里去。集结全军，把他们置于险境，这就是统帅军队的要点。九种地形的应变处置，攻防进退的利害得失，全军上下的心理状态，这些都是作为将帅不能不认真研究和周密考察的。&lt;br&gt;\n在敌国境内作战的规律是：深入敌境则军心稳固，浅入敌境则军心容易涣散。进入敌境进行作战的称为绝地；四通八达的地区叫做衢地；进入敌境纵深的地区叫做重地；进入敌境浅的地区叫做轻地；背有险阻前有隘路的地区叫围地；无路可走的地区就是死地。因此，在散地，要统一军队意志；在轻地，要使营阵紧密相连；在争地，要迅速出兵抄到敌人的后面；在交地，就要谨慎防守；在衢地，就要巩固与列国的结盟；入重地，就要保障军粮供应；在圮地，就必须迅速通过；陷入围地，就要堵塞缺口；到了死地，就要显示死战的决心。所以，士卒的心理状态是：陷入包围就会竭力抵抗，形势逼迫就会拚死战斗，身处绝境就会听从指挥。不了解诸侯列国的战略意图，就不要与之结交；不熟悉山林、险阻、沼泽等地形情况，就不能行军；不使用向导，就无法得到地利。这些情况，如有一样不了解，都不能成为称王争霸的军队。凡是王霸的军队，进攻大国，能使敌国的军民来不及动员集中；兵威加在敌人头上，能够使敌方的盟国无法配合策应。因此，没有必要去争着同天下诸侯结交，也用不着在各诸侯国里培植自己的势力，只要施展自己的战略意图，把兵威施加在敌人头上，就可以拔取敌人的城邑，摧毁敌人的国都。施行超越惯例的奖赏，颁布不拘常规的号令，指挥全军就如同使用一个人一样。向部下布置作战任务，但不说明其中意图。只告知利益而不指出危害。将士卒置于危地，才能转危为安；使士卒陷于死地，才能起死回生。军队深陷绝境，然后才能赢得胜利。所以，指导战争的关键，在于谨慎地观察敌人的战略意图，集中兵力攻击敌人一部，千里奔袭，斩杀敌将，这就是所谓巧妙用兵，实现克敌制胜的目的。&lt;br&gt;\n因此，在决定战争方略的时候，就要封锁关口，废除通行符证，不充许敌国使者往来；要在庙堂里再三谋划，作出战略决策。敌人一旦出现间隙，就要迅速乘机而入。首先夺取敌人战略要地，但不要轻易与敌约期决战。要灵活机动，因敌情来决定自己的作战行动。因此，战争开始之前要象处女那样显得沉静柔弱，诱使敌人放松戒备；战斗展开之后，则要象脱逃的野兔一样行动迅速，使敌人措手不及，无从抵抗。&lt;/p&gt;\n&lt;h1 id=\&#34;第十二-火攻篇\&#34;&gt;第十二 火攻篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-火攻第十二\&#34;&gt;原文 ：火攻第十二&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡火攻有五：一曰火人，二曰火积，三曰火辎，四曰火库，五曰火队。&lt;br&gt;\n行火必有因，因必素具。发火有时，起火有日。时者，天之燥也。日者，月在箕、壁、翼、轸也。凡此四宿者，风起之日也。凡火攻，必因五火之变而应之：火发于内，则早应之于外；火发而其兵静者，待而勿攻，极其火力，可从而从之，不可从则上。火可发于外，无待于内，以时发之，火发上风，无攻下风，昼风久，夜风止。凡军必知五火之变，以数守之。&lt;br&gt;\n故以火佐攻者明，以水佐攻者强。水可以绝，不可以夺。&lt;br&gt;\n夫战胜攻取而不惰其功者凶，命曰“费留”。故曰：明主虑之，良将惰之，非利不动，非得不用，非危不战。主不可以怒而兴师，将不可以愠而攻战。合于利而动，不合于利而上。怒可以复喜，愠可以复说，亡国不可以复存，死者不可以复生。故明主慎之，良将警之。此安国全军之道也。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-火攻第十二\&#34;&gt;译文 ：火攻第十二&lt;/h2&gt;\n&lt;p&gt;孙子说：火攻形式共有五种，一是火烧敌军人马，二是焚烧敌军粮草，三是焚烧敌军辎重，四是焚烧敌军仓库，五是火烧敌军运输设施。实施火攻必须具备条件，火攻器材必须随时准备。放火要看准天时，起火要选好日子。天时是指气候干燥，日子是指月亮行经“箕”、“壁”、“翼”、“轸”四个星宿位置的时候。月亮经过这四个星宿的时候，就是起风的日子。&lt;br&gt;\n凡用火攻，必须根据五种火攻所引起的不同变化，灵活部署兵力策应。在敌营内部放火，就要及时派兵从外面策应。火已烧起而敌军依然保持镇静，就应等待，不可立即发起进攻。待火势旺盛后，再根据情况作出决定，可以进攻就进攻，不可进攻就停止。火可从外面放，这时就不必等待内应，只要适时放火就行。从上风放火时，不可从下风进攻。白天风刮久了，夜晚就容易停止。军队都必须掌握这五种火攻形式，等待条件具备时进行火攻。用火来辅助军队进攻，效果显著；用水来辅助军队进攻，攻势必能加强。水可以把敌军分割隔绝，但却不能焚毁敌人的军需物资。&lt;br&gt;\n凡打了胜仗，攻取了土地城邑，而不能巩固战果的，会很危险，这种情况叫做“费留”。所以说，明智的国君要慎重地考虑这个问题，贤良的将帅要严肃地对待这个问题。没有好处不要行动，没有取胜的把握不能用兵，不到危急关头不要开战。国君不可因一时愤怒而发动战争，将帅不可因一时的气忿而出阵求战。符合国家利益才用兵，不符合国家利益就停止。愤怒还可以重新变为欢喜，气忿也可以重新转为高兴，但是国家灭亡了就不能复存，人死了也不能再生。所以，对待战争，明智的国君应该慎重，贤良的将帅应该警惕，这是安定国家和保全军队的基本道理。&lt;/p&gt;\n&lt;h1 id=\&#34;第十三-用间篇\&#34;&gt;第十三 用间篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文-用间第十三\&#34;&gt;原文 ：用间第十三&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n凡兴师十万，出征千里，百姓之费，公家之奉，日费千金，内外骚动，怠于道路，不得操事者，七十万家。相守数年，以争一日之胜，而爱爵禄百金，不知敌之情者，不仁之至也，非民之将也，非主之佐也，非胜之主也。故明君贤将所以动而胜人，成功出于众者，先知也。先知者，不可取于鬼神，不可象于事，不可验于度，必取于人，知敌之情者也。&lt;br&gt;\n故用间有五：有因间，有内间，有反间，有死间，有生间。五间俱起，莫知其道，是谓神纪，人君之宝也。乡间者，因其乡人而用之；内间者，因其官人而用之；反间者，因其敌间而用之；死间者，为诳事于外，令吾闻知之而传于敌间也；生间者，反报也。故三军之事，莫亲于间，赏莫厚于间，事莫密于间，非圣贤不能用间，非仁义不能使间，非微妙不能得间之实。微哉微哉！无所不用间也。间事未发而先闻者，间与所告者兼死。凡军之所欲击，城之所欲攻，人之所欲杀，必先知其守将、左右、谒者、门者、舍人之姓名，令吾间必索知之。敌间之来间我者，因而利之，导而舍之，故反间可得而用也；因是而知之，故乡间、内间可得而使也；因是而知之，故死间为诳事，可使告敌；因是而知之，故生间可使如期。五间之事，主必知之，知之必在于反间，故反间不可不厚也。&lt;br&gt;\n昔殷之兴也，伊挚在夏；周之兴也，吕牙在殷。故明君贤将，能以上智为间者，必成大功。此兵之要，三军之所恃而动也。&lt;/p&gt;\n&lt;h2 id=\&#34;译文-用间第十三\&#34;&gt;译文 ：用间第十三&lt;/h2&gt;\n&lt;p&gt;孙子说：凡兴兵十万，征战千里，百姓的耗费，国家的开支，每天都要花费千金，前后方动乱不安，戌卒疲备地在路上奔波，不能从事正常生产的有七十万家。这样相持数年，就是为了决胜于一旦，如果吝惜爵禄和金钱，不肯用来重用间谍，以致因为不能掌握敌情而导致失败，那就是不仁到极点了。这种人不配作军队的统帅，算不上国家的辅佐，也不是胜利的主宰。所以，明君和贤将之所以一出兵就能战胜敌人，功业超越众人，就在于能预先掌握敌情。要事先了解敌情，不可求神问鬼，也不可用相似的现象作类比推测，不可用日月星辰运行的位置去验证，一定要取之于人，从那些熟悉敌情的人的口中去获取。&lt;br&gt;\n间谍的运用有五种，即乡间、内间、反间、死间、生间。五种间谍同时用起来，使敌人无从捉摸我用间的规律，这是使用间谍神妙莫测的方法，也正是国君克敌制胜的法宝。所谓乡间，是指利用敌人的同乡做间谍；所谓内间，就是利用敌方官吏做间谍；所谓反间，就是使敌方间谍为我所用；所谓死间，是指制造散布假情报，通过我方间谍将假情报传给敌间，诱使敌人上当，一旦真情败露，我间难免一死；所谓生间，就是侦察后能活着回来报告敌情的人。所以在军队中，没有比间谍更亲近的人，没有比间谍更为优厚奖赏的，没有比间谍更为秘密的事情了。不是睿智超群的人不能使用间谍，不是仁慈慷慨的人不能指使间谍，不是谋虑精细的人不能得到间谍提供的真实情报。微妙啊，微妙！无时无处不可以使用间谍。间谍的工作还未开展，而已泄露出去的，那么间谍和了解内情的人都要处死。凡是要攻打的敌方军队，要攻占的敌方城市，要刺杀的敌方人员，都须预先了解其主管将领、左右亲信、负责传达的官员、守门官吏和门客幕僚的姓名，指令我方间谍一定要将这些情况侦察清楚。&lt;br&gt;\n一定要搜查出敌方派来侦察我方军情的间谍，从而用重金收买他，引诱开导他，然后再放他回去，这样，反间就可以为我所用了。通过反间了解敌情，乡间、内间也就可以利用起来了。通过反间了解敌倩，就能使死间传播假情报给敌人了。通过反间了解敌情，就能使生间按预定时间报告敌情了。五种间谍的使用，国君都必须了解掌握。了解情况的关键在于使用反间，所以对反间不可不给予优厚的待遇。&lt;br&gt;\n从前殷商的兴起，在于重用了在夏朝为臣的伊挚，他熟悉并了解夏朝的情况；周朝的兴起，是由于周武王重用了了解商朝情况的吕牙。所以，明智的国君，贤能的将帅，能用智慧高超的人充当间谍，就一定能建树大功。这是用兵的关键，整个军队都要依靠间谍提供的敌情来决定军事行动。&lt;/p&gt;\n&lt;!-- more --&gt;\n&#34;,&#34;fileName&#34;:&#34;sun-zi-bing-fa&#34;,&#34;abstract&#34;:&#34;&lt;h1 id=\&#34;第一-始计篇\&#34;&gt;第一 始计篇&lt;/h1&gt;\n&lt;h2 id=\&#34;原文始计第一\&#34;&gt;原文：始计第一&lt;/h2&gt;\n&lt;p&gt;孙子曰：&lt;br&gt;\n兵者，国之大事，死生之地，存亡之道，不可不察也。&lt;br&gt;\n故经之以五事，校之以计，而索其情：一曰道，二曰天，三曰地，四曰将，五曰法。道者，令民于上同意，可与之死，可与之生，而不危也；天者，阴阳、寒暑、时制也；地者，远近、险易、广狭、死生也；将者，智、信、仁、勇、严也；法者，曲制、官道、主用也。凡此五者，将莫不闻，知之者胜，不知之者不胜。故校之以计，而索其情，曰：主孰有道？将孰有能？天地孰得？法令孰行？兵众孰强？士卒孰练？赏罚孰明？吾以此知胜负矣。将听吾计，用之必胜，留之；将不听吾计，用之必败，去之。&lt;br&gt;\n计利以听，乃为之势，以佐其外。势者，因利而制权也。兵者，诡道也。故能而示之不能，用而示之不用，近而示之远，远而示之近。利而诱之，乱而取之，实而备之，强而避之，怒而挠之，卑而骄之，佚而劳之，亲而离之，攻其无备，出其不意。此兵家之胜，不可先传也。&lt;br&gt;\n夫未战而庙算胜者，得算多也；未战而庙算不胜者，得算少也。多算胜少算，而况于无算乎！吾以此观之，胜负见矣。&lt;/p&gt;\n&#34;,&#34;title&#34;:&#34;孙子兵法&#34;,&#34;tags&#34;:[],&#34;date&#34;:&#34;2021-04-22 12:18:25&#34;,&#34;dateFormat&#34;:&#34;2021-04-22&#34;,&#34;feature&#34;:&#34;&#34;,&#34;link&#34;:&#34;https://ofo-ofo.github.io/sun-zi-bing-fa/&#34;,&#34;hideInList&#34;:false,&#34;isTop&#34;:false,&#34;stats&#34;:{&#34;text&#34;:&#34;65 min read&#34;,&#34;time&#34;:3863000,&#34;words&#34;:19317,&#34;minutes&#34;:65},&#34;description&#34;:&#34;第一 始计篇\n原文：始计第一\n孙子曰：\n兵者，国之大事，死生之地，存亡之道，不可不察也。\n故经之以五事，校之以计，而索其情：一曰道，二曰天，三曰地，四曰将，五曰法。道者，令民于上同意，可与之死，可与之生，而不危也；天者，阴阳、寒暑、时制也；...&#34;,&#34;toc&#34;:&#34;&lt;ul class=\&#34;markdownIt-TOC\&#34;&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E4%B8%80-%E5%A7%8B%E8%AE%A1%E7%AF%87\&#34;&gt;第一 始计篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87%E5%A7%8B%E8%AE%A1%E7%AC%AC%E4%B8%80\&#34;&gt;原文：始计第一&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E5%A7%8B%E8%AE%A1%E7%AC%AC%E4%B8%80\&#34;&gt;译文 ：始计第一&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E4%BA%8C-%E4%BD%9C%E6%88%98%E7%AF%87\&#34;&gt;第二 作战篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E4%BD%9C%E6%88%98%E7%AC%AC%E4%BA%8C\&#34;&gt;原文 ：作战第二&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E4%BD%9C%E6%88%98%E7%AC%AC%E4%BA%8C\&#34;&gt;译文 ：作战第二&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E8%B0%8B%E6%94%BB%E7%AC%AC%E4%B8%89\&#34;&gt;原文 ：谋攻第三&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E8%B0%8B%E6%94%BB%E7%AC%AC%E4%B8%89\&#34;&gt;译文 ：谋攻第三&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%9B%9B-%E5%86%9B%E5%BD%A2%E7%AF%87\&#34;&gt;第四 军形篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E5%86%9B%E5%BD%A2%E7%AC%AC%E5%9B%9B\&#34;&gt;原文 ：军形第四&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E5%86%9B%E5%BD%A2%E7%AC%AC%E5%9B%9B\&#34;&gt;译文 ：军形第四&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E4%BA%94-%E5%85%B5%E5%8A%BF%E7%AF%87\&#34;&gt;第五 兵势篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E5%85%B5%E5%8A%BF%E7%AC%AC%E4%BA%94\&#34;&gt;原文 ：兵势第五&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E5%85%B5%E5%8A%BF%E7%AC%AC%E4%BA%94\&#34;&gt;译文 ：兵势第五&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%85%AD-%E8%99%9A%E5%AE%9E%E7%AF%87\&#34;&gt;第六 虚实篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E8%99%9A%E5%AE%9E%E7%AC%AC%E5%85%AD\&#34;&gt;原文 ：虚实第六&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E8%99%9A%E5%AE%9E%E7%AC%AC%E5%85%AD\&#34;&gt;译文 ：虚实第六&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E4%B8%83-%E5%86%9B%E4%BA%89%E7%AF%87\&#34;&gt;第七 军争篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E5%86%9B%E4%BA%89%E7%AC%AC%E4%B8%83\&#34;&gt;原文 ：军争第七&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E5%86%9B%E4%BA%89%E7%AC%AC%E4%B8%83\&#34;&gt;译文 ：军争第七&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%85%AB-%E4%B9%9D%E5%8F%98%E7%AF%87\&#34;&gt;第八 九变篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E4%B9%9D%E5%8F%98%E7%AC%AC%E5%85%AB\&#34;&gt;原文 ： 九变第八&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E4%B9%9D%E5%8F%98%E7%AC%AC%E5%85%AB\&#34;&gt;译文 ： 九变第八&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E4%B9%9D-%E8%A1%8C%E5%86%9B%E7%AF%87\&#34;&gt;第九 行军篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E8%A1%8C%E5%86%9B%E7%AC%AC%E4%B9%9D\&#34;&gt;原文 ：行军第九&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E8%A1%8C%E5%86%9B%E7%AC%AC%E4%B9%9D\&#34;&gt;译文 ：行军第九&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%8D%81-%E5%9C%B0%E5%BD%A2%E7%AF%87\&#34;&gt;第十 地形篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E5%9C%B0%E5%BD%A2%E7%AC%AC%E5%8D%81\&#34;&gt;原文 ：地形第十&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E5%9C%B0%E5%BD%A2%E7%AC%AC%E5%8D%81\&#34;&gt;译文 ：地形第十&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%8D%81%E4%B8%80-%E4%B9%9D%E5%9C%B0%E7%AF%87\&#34;&gt;第十一 九地篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E4%B9%9D%E5%9C%B0%E7%AC%AC%E5%8D%81%E4%B8%80\&#34;&gt;原文 ：九地第十一&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E4%B9%9D%E5%9C%B0%E7%AC%AC%E5%8D%81%E4%B8%80\&#34;&gt;译文 ：九地第十一&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%8D%81%E4%BA%8C-%E7%81%AB%E6%94%BB%E7%AF%87\&#34;&gt;第十二 火攻篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E7%81%AB%E6%94%BB%E7%AC%AC%E5%8D%81%E4%BA%8C\&#34;&gt;原文 ：火攻第十二&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E7%81%AB%E6%94%BB%E7%AC%AC%E5%8D%81%E4%BA%8C\&#34;&gt;译文 ：火攻第十二&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%AC%AC%E5%8D%81%E4%B8%89-%E7%94%A8%E9%97%B4%E7%AF%87\&#34;&gt;第十三 用间篇&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8E%9F%E6%96%87-%E7%94%A8%E9%97%B4%E7%AC%AC%E5%8D%81%E4%B8%89\&#34;&gt;原文 ：用间第十三&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%AF%91%E6%96%87-%E7%94%A8%E9%97%B4%E7%AC%AC%E5%8D%81%E4%B8%89\&#34;&gt;译文 ：用间第十三&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&#34;},{&#34;content&#34;:&#34;&lt;h2 id=\&#34;explain有什么用\&#34;&gt;Explain有什么用&lt;/h2&gt;\n&lt;p&gt;当&lt;code&gt;Explain&lt;/code&gt; 与 &lt;code&gt;SQL&lt;/code&gt;语句一起使用时，&lt;code&gt;MySQL&lt;/code&gt; 会显示来自优化器关于SQL执行的信息。也就是说，&lt;code&gt;MySQL&lt;/code&gt;解释了它将如何处理该语句，包括如何连接表以及什么顺序连接表等。&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;表的加载顺序&lt;/li&gt;\n&lt;li&gt;&lt;code&gt;sql&lt;/code&gt; 的查询类型&lt;/li&gt;\n&lt;li&gt;可能用到哪些索引，哪些索引又被实际使用&lt;/li&gt;\n&lt;li&gt;表与表之间的引用关系&lt;/li&gt;\n&lt;li&gt;一个表中有多少行被优化器查询 .....&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2 id=\&#34;explain有哪些信息\&#34;&gt;Explain有哪些信息&lt;/h2&gt;\n&lt;p&gt;&lt;code&gt;Explain&lt;/code&gt; 执行计划包含字段信息如下：分别是 &lt;code&gt;id&lt;/code&gt;、&lt;code&gt;select_type&lt;/code&gt;、&lt;code&gt;table&lt;/code&gt;、&lt;code&gt;partitions&lt;/code&gt;、&lt;code&gt;type&lt;/code&gt;、&lt;code&gt;possible_keys&lt;/code&gt;、&lt;code&gt;key&lt;/code&gt;、&lt;code&gt;key_len&lt;/code&gt;、&lt;code&gt;ref&lt;/code&gt;、&lt;code&gt;rows&lt;/code&gt;、&lt;code&gt;filtered&lt;/code&gt;、&lt;code&gt;Extra&lt;/code&gt; 12个字段。&lt;br&gt;\n下边我们会结合具体的&lt;code&gt;SQL&lt;/code&gt;示例，详细的解读&lt;img src=\&#34;https://i.loli.net/2020/11/21/PA3nR5zoTJ6IDqM.png\&#34; alt=\&#34;\&#34; loading=\&#34;lazy\&#34;&gt;每个字段以及每个字段中不同参数的含义，以下所有示例数据库版本为 &lt;code&gt;MySQL.5.7.17&lt;/code&gt;。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; select version() from dual;\n+------------+\n| version()  |\n+------------+\n| 5.7.17-log |\n+------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;我们创建三张表 &lt;code&gt;one&lt;/code&gt;、&lt;code&gt;two&lt;/code&gt;、&lt;code&gt;three&lt;/code&gt;，表之间的关系 &lt;code&gt;one.two_id = two.two_id AND two.three_id = three.three_id&lt;/code&gt;。&lt;/p&gt;\n&lt;h2 id=\&#34;explain执行计划详解\&#34;&gt;Explain执行计划详解&lt;/h2&gt;\n&lt;h3 id=\&#34;一-id\&#34;&gt;一、id&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;id：&lt;/code&gt; ：表示查询中执行select子句或者操作表的顺序，&lt;strong&gt;&lt;code&gt;id&lt;/code&gt;的值越大，代表优先级越高，越先执行&lt;/strong&gt;。&lt;code&gt;id&lt;/code&gt;大致会出现 3种情况：&lt;/p&gt;\n&lt;h5 id=\&#34;1-id相同\&#34;&gt;1、&lt;code&gt;id&lt;/code&gt;相同&lt;/h5&gt;\n&lt;p&gt;看到三条记录的&lt;code&gt;id&lt;/code&gt;都相同，可以理解成这三个表为一组，具有同样的优先级，执行顺序由上而下，具体顺序由优化器决定。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * FROM one o,two t, three r WHERE o.two_id = t.two_id AND t.three_id = r.three_id;\n+----+-------------+-------+------------+--------+---------------+---------+---------+----------------------+------+----------+----------------------------------------------------+\n| id | select_type | table | partitions | type   | possible_keys | key     | key_len | ref                  | rows | filtered | Extra                                              |\n+----+-------------+-------+------------+--------+---------------+---------+---------+----------------------+------+----------+----------------------------------------------------+\n|  1 | SIMPLE      | o     | NULL       | ALL    | NULL          | NULL    | NULL    | NULL                 |    2 |      100 | NULL                                               ||  1 | SIMPLE      | t     | NULL       | ALL    | PRIMARY       | NULL    | NULL    | NULL                 |    2 |       50 | Using where; Using join buffer (Block Nested Loop) |\n|  1 | SIMPLE      | r     | NULL       | eq_ref | PRIMARY       | PRIMARY | 4       | xin-slave.t.three_id |    1 |      100 | NULL                                               |\n+----+-------------+-------+------------+--------+---------------+---------+---------+----------------------+------+----------+----------------------------------------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;2-id不同\&#34;&gt;2、&lt;code&gt;id&lt;/code&gt;不同&lt;/h5&gt;\n&lt;p&gt;如果我们的 &lt;code&gt;SQL&lt;/code&gt; 中存在子查询，那么 &lt;code&gt;id&lt;/code&gt;的序号会递增，&lt;code&gt;id&lt;/code&gt;值越大优先级越高，越先被执行 。当三个表依次嵌套，发现最里层的子查询 &lt;code&gt;id&lt;/code&gt;最大，最先执行。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN select * from one o where o.two_id = (select t.two_id from two t where t.three_id = (select r.three_id  from three r where r.three_name=&#39;我是第三表2&#39;));\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n|  1 | PRIMARY     | o     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |       50 | Using where |\n|  2 | SUBQUERY    | t     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |       50 | Using where |\n|  3 | SUBQUERY    | r     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |       50 | Using where |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;3-以上两种同时存在\&#34;&gt;3、以上两种同时存在&lt;/h5&gt;\n&lt;p&gt;将上边的 &lt;code&gt;SQL&lt;/code&gt; 稍微修改一下，增加一个子查询，发现 &lt;code&gt;id&lt;/code&gt;的以上两种同时存在。相同&lt;code&gt;id&lt;/code&gt;划分为一组，这样就有三个组，同组的从上往下顺序执行，不同组 &lt;code&gt;id&lt;/code&gt;值越大，优先级越高，越先执行。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt;  EXPLAIN select * from one o where o.two_id = (select t.two_id from two t where t.three_id = (select r.three_id  from three r where r.three_name=&#39;我是第三表2&#39;)) AND o.one_id in(select one_id from one where o.one_name=&amp;quot;我是第一表2&amp;quot;);\n+----+-------------+-------+------------+--------+---------------+---------+---------+--------------------+------+----------+-------------+\n| id | select_type | table | partitions | type   | possible_keys | key     | key_len | ref                | rows | filtered | Extra       |\n+----+-------------+-------+------------+--------+---------------+---------+---------+--------------------+------+----------+-------------+\n|  1 | PRIMARY     | o     | NULL       | ALL    | PRIMARY       | NULL    | NULL    | NULL               |    2 |       50 | Using where |\n|  1 | PRIMARY     | one   | NULL       | eq_ref | PRIMARY       | PRIMARY | 4       | xin-slave.o.one_id |    1 |      100 | Using index |\n|  2 | SUBQUERY    | t     | NULL       | ALL    | NULL          | NULL    | NULL    | NULL               |    2 |       50 | Using where |\n|  3 | SUBQUERY    | r     | NULL       | ALL    | NULL          | NULL    | NULL    | NULL               |    2 |       50 | Using where |\n+----+-------------+-------+------------+--------+---------------+---------+---------+--------------------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;二-select_type\&#34;&gt;二、select_type&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;select_type&lt;/code&gt;：表示 &lt;code&gt;select&lt;/code&gt; 查询的类型，主要是用于区分各种复杂的查询，例如：&lt;code&gt;普通查询&lt;/code&gt;、&lt;code&gt;联合查询&lt;/code&gt;、&lt;code&gt;子查询&lt;/code&gt;等。&lt;/p&gt;\n&lt;h5 id=\&#34;1-simple\&#34;&gt;1、SIMPLE&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;SIMPLE&lt;/code&gt;：表示最简单的 select 查询语句，也就是在查询中不包含子查询或者 &lt;code&gt;union&lt;/code&gt;交并差集等操作。&lt;/p&gt;\n&lt;h5 id=\&#34;2-primary\&#34;&gt;2、PRIMARY&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;PRIMARY&lt;/code&gt;：当查询语句中包含任何复杂的子部分，最外层查询则被标记为&lt;code&gt;PRIMARY&lt;/code&gt;。&lt;/p&gt;\n&lt;h5 id=\&#34;3-subquery\&#34;&gt;3、SUBQUERY&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;SUBQUERY&lt;/code&gt;：当 &lt;code&gt;select&lt;/code&gt; 或 &lt;code&gt;where&lt;/code&gt; 列表中包含了子查询，该子查询被标记为：&lt;code&gt;SUBQUERY&lt;/code&gt; 。&lt;/p&gt;\n&lt;h5 id=\&#34;4-derived\&#34;&gt;4、DERIVED&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;DERIVED&lt;/code&gt;：表示包含在&lt;code&gt;from&lt;/code&gt;子句中的子查询的select，在我们的 &lt;code&gt;from&lt;/code&gt; 列表中包含的子查询会被标记为&lt;code&gt;derived&lt;/code&gt; 。&lt;/p&gt;\n&lt;h5 id=\&#34;5-union\&#34;&gt;5、UNION&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;UNION&lt;/code&gt;：如果&lt;code&gt;union&lt;/code&gt;后边又出现的&lt;code&gt;select&lt;/code&gt; 语句，则会被标记为&lt;code&gt;union&lt;/code&gt;；若 &lt;code&gt;union&lt;/code&gt; 包含在 &lt;code&gt;from&lt;/code&gt; 子句的子查询中，外层 &lt;code&gt;select&lt;/code&gt; 将被标记为 &lt;code&gt;derived&lt;/code&gt;。&lt;/p&gt;\n&lt;h5 id=\&#34;6-union-result\&#34;&gt;6、UNION RESULT&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;UNION RESULT&lt;/code&gt;：代表从&lt;code&gt;union&lt;/code&gt;的临时表中读取数据，而&lt;code&gt;table&lt;/code&gt;列的&lt;code&gt;&amp;lt;union1,4&amp;gt;&lt;/code&gt;表示用第一个和第四个&lt;code&gt;select&lt;/code&gt;的结果进行&lt;code&gt;union&lt;/code&gt;操作。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN select t.two_name, ( select one.one_id from one) o from (select two_id,two_name from two where two_name =&#39;&#39;) t  union (select r.three_name,r.three_id from three r);+------+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+| id   | select_type  | table      | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra           |+------+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+|    1 | PRIMARY      | two        | NULL       | ALL   | NULL          | NULL    | NULL    | NULL |    2 |       50 | Using where     ||    2 | SUBQUERY     | one        | NULL       | index | NULL          | PRIMARY | 4       | NULL |    2 |      100 | Using index     ||    4 | UNION        | r          | NULL       | ALL   | NULL          | NULL    | NULL    | NULL |    2 |      100 | NULL            || NULL | UNION RESULT | &amp;lt;union1,4&amp;gt; | NULL       | ALL   | NULL          | NULL    | NULL    | NULL | NULL | NULL     | Using temporary |+------+--------------+------------+------------+-------+---------------+---------+---------+------+------+----------+-----------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;三-table\&#34;&gt;三、table&lt;/h3&gt;\n&lt;p&gt;查询的表名，并不一定是真实存在的表，有别名显示别名，也可能为临时表，例如上边的&lt;code&gt;DERIVED&lt;/code&gt;、 &lt;code&gt;&amp;lt;union1,4&amp;gt;&lt;/code&gt;等。&lt;/p&gt;\n&lt;h3 id=\&#34;四-partitions\&#34;&gt;四、partitions&lt;/h3&gt;\n&lt;p&gt;查询时匹配到的分区信息，对于非分区表值为&lt;code&gt;NULL&lt;/code&gt;，当查询的是分区表时，&lt;code&gt;partitions&lt;/code&gt;显示分区表命中的分区情况。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;+----+-------------+----------------+---------------------------------+-------+---------------+---------+---------+------+------+----------+-------------+\n| id | select_type | table          | partitions                      | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+----------------+---------------------------------+-------+---------------+---------+---------+------+------+----------+-------------+\n|  1 | SIMPLE      | one            | p201801,p201802,p201803,p300012 | index | NULL          | PRIMARY | 9       | NULL |    3 |      100 | Using index |\n+----+-------------+----------------+---------------------------------+-------+---------------+---------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;五-type\&#34;&gt;五、type&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;type&lt;/code&gt;：查询使用了何种类型，它在 &lt;code&gt;SQL&lt;/code&gt;优化中是一个非常重要的指标，以下性能从好到坏依次是：&lt;code&gt;system&lt;/code&gt; &amp;gt; &lt;code&gt;const&lt;/code&gt; &amp;gt; &lt;code&gt;eq_ref&lt;/code&gt; &amp;gt; &lt;code&gt;ref&lt;/code&gt; &amp;gt; &lt;code&gt;ref_or_null&lt;/code&gt; &amp;gt; &lt;code&gt;index_merge&lt;/code&gt; &amp;gt; &lt;code&gt;unique_subquery&lt;/code&gt; &amp;gt; &lt;code&gt;index_subquery&lt;/code&gt; &amp;gt; &lt;code&gt;range&lt;/code&gt; &amp;gt; &lt;code&gt;index&lt;/code&gt; &amp;gt; &lt;code&gt;ALL&lt;/code&gt;&lt;/p&gt;\n&lt;h5 id=\&#34;1-system\&#34;&gt;1、system&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;system&lt;/code&gt;：当表仅有一行记录时(系统表)，数据量很少，往往不需要进行磁盘IO，速度非常快。&lt;/p&gt;\n&lt;h5 id=\&#34;2-const\&#34;&gt;2、const&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;const&lt;/code&gt;：表示查询时命中 &lt;code&gt;primary key&lt;/code&gt; 主键或者 &lt;code&gt;unique&lt;/code&gt; 唯一索引，或者被连接的部分是一个常量(&lt;code&gt;const&lt;/code&gt;)值。这类扫描效率极高，返回数据量少，速度非常快。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three where three_id=1;\n+----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+\n| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref   | rows | filtered | Extra |\n+----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+\n|  1 | SIMPLE      | three | NULL       | const | PRIMARY       | PRIMARY | 4       | const |    1 |      100 | NULL  |\n+----+-------------+-------+------------+-------+---------------+---------+---------+-------+------+----------+-------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;3-eq_ref\&#34;&gt;3、eq_ref&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;eq_ref&lt;/code&gt;：查询时命中主键&lt;code&gt;primary key&lt;/code&gt; 或者 &lt;code&gt;unique key&lt;/code&gt;索引， &lt;code&gt;type&lt;/code&gt; 就是 &lt;code&gt;eq_ref&lt;/code&gt;。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;mysql&amp;gt; EXPLAIN select o.one_name from one o ,two t where o.one_id = t.two_id ; \n+----+-------------+-------+------------+--------+---------------+----------+---------+--------------------+------+----------+-------------+\n| id | select_type | table | partitions | type   | possible_keys | key      | key_len | ref                | rows | filtered | Extra       |\n+----+-------------+-------+------------+--------+---------------+----------+---------+--------------------+------+----------+-------------+\n|  1 | SIMPLE      | o     | NULL       | index  | PRIMARY       | idx_name | 768     | NULL               |    2 |      100 | Using index |\n|  1 | SIMPLE      | t     | NULL       | eq_ref | PRIMARY       | PRIMARY  | 4       | xin-slave.o.one_id |    1 |      100 | Using index |\n+----+-------------+-------+------------+--------+---------------+----------+---------+--------------------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;4-ref\&#34;&gt;4、ref&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;ref&lt;/code&gt;：区别于&lt;code&gt;eq_ref&lt;/code&gt; ，&lt;code&gt;ref&lt;/code&gt;表示使用非唯一性索引，会找到很多个符合条件的行。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; select o.one_id from one o where o.one_name = &amp;quot;xin&amp;quot; ; \n+--------+\n| one_id |\n+--------+\n|      1 |\n|      3 |\n+--------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN select o.one_id from one o where o.one_name = &amp;quot;xin&amp;quot; ; \n+----+-------------+-------+------------+------+---------------+----------+---------+-------+------+----------+-------------+\n| id | select_type | table | partitions | type | possible_keys | key      | key_len | ref   | rows | filtered | Extra       |\n+----+-------------+-------+------------+------+---------------+----------+---------+-------+------+----------+-------------+\n|  1 | SIMPLE      | o     | NULL       | ref  | idx_name      | idx_name | 768     | const |    1 |      100 | Using index |\n+----+-------------+-------+------------+------+---------------+----------+---------+-------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;5-ref_or_null\&#34;&gt;5、ref_or_null&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;ref_or_null&lt;/code&gt;：这种连接类型类似于 ref，区别在于 &lt;code&gt;MySQL&lt;/code&gt;会额外搜索包含&lt;code&gt;NULL&lt;/code&gt;值的行。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN select o.one_id from one o where o.one_name = &amp;quot;xin&amp;quot; OR o.one_name IS NULL; \n+----+-------------+-------+------------+-------------+---------------+----------+---------+-------+------+----------+--------------------------+\n| id | select_type | table | partitions | type        | possible_keys | key      | key_len | ref   | rows | filtered | Extra.                   |\n+----+-------------+-------+------------+-------------+---------------+----------+---------+-------+------+----------+--------------------------+\n|  1 | SIMPLE      | o     | NULL       | ref_or_null | idx_name      | idx_name | 768     | const |    3 |      100 | Using where; Using index |\n+----+-------------+-------+------------+-------------+---------------+----------+---------+-------+------+----------+--------------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;6-index_merge\&#34;&gt;6、index_merge&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;index_merge&lt;/code&gt;：使用了索引合并优化方法，查询使用了两个以上的索引。&lt;/p&gt;\n&lt;p&gt;下边示例中同时使用到主键&lt;code&gt;one_id&lt;/code&gt; 和 字段&lt;code&gt;one_name&lt;/code&gt;的&lt;code&gt;idx_name&lt;/code&gt; 索引 。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN select * from one o where o.one_id &amp;gt;1 and o.one_name =&#39;xin&#39;; \n+----+-------------+-------+------------+-------------+------------------+------------------+---------+------+------+----------+------------------------------------------------+\n| id | select_type | table | partitions | type        | possible_keys    | key              | key_len | ref  | rows | filtered | Extra                                          |\n+----+-------------+-------+------------+-------------+------------------+------------------+---------+------+------+----------+------------------------------------------------+\n|  1 | SIMPLE      | o     | NULL       | index_merge | PRIMARY,idx_name | idx_name,PRIMARY | 772,4   | NULL |    1 |      100 | Using intersect(idx_name,PRIMARY); Using where |\n+----+-------------+-------+------------+-------------+------------------+------------------+---------+------+------+----------+------------------------------------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;7-unique_subquery\&#34;&gt;7、unique_subquery&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;unique_subquery&lt;/code&gt;：替换下面的 &lt;code&gt;IN&lt;/code&gt;子查询，子查询返回不重复的集合。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;value IN (SELECT primary_key FROM single_table WHERE some_expr)\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;8-index_subquery\&#34;&gt;8、index_subquery&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;index_subquery&lt;/code&gt;：区别于&lt;code&gt;unique_subquery&lt;/code&gt;，用于非唯一索引，可以返回重复值。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;value IN (SELECT key_column FROM single_table WHERE some_expr)\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;9-range\&#34;&gt;9、range&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;range&lt;/code&gt;：使用索引选择行，仅检索给定范围内的行。简单点说就是针对一个有索引的字段，给定范围检索数据。在&lt;code&gt;where&lt;/code&gt;语句中使用 &lt;code&gt;bettween...and&lt;/code&gt;、&lt;code&gt;&amp;lt;&lt;/code&gt;、&lt;code&gt;&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;=&lt;/code&gt;、&lt;code&gt;in&lt;/code&gt; 等条件查询 &lt;code&gt;type&lt;/code&gt; 都是 &lt;code&gt;range&lt;/code&gt;。&lt;/p&gt;\n&lt;p&gt;举个栗子：&lt;code&gt;three&lt;/code&gt;表中&lt;code&gt;three_id&lt;/code&gt;为唯一主键，&lt;code&gt;user_id&lt;/code&gt;普通字段未建索引。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three where three_id BETWEEN 2 AND 3;\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+|  1 | SIMPLE      | three | NULL       | range | PRIMARY       | PRIMARY | 4       | NULL |    1 |      100 | Using where |\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;从结果中看到只有对设置了索引的字段，做范围检索 &lt;code&gt;type&lt;/code&gt; 才是 &lt;code&gt;range&lt;/code&gt;。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three where user_id BETWEEN 2 AND 3;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n|  1 | SIMPLE      | three | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;10-index\&#34;&gt;10、index&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;index&lt;/code&gt;：&lt;code&gt;Index&lt;/code&gt; 与&lt;code&gt;ALL&lt;/code&gt; 其实都是读全表，区别在于&lt;code&gt;index&lt;/code&gt;是遍历索引树读取，而&lt;code&gt;ALL&lt;/code&gt;是从硬盘中读取。&lt;/p&gt;\n&lt;p&gt;下边示例：&lt;code&gt;three_id&lt;/code&gt; 为主键，不带 &lt;code&gt;where&lt;/code&gt; 条件全表查询 ，&lt;code&gt;type&lt;/code&gt;结果为&lt;code&gt;index&lt;/code&gt; 。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT three_id from three ;\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n|  1 | SIMPLE      | three | NULL       | index | NULL          | PRIMARY | 4       | NULL |    1 |      100 | Using index |\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;11-all\&#34;&gt;11、ALL&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;ALL&lt;/code&gt;：将遍历全表以找到匹配的行，性能最差。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from two ;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n|  1 | SIMPLE      | two   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |      100 | NULL  |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;六-possible_keys\&#34;&gt;六、possible_keys&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;possible_keys&lt;/code&gt;：表示在&lt;code&gt;MySQL&lt;/code&gt;中通过哪些索引，能让我们在表中找到想要的记录，一旦查询涉及到的某个字段上存在索引，则索引将被列出，&lt;strong&gt;但这个索引并不定一会是最终查询数据时所被用到的索引&lt;/strong&gt;。具体请参考上边的例子。&lt;/p&gt;\n&lt;h3 id=\&#34;七-key\&#34;&gt;七、key&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;key&lt;/code&gt;：区别于&lt;code&gt;possible_keys&lt;/code&gt;，key是查询中实际使用到的索引，若没有使用索引，显示为&lt;code&gt;NULL&lt;/code&gt;。具体请参考上边的例子。&lt;/p&gt;\n&lt;blockquote&gt;\n&lt;p&gt;当 &lt;code&gt;type&lt;/code&gt; 为 &lt;code&gt;index_merge&lt;/code&gt; 时，可能会显示多个索引。&lt;/p&gt;\n&lt;/blockquote&gt;\n&lt;h3 id=\&#34;八-key_len\&#34;&gt;八、key_len&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;key_len&lt;/code&gt;：表示查询用到的索引长度（字节数），原则上长度越短越好 。&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;单列索引，那么需要将整个索引长度算进去；&lt;/li&gt;\n&lt;li&gt;多列索引，不是所有列都能用到，需要计算查询中实际用到的列。&lt;/li&gt;\n&lt;/ul&gt;\n&lt;blockquote&gt;\n&lt;p&gt;注意：&lt;code&gt;key_len&lt;/code&gt;只计算&lt;code&gt;where&lt;/code&gt;条件中用到的索引长度，而排序和分组即便是用到了索引，也不会计算到&lt;code&gt;key_len&lt;/code&gt;中。&lt;/p&gt;\n&lt;/blockquote&gt;\n&lt;h3 id=\&#34;九-ref\&#34;&gt;九、ref&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;ref&lt;/code&gt;：常见的有：&lt;code&gt;const&lt;/code&gt;，&lt;code&gt;func&lt;/code&gt;，&lt;code&gt;null&lt;/code&gt;，字段名。&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;当使用常量等值查询，显示&lt;code&gt;const&lt;/code&gt;，&lt;/li&gt;\n&lt;li&gt;当关联查询时，会显示相应关联表的&lt;code&gt;关联字段&lt;/code&gt;&lt;/li&gt;\n&lt;li&gt;如果查询条件使用了&lt;code&gt;表达式&lt;/code&gt;、&lt;code&gt;函数&lt;/code&gt;，或者条件列发生内部隐式转换，可能显示为&lt;code&gt;func&lt;/code&gt;&lt;/li&gt;\n&lt;li&gt;其他情况&lt;code&gt;null&lt;/code&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h3 id=\&#34;十-rows\&#34;&gt;十、rows&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;rows&lt;/code&gt;：以表的统计信息和索引使用情况，估算要找到我们所需的记录，需要读取的行数。&lt;/p&gt;\n&lt;p&gt;这是评估&lt;code&gt;SQL&lt;/code&gt; 性能的一个比较重要的数据，&lt;code&gt;mysql&lt;/code&gt;需要扫描的行数，很直观的显示 &lt;code&gt;SQL&lt;/code&gt; 性能的好坏，一般情况下 &lt;code&gt;rows&lt;/code&gt; 值越小越好。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from three;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n|  1 | SIMPLE      | three | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |      100 | NULL  |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;十一-filtered\&#34;&gt;十一、filtered&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;filtered&lt;/code&gt; 这个是一个百分比的值，表里符合条件的记录数的百分比。简单点说，这个字段表示存储引擎返回的数据在经过过滤后，剩下满足条件的记录数量的比例。&lt;/p&gt;\n&lt;p&gt;在&lt;code&gt;MySQL.5.7&lt;/code&gt;版本以前想要显示&lt;code&gt;filtered&lt;/code&gt;需要使用&lt;code&gt;explain extended&lt;/code&gt;命令。&lt;code&gt;MySQL.5.7&lt;/code&gt;后，默认&lt;code&gt;explain&lt;/code&gt;直接显示&lt;code&gt;partitions&lt;/code&gt;和&lt;code&gt;filtered&lt;/code&gt;的信息。&lt;/p&gt;\n&lt;h3 id=\&#34;十二-extra\&#34;&gt;十二、Extra&lt;/h3&gt;\n&lt;p&gt;&lt;code&gt;Extra&lt;/code&gt; ：不适合在其他列中显示的信息，&lt;code&gt;Explain&lt;/code&gt; 中的很多额外的信息会在 &lt;code&gt;Extra&lt;/code&gt; 字段显示。&lt;/p&gt;\n&lt;h5 id=\&#34;1-using-index\&#34;&gt;1、Using index&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;Using index&lt;/code&gt;：我们在相应的 &lt;code&gt;select&lt;/code&gt; 操作中使用了覆盖索引，通俗一点讲就是查询的列被索引覆盖，使用到覆盖索引查询速度会非常快，&lt;code&gt;SQl&lt;/code&gt;优化中理想的状态。&lt;/p&gt;\n&lt;p&gt;什么又是覆盖索引?&lt;/p&gt;\n&lt;p&gt;一条 &lt;code&gt;SQL&lt;/code&gt;只需要通过索引就可以返回，我们所需要查询的数据（一个或几个字段），而不必通过二级索引，查到主键之后再通过主键查询整行数据（&lt;code&gt;select *&lt;/code&gt; ）。&lt;/p&gt;\n&lt;p&gt;&lt;code&gt;one_id&lt;/code&gt;表为主键&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_id from one ;\n+----+-------------+-------+------------+-------+---------------+------------+---------+------+------+----------+-------------+\n| id | select_type | table | partitions | type  | possible_keys | key        | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+-------+---------------+------------+---------+------+------+----------+-------------+\n|  1 | SIMPLE      | one   | NULL       | index | NULL          | idx_two_id | 5       | NULL |    3 |      100 | Using index |\n+----+-------------+-------+------------+-------+---------------+------------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：想要使用到覆盖索引，我们在 &lt;code&gt;select&lt;/code&gt; 时只取出需要的字段，不可&lt;code&gt;select *&lt;/code&gt;，而且该字段建了索引。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT * from one ;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n|  1 | SIMPLE      | one   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |      100 | NULL  |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;2-using-where\&#34;&gt;2、Using where&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;Using where&lt;/code&gt;：查询时未找到可用的索引，进而通过&lt;code&gt;where&lt;/code&gt;条件过滤获取所需数据，但要注意的是并不是所有带&lt;code&gt;where&lt;/code&gt;语句的查询都会显示&lt;code&gt;Using where&lt;/code&gt;。&lt;/p&gt;\n&lt;p&gt;下边示例&lt;code&gt;create_time&lt;/code&gt; 并未用到索引，&lt;code&gt;type&lt;/code&gt; 为 &lt;code&gt;ALL&lt;/code&gt;，即&lt;code&gt;MySQL&lt;/code&gt;通过全表扫描后再按&lt;code&gt;where&lt;/code&gt;条件筛选数据。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one where create_time =&#39;2020-05-18&#39;;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n|  1 | SIMPLE      | one   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;3-using-temporary\&#34;&gt;3、Using temporary&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;Using temporary&lt;/code&gt;：表示查询后结果需要使用临时表来存储，一般在排序或者分组查询时用到。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one where one_id in (1,2) group by one_name;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra                                        |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------+\n|  1 | SIMPLE      | one   | NULL       | range| NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where; Using temporary; Using filesort |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;4-using-filesort\&#34;&gt;4、Using filesort&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;Using filesort&lt;/code&gt;：表示无法利用索引完成的排序操作，也就是&lt;code&gt;ORDER BY&lt;/code&gt;的字段没有索引，通常这样的SQL都是需要优化的。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_id from one  ORDER BY create_time;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra          |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+\n|  1 | SIMPLE      | one   | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |      100 | Using filesort |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;如果&lt;code&gt;ORDER BY&lt;/code&gt;字段有索引就会用到覆盖索引，相比执行速度快很多。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_id from one  ORDER BY one_id;\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n| id | select_type | table | partitions | type  | possible_keys | key     | key_len | ref  | rows | filtered | Extra       |\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n|  1 | SIMPLE      | one   | NULL       | index | NULL          | PRIMARY | 4       | NULL |    3 |      100 | Using index |\n+----+-------------+-------+------------+-------+---------------+---------+---------+------+------+----------+-------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;5-using-join-buffer\&#34;&gt;5、Using join buffer&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;Using join buffer&lt;/code&gt;：在我们联表查询的时候，如果表的连接条件没有用到索引，需要有一个连接缓冲区来存储中间结果。&lt;/p&gt;\n&lt;p&gt;先看一下有索引的情况：连接条件 &lt;code&gt;one_name&lt;/code&gt; 、&lt;code&gt;two_name&lt;/code&gt; 都用到索引。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one o,two t where o.one_name = t.two_name;\n+----+-------------+-------+------------+-------+---------------+----------+---------+----------------------+------+----------+--------------------------+\n| id | select_type | table | partitions | type  | possible_keys | key      | key_len | ref                  | rows | filtered | Extra                    |\n+----+-------------+-------+------------+-------+---------------+----------+---------+----------------------+------+----------+--------------------------+\n|  1 | SIMPLE      | o     | NULL       | index | idx_name      | idx_name | 768     | NULL                 |    3 |      100 | Using where; Using index |\n|  1 | SIMPLE      | t     | NULL       | ref   | idx_name      | idx_name | 768     | xin-slave.o.one_name |    1 |      100 | Using index              |\n+----+-------------+-------+------------+-------+---------------+----------+---------+----------------------+------+----------+--------------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;接下来删掉 连接条件 &lt;code&gt;one_name&lt;/code&gt; 、&lt;code&gt;two_name&lt;/code&gt; 的字段索引。发现&lt;code&gt;Extra&lt;/code&gt; 列变成 &lt;code&gt;Using join buffer&lt;/code&gt;，&lt;code&gt;type&lt;/code&gt;均为全表扫描，这也是&lt;code&gt;SQL&lt;/code&gt;优化中需要注意的地方。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one o,two t where o.one_name = t.two_name;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra                                              |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+\n|  1 | SIMPLE      | t     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    2 |      100 | NULL                                               |\n|  1 | SIMPLE      | o     | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    3 |    33.33 | Using where; Using join buffer (Block Nested Loop) |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------------------------------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;6-impossible-where\&#34;&gt;6、Impossible where&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;Impossible where&lt;/code&gt;：表示在我们用不太正确的&lt;code&gt;where&lt;/code&gt;语句，导致没有符合条件的行。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN SELECT one_name from one WHERE 1=2;\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+------------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra            |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+------------------+\n|  1 | SIMPLE      | NULL  | NULL       | NULL | NULL          | NULL | NULL    | NULL | NULL | NULL     | Impossible WHERE |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+------------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h5 id=\&#34;7-no-tables-used\&#34;&gt;7、No tables used&lt;/h5&gt;\n&lt;p&gt;&lt;code&gt;No tables used&lt;/code&gt;：我们的查询语句中没有&lt;code&gt;FROM&lt;/code&gt;子句，或者有 &lt;code&gt;FROM DUAL&lt;/code&gt;子句。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-sql\&#34;&gt;mysql&amp;gt; EXPLAIN select now();\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+\n| id | select_type | table | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra          |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+\n|  1 | SIMPLE      | NULL  | NULL       | NULL | NULL          | NULL | NULL    | NULL | NULL | NULL     | No tables used |\n+----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+----------------+\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;&lt;code&gt;Extra&lt;/code&gt;列的信息非常非常多，这里就不再一一列举了，详见 &lt;code&gt;MySQL&lt;/code&gt;官方文档 ：&lt;a href=\&#34;https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#jointype_index_merge\&#34;&gt;https://dev.mysql.com/doc/refman/5.7/en/explain-output.html#jointype_index_merge&lt;/a&gt;&lt;/p&gt;\n&lt;h2 id=\&#34;\&#34;&gt;&lt;/h2&gt;\n&lt;hr&gt;\n&#34;,&#34;fileName&#34;:&#34;mysql-explain-jie-shao&#34;,&#34;abstract&#34;:&#34;&#34;,&#34;title&#34;:&#34;MySQL Explain 介绍&#34;,&#34;tags&#34;:[{&#34;name&#34;:&#34;mysql&#34;,&#34;slug&#34;:&#34;IL3tpYoNW&#34;,&#34;used&#34;:true,&#34;link&#34;:&#34;https://ofo-ofo.github.io/tag/IL3tpYoNW/&#34;}],&#34;date&#34;:&#34;2020-12-08 16:44:49&#34;,&#34;dateFormat&#34;:&#34;2020-12-08&#34;,&#34;feature&#34;:&#34;&#34;,&#34;link&#34;:&#34;https://ofo-ofo.github.io/mysql-explain-jie-shao/&#34;,&#34;hideInList&#34;:false,&#34;isTop&#34;:false,&#34;stats&#34;:{&#34;text&#34;:&#34;17 min read&#34;,&#34;time&#34;:1015000,&#34;words&#34;:3704,&#34;minutes&#34;:17},&#34;description&#34;:&#34;Explain有什么用\n当Explain 与 SQL语句一起使用时，MySQL 会显示来自优化器关于SQL执行的信息。也就是说，MySQL解释了它将如何处理该语句，包括如何连接表以及什么顺序连接表等。\n\n表的加载顺序\nsql 的查询类型\n可...&#34;,&#34;toc&#34;:&#34;&lt;ul class=\&#34;markdownIt-TOC\&#34;&gt;\n&lt;li&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#explain%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8\&#34;&gt;Explain有什么用&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#explain%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BF%A1%E6%81%AF\&#34;&gt;Explain有哪些信息&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#explain%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E8%AF%A6%E8%A7%A3\&#34;&gt;Explain执行计划详解&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E4%B8%80-id\&#34;&gt;一、id&lt;/a&gt;&lt;br&gt;\n*\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-id%E7%9B%B8%E5%90%8C\&#34;&gt;1、&lt;code&gt;id&lt;/code&gt;相同&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-id%E4%B8%8D%E5%90%8C\&#34;&gt;2、&lt;code&gt;id&lt;/code&gt;不同&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#3-%E4%BB%A5%E4%B8%8A%E4%B8%A4%E7%A7%8D%E5%90%8C%E6%97%B6%E5%AD%98%E5%9C%A8\&#34;&gt;3、以上两种同时存在&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E4%BA%8C-select_type\&#34;&gt;二、select_type&lt;/a&gt;&lt;br&gt;\n*\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-simple\&#34;&gt;1、SIMPLE&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-primary\&#34;&gt;2、PRIMARY&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#3-subquery\&#34;&gt;3、SUBQUERY&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#4-derived\&#34;&gt;4、DERIVED&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#5-union\&#34;&gt;5、UNION&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#6-union-result\&#34;&gt;6、UNION RESULT&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E4%B8%89-table\&#34;&gt;三、table&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%9B%9B-partitions\&#34;&gt;四、partitions&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E4%BA%94-type\&#34;&gt;五、type&lt;/a&gt;&lt;br&gt;\n*\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-system\&#34;&gt;1、system&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-const\&#34;&gt;2、const&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#3-eq_ref\&#34;&gt;3、eq_ref&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#4-ref\&#34;&gt;4、ref&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#5-ref_or_null\&#34;&gt;5、ref_or_null&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#6-index_merge\&#34;&gt;6、index_merge&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#7-unique_subquery\&#34;&gt;7、unique_subquery&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#8-index_subquery\&#34;&gt;8、index_subquery&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#9-range\&#34;&gt;9、range&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#10-index\&#34;&gt;10、index&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#11-all\&#34;&gt;11、ALL&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%85%AD-possible_keys\&#34;&gt;六、possible_keys&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E4%B8%83-key\&#34;&gt;七、key&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%85%AB-key_len\&#34;&gt;八、key_len&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E4%B9%9D-ref\&#34;&gt;九、ref&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%81-rows\&#34;&gt;十、rows&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%81%E4%B8%80-filtered\&#34;&gt;十一、filtered&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%81%E4%BA%8C-extra\&#34;&gt;十二、Extra&lt;/a&gt;&lt;br&gt;\n*\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-using-index\&#34;&gt;1、Using index&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-using-where\&#34;&gt;2、Using where&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#3-using-temporary\&#34;&gt;3、Using temporary&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#4-using-filesort\&#34;&gt;4、Using filesort&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#5-using-join-buffer\&#34;&gt;5、Using join buffer&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#6-impossible-where\&#34;&gt;6、Impossible where&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#7-no-tables-used\&#34;&gt;7、No tables used&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&#34;},{&#34;content&#34;:&#34;&lt;h1 id=\&#34;单例模式\&#34;&gt;单例模式&lt;/h1&gt;\n&lt;ul&gt;\n&lt;li&gt;单例类只能有一个实例&lt;/li&gt;\n&lt;li&gt;单例类必须自己创建自己的唯一实例&lt;/li&gt;\n&lt;li&gt;单例类必须给所有其他对象提供这一实例&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;strong&gt;意图&lt;/strong&gt;：保证一个类仅有一个实例，并提供一个访问它的全局访问点&lt;br&gt;\n&lt;strong&gt;主要解决&lt;/strong&gt;：一个全局使用的类频繁地创建与销毁&lt;br&gt;\n&lt;strong&gt;如何解决&lt;/strong&gt;：判断系统是否已经有这个单例，如果有则返回，没有则创建&lt;br&gt;\n&lt;strong&gt;关键代码&lt;/strong&gt;：私有化构造函数&lt;/p&gt;\n&lt;h2 id=\&#34;单例模式的常见实现方式\&#34;&gt;单例模式的常见实现方式&lt;/h2&gt;\n&lt;h3 id=\&#34;1-懒汉式\&#34;&gt;1 懒汉式&lt;/h3&gt;\n&lt;h4 id=\&#34;11-懒汉式线程不安全\&#34;&gt;1.1 懒汉式，线程不安全&lt;/h4&gt;\n&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;是否多线程安全&lt;/strong&gt;：否&lt;br&gt;\n&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;br&gt;\n&lt;strong&gt;描述&lt;/strong&gt;：单例模式最基本的实现方式，最大的问题是不支持多线程。因为没有加锁 synchronized，所以严格意义（多线程下）上并不算是单例模式。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public class Singleton {\n    private static Singleton instance;  \n    private Singleton (){}  \n  \n    public static Singleton getInstance() {  \n    if (instance == null) {  \n        instance = new Singleton();  \n    }  \n    return instance;  \n    }\n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h4 id=\&#34;12-懒汉式线程安全\&#34;&gt;1.2 懒汉式，线程安全&lt;/h4&gt;\n&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;br&gt;\n&lt;strong&gt;描述&lt;/strong&gt;：懒加载，能够在多线程中很好的工作，但是效率低&lt;br&gt;\n优点：第一次调用才会实例化，避免浪费内存&lt;br&gt;\n缺点：需要加锁synchronized才能保证单例，单加锁会影响效率&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-Java\&#34;&gt;public class Singleton {  \n    private static Singleton instance;  \n    private Singleton (){}  \n    public static synchronized Singleton getInstance() {  \n    if (instance == null) {  \n        instance = new Singleton();  \n    }  \n    return instance;  \n    }  \n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;2-饿汉式\&#34;&gt;2 饿汉式&lt;/h3&gt;\n&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：否&lt;br&gt;\n&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;br&gt;\n&lt;strong&gt;描述&lt;/strong&gt;：较常用，但是容易产生垃圾对象&lt;br&gt;\n优点：没有加锁，执行效率高&lt;br&gt;\n缺点：类加载时就会初始化，浪费内存&lt;/p&gt;\n&lt;p&gt;基于classloader机制避免了多线程同步的问题，但是没有延迟加载的效果&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public class Singleton {  \n    private static Singleton instance = new Singleton();  \n    private Singleton (){}  \n    public static Singleton getInstance() {  \n    return instance;  \n    }  \n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;3-双检锁双重校验锁也属于懒汉式\&#34;&gt;3 双检锁/双重校验锁(也属于懒汉式)&lt;/h3&gt;\n&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;实现难度&lt;/strong&gt;：较复杂&lt;br&gt;\n&lt;strong&gt;描述&lt;/strong&gt;：这种方式采用双锁机制，安全且在多线程情况下能保持高性能。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public class Singleton {  \n    private volatile static Singleton singleton;  \n    private Singleton (){}  \n    public static Singleton getSingleton() {  \n    if (singleton == null) {  \n        synchronized (Singleton.class) {  \n            if (singleton == null) {  \n                singleton = new Singleton();  \n            }  \n        }  \n    }  \n    return singleton;  \n    }  \n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;4-登记式静态内部类\&#34;&gt;4 登记式/静态内部类&lt;/h3&gt;\n&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;实现难度&lt;/strong&gt;：一般&lt;br&gt;\n这种方式能达到双检锁方式一样的功效，但实现更简单。对静态域使用延迟初始化，应使用这种方式而不是双检锁方式。这种方式只适用于静态域的情况，双检锁方式可在实例域需要延迟初始化时使用。&lt;br&gt;\n这种方式同样利用了 classloader 机制来保证初始化 instance 时只有一个线程，它跟饿汉式不同的是：第 3 种方式只要 Singleton 类被装载了，那么 instance 就会被实例化（没有达到 lazy loading 效果），而这种方式是 Singleton 类被装载了，instance 不一定被初始化。因为 SingletonHolder 类没有被主动使用，只有通过显式调用 getInstance 方法时，才会显式装载 SingletonHolder 类，从而实例化 instance。想象一下，如果实例化 instance 很消耗资源，所以想让它延迟加载，另外一方面，又不希望在 Singleton 类加载时就实例化，因为不能确保 Singleton 类还可能在其他的地方被主动使用从而被加载，那么这个时候实例化 instance 显然是不合适的。这个时候，这种方式相比饿汉式就显得很合理。&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public class Singleton {  \n    private static class SingletonHolder {  \n    private static final Singleton INSTANCE = new Singleton();  \n    }  \n    private Singleton (){}  \n    public static final Singleton getInstance() {  \n    return SingletonHolder.INSTANCE;  \n    }  \n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h3 id=\&#34;5-枚举\&#34;&gt;5 枚举&lt;/h3&gt;\n&lt;p&gt;&lt;strong&gt;是否懒加载&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;是否多线程安全&lt;/strong&gt;：是&lt;br&gt;\n&lt;strong&gt;实现难度&lt;/strong&gt;：易&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public enum Singleton {  \n    INSTANCE;  \n    public void whateverMethod() {  \n    }  \n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h2 id=\&#34;单例模式的破坏\&#34;&gt;单例模式的破坏&lt;/h2&gt;\n&lt;h3 id=\&#34;1-通过反射破坏\&#34;&gt;1 通过反射破坏&lt;/h3&gt;\n&lt;ul&gt;\n&lt;li&gt;通过反射是可以获取单例模式的私有化构造函数，就可以创建新的对象了&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public static class Singleton {\n        private static class SingletonHolder {\n            private static final Singleton INSTANCE = new Singleton();\n        }\n        private Singleton (){}\n        public static final Singleton getInstance() {\n            return SingletonHolder.INSTANCE;\n        }\n    }\n\n    public static void main(String[] args) throws Exception {\n        //正常单例创建的实例\n        Singleton instance = Singleton.getInstance();\n        Singleton instance1 = Singleton.getInstance();\n\n        Class&amp;lt;Singleton&amp;gt; singletonClass = Singleton.class;\n        //获得默认构造函数\n        Constructor&amp;lt;Singleton&amp;gt; declaredConstructor = singletonClass.getDeclaredConstructor();\n        //关闭访问权限检查\n        declaredConstructor.setAccessible(true);\n        //通过反射创建的实例\n        Singleton singleton = declaredConstructor.newInstance();\n\n        System.out.println(instance.hashCode());\n        System.out.println(instance1.hashCode());\n        System.out.println(singleton.hashCode());\n    }\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;执行结果&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code&gt;1555093762\n1555093762\n1190900417\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h4 id=\&#34;11-阻止反射破坏单例\&#34;&gt;1.1 阻止反射破坏单例&lt;/h4&gt;\n&lt;ul&gt;\n&lt;li&gt;思路：组织外部调用构造函数多次，可以增加一个标识来判断构造函数是否北条用过&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-java\&#34;&gt;public class Test {\n    public static class Singleton {\n\n        //用于标识构造函数是否被调用过\n        private static Boolean flag = false;\n\n        private static class SingletonHolder {\n            private static final Singleton INSTANCE = new Singleton();\n        }\n        private Singleton (){\n            //加锁防止并发\n            synchronized (SingletonHolder.class){\n                if (flag){\n                    throw new RuntimeException(&amp;quot;单例模式被破坏！&amp;quot;);\n                }\n                flag = true;\n            }\n        }\n\n        public static final Singleton getInstance() {\n            return SingletonHolder.INSTANCE;\n        }\n    }\n\n    public static void main(String[] args) throws Exception {\n        //正常单例创建的实例\n        Singleton instance = Singleton.getInstance();\n\n        Class&amp;lt;Singleton&amp;gt; singletonClass = Singleton.class;\n        //获得默认构造函数\n        Constructor&amp;lt;Singleton&amp;gt; declaredConstructor = singletonClass.getDeclaredConstructor();\n        //关闭访问权限检查\n        declaredConstructor.setAccessible(true);\n        //通过反射创建的实例\n        Singleton singleton = declaredConstructor.newInstance();\n\n        System.out.println(instance.hashCode());\n        System.out.println(singleton.hashCode());\n    }\n\n}\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;执行结果&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-log\&#34;&gt;Exception in thread &amp;quot;main&amp;quot; java.lang.reflect.InvocationTargetException\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\n\tat sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)\n\tat sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\n\tat java.lang.reflect.Constructor.newInstance(Constructor.java:423)\n\tat com.goldnurse.commons.utils.wechat.pay.Test.main(Test.java:48)\nCaused by: java.lang.RuntimeException: 单例模式被破坏！\n\tat com.goldnurse.commons.utils.wechat.pay.Test$Singleton.&amp;lt;init&amp;gt;(Test.java:27)\n\t... 5 more\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;增加标识为防止单例被破坏的方式有BUG，实例没有被实例化时，通过反射创建实例会成功，但此时标志微已记录构造器调用，这是通过正常的方法获取实例时就会报错。因此这总方式只适用于能够保证正方方法先于反射执行的情况&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h3 id=\&#34;2-通过反序列化破坏\&#34;&gt;2 通过反序列化破坏&lt;/h3&gt;\n&lt;ul&gt;\n&lt;li&gt;通过Object的构造函数，反射出单例类对象，从而创建了新的实例。解决方案是：在单例类中写一个readResolve()方法，在这个方法中返回我们想要的单例，就可以解决序列化破坏单例&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;https://www.jianshu.com/p/57613ff96aa5\&#34;&gt;源码解析&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&#34;,&#34;fileName&#34;:&#34;dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi&#34;,&#34;abstract&#34;:&#34;&#34;,&#34;title&#34;:&#34;单例模式的实现及破坏方式&#34;,&#34;tags&#34;:[{&#34;name&#34;:&#34;单例模式&#34;,&#34;slug&#34;:&#34;lSB73b-6T&#34;,&#34;used&#34;:true,&#34;link&#34;:&#34;https://ofo-ofo.github.io/tag/lSB73b-6T/&#34;},{&#34;name&#34;:&#34;破环单例模式&#34;,&#34;slug&#34;:&#34;7CuqCVmOzL&#34;,&#34;used&#34;:true,&#34;link&#34;:&#34;https://ofo-ofo.github.io/tag/7CuqCVmOzL/&#34;}],&#34;date&#34;:&#34;2020-11-25 18:47:55&#34;,&#34;dateFormat&#34;:&#34;2020-11-25&#34;,&#34;feature&#34;:&#34;&#34;,&#34;link&#34;:&#34;https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/&#34;,&#34;hideInList&#34;:false,&#34;isTop&#34;:false,&#34;stats&#34;:{&#34;text&#34;:&#34;7 min read&#34;,&#34;time&#34;:385000,&#34;words&#34;:1576,&#34;minutes&#34;:7},&#34;description&#34;:&#34;单例模式\n\n单例类只能有一个实例\n单例类必须自己创建自己的唯一实例\n单例类必须给所有其他对象提供这一实例\n\n意图：保证一个类仅有一个实例，并提供一个访问它的全局访问点\n主要解决：一个全局使用的类频繁地创建与销毁\n如何解决：判断系统是否已经有...&#34;,&#34;toc&#34;:&#34;&lt;ul class=\&#34;markdownIt-TOC\&#34;&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F\&#34;&gt;单例模式&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F\&#34;&gt;单例模式的常见实现方式&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-%E6%87%92%E6%B1%89%E5%BC%8F\&#34;&gt;1 懒汉式&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#11-%E6%87%92%E6%B1%89%E5%BC%8F%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8\&#34;&gt;1.1 懒汉式，线程不安全&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#12-%E6%87%92%E6%B1%89%E5%BC%8F%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8\&#34;&gt;1.2 懒汉式，线程安全&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-%E9%A5%BF%E6%B1%89%E5%BC%8F\&#34;&gt;2 饿汉式&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#3-%E5%8F%8C%E6%A3%80%E9%94%81%E5%8F%8C%E9%87%8D%E6%A0%A1%E9%AA%8C%E9%94%81%E4%B9%9F%E5%B1%9E%E4%BA%8E%E6%87%92%E6%B1%89%E5%BC%8F\&#34;&gt;3 双检锁/双重校验锁(也属于懒汉式)&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#4-%E7%99%BB%E8%AE%B0%E5%BC%8F%E9%9D%99%E6%80%81%E5%86%85%E9%83%A8%E7%B1%BB\&#34;&gt;4 登记式/静态内部类&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#5-%E6%9E%9A%E4%B8%BE\&#34;&gt;5 枚举&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E7%A0%B4%E5%9D%8F\&#34;&gt;单例模式的破坏&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E7%A0%B4%E5%9D%8F\&#34;&gt;1 通过反射破坏&lt;/a&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#11-%E9%98%BB%E6%AD%A2%E5%8F%8D%E5%B0%84%E7%A0%B4%E5%9D%8F%E5%8D%95%E4%BE%8B\&#34;&gt;1.1 阻止反射破坏单例&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%A0%B4%E5%9D%8F\&#34;&gt;2 通过反序列化破坏&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&#34;},{&#34;content&#34;:&#34;&lt;p&gt;Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。&lt;/p&gt;\n&lt;p&gt;引用&lt;a href=\&#34;https://brew.sh/index_zh-cn\&#34;&gt;官方&lt;/a&gt;的一句话：又提示缺少套件啦？别担心，Homebrew 随时守候。Homebrew —— OS X 不可或缺的套件管理器&lt;/p&gt;\n&lt;h2 id=\&#34;1-要求\&#34;&gt;1. 要求&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;Intel CPU&lt;/li&gt;\n&lt;li&gt;OS X 10.9 or higher&lt;/li&gt;\n&lt;li&gt;Xcode命令行工具&lt;/li&gt;\n&lt;li&gt;支持shell (sh或者bash)&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;&lt;a name=\&#34;c3a27555\&#34;&gt;&lt;/a&gt;&lt;/p&gt;\n&lt;h2 id=\&#34;2-安装和卸载\&#34;&gt;2. 安装和卸载&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;安装&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;卸载&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;cd `brew --prefix`\nrm -rf Cellar\nbrew prune\nrm `git ls-files`\nrm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions\nrm -rf .git\nrm -rf ~/Library/Caches/Homebrew\n&lt;/code&gt;&lt;/pre&gt;\n&lt;h2 id=\&#34;3常用命令\&#34;&gt;3.常用命令&lt;/h2&gt;\n&lt;ul&gt;\n&lt;li&gt;安装任意包&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew install &amp;lt;packageName&amp;gt;\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;卸载任意包&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew uninstall &amp;lt;packageName&amp;gt;\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;查询可用包&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew search &amp;lt;packageName&amp;gt;\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;查看已安装包列表&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew list\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;查看任意包信息&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew info &amp;lt;packageName&amp;gt;\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;更新Homebrew&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew update\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;查看Homebrew版本&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew -v\n&lt;/code&gt;&lt;/pre&gt;\n&lt;ul&gt;\n&lt;li&gt;Homebrew帮助信息&lt;/li&gt;\n&lt;/ul&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;brew -h\n&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;&lt;br /&gt;在Mac OS X 10.11系统以后，/usr/local/等系统目录下的文件读写是需要系统root权限的，以往的Homebrew安装如果没有指定安装路径，会默认安装在这些需要系统root用户读写权限的目录下，导致有些指令需要添加sudo前缀来执行，比如升级Homebrew需要：&lt;br /&gt;&lt;br&gt;\n&lt;br /&gt;如果你不想每次都使用sudo指令，你有两种方法可以选择:&lt;br /&gt;&lt;/p&gt;\n&lt;p&gt;对/usr/local 目录下的文件读写进行root用户授权&lt;/p&gt;\n&lt;pre&gt;&lt;code class=\&#34;language-shell\&#34;&gt;sudo chown -R $USER /usr/local\n&lt;/code&gt;&lt;/pre&gt;\n&#34;,&#34;fileName&#34;:&#34;homebrew-jie-shao-yu-shi-yong&#34;,&#34;abstract&#34;:&#34;&#34;,&#34;title&#34;:&#34;Homebrew介绍与使用&#34;,&#34;tags&#34;:[{&#34;name&#34;:&#34;mac&#34;,&#34;slug&#34;:&#34;KYvhbNE5f&#34;,&#34;used&#34;:true,&#34;link&#34;:&#34;https://ofo-ofo.github.io/tag/KYvhbNE5f/&#34;},{&#34;name&#34;:&#34;homebrew&#34;,&#34;slug&#34;:&#34;OlN6aUdO8i&#34;,&#34;used&#34;:true,&#34;link&#34;:&#34;https://ofo-ofo.github.io/tag/OlN6aUdO8i/&#34;}],&#34;date&#34;:&#34;2020-11-11 11:33:59&#34;,&#34;dateFormat&#34;:&#34;2020-11-11&#34;,&#34;feature&#34;:&#34;https://ofo-ofo.github.io/post-images/homebrew-jie-shao-yu-shi-yong.jpg&#34;,&#34;link&#34;:&#34;https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/&#34;,&#34;hideInList&#34;:false,&#34;isTop&#34;:false,&#34;stats&#34;:{&#34;text&#34;:&#34;2 min read&#34;,&#34;time&#34;:102000,&#34;words&#34;:408,&#34;minutes&#34;:2},&#34;description&#34;:&#34;Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。\n引用官方的一句话：又提示缺少套件啦？别担心，...&#34;,&#34;toc&#34;:&#34;&lt;ul class=\&#34;markdownIt-TOC\&#34;&gt;\n&lt;li&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#1-%E8%A6%81%E6%B1%82\&#34;&gt;1. 要求&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#2-%E5%AE%89%E8%A3%85%E5%92%8C%E5%8D%B8%E8%BD%BD\&#34;&gt;2. 安装和卸载&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#3%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4\&#34;&gt;3.常用命令&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&#34;},{&#34;content&#34;:&#34;&lt;blockquote&gt;\n&lt;p&gt;欢迎来到我的小站呀，很高兴遇见你！🤝&lt;/p&gt;\n&lt;/blockquote&gt;\n&lt;h2 id=\&#34;关于本站\&#34;&gt;🏠 关于本站&lt;/h2&gt;\n&lt;h2 id=\&#34;博主是谁\&#34;&gt;👨‍💻 博主是谁&lt;/h2&gt;\n&lt;h2 id=\&#34;兴趣爱好\&#34;&gt;⛹ 兴趣爱好&lt;/h2&gt;\n&lt;h2 id=\&#34;联系我呀\&#34;&gt;📬 联系我呀&lt;/h2&gt;\n&#34;,&#34;fileName&#34;:&#34;about&#34;,&#34;abstract&#34;:&#34;&#34;,&#34;title&#34;:&#34;关于&#34;,&#34;tags&#34;:[],&#34;date&#34;:&#34;2019-01-25 19:09:48&#34;,&#34;dateFormat&#34;:&#34;2019-01-25&#34;,&#34;feature&#34;:&#34;&#34;,&#34;link&#34;:&#34;https://ofo-ofo.github.io/about/&#34;,&#34;hideInList&#34;:true,&#34;isTop&#34;:false,&#34;stats&#34;:{&#34;text&#34;:&#34;1 min read&#34;,&#34;time&#34;:6000,&#34;words&#34;:31,&#34;minutes&#34;:1},&#34;description&#34;:&#34;\n欢迎来到我的小站呀，很高兴遇见你！🤝\n\n🏠 关于本站\n👨‍💻 博主是谁\n⛹ 兴趣爱好\n📬 联系我呀\n...&#34;,&#34;toc&#34;:&#34;&lt;ul class=\&#34;markdownIt-TOC\&#34;&gt;\n&lt;li&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99\&#34;&gt;🏠 关于本站&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81\&#34;&gt;👨‍💻 博主是谁&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD\&#34;&gt;⛹ 兴趣爱好&lt;/a&gt;&lt;/li&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80\&#34;&gt;📬 联系我呀&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&#34;},{&#34;content&#34;:&#34;&lt;p&gt;👏  欢迎使用 &lt;strong&gt;Gridea&lt;/strong&gt; ！&lt;br&gt;\n✍️  &lt;strong&gt;Gridea&lt;/strong&gt; 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...&lt;/p&gt;\n&lt;!-- more --&gt;\n&lt;p&gt;&lt;a href=\&#34;https://github.com/getgridea/gridea\&#34;&gt;Github&lt;/a&gt;&lt;br&gt;\n&lt;a href=\&#34;https://gridea.dev/\&#34;&gt;Gridea 主页&lt;/a&gt;&lt;br&gt;\n&lt;a href=\&#34;http://fehey.com/\&#34;&gt;示例网站&lt;/a&gt;&lt;/p&gt;\n&lt;h2 id=\&#34;特性\&#34;&gt;特性👇&lt;/h2&gt;\n&lt;p&gt;📝  你可以使用最酷的 &lt;strong&gt;Markdown&lt;/strong&gt; 语法，进行快速创作&lt;/p&gt;\n&lt;p&gt;🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片&lt;/p&gt;\n&lt;p&gt;🏷️  你可以对文章进行标签分组&lt;/p&gt;\n&lt;p&gt;📋  你可以自定义菜单，甚至可以创建外部链接菜单&lt;/p&gt;\n&lt;p&gt;💻  你可以在 &lt;strong&gt;Windows&lt;/strong&gt;，&lt;strong&gt;MacOS&lt;/strong&gt; 或 &lt;strong&gt;Linux&lt;/strong&gt; 设备上使用此客户端&lt;/p&gt;\n&lt;p&gt;🌎  你可以使用 &lt;strong&gt;𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌&lt;/strong&gt; 或 &lt;strong&gt;Coding Pages&lt;/strong&gt; 向世界展示，未来将支持更多平台&lt;/p&gt;\n&lt;p&gt;💬  你可以进行简单的配置，接入 &lt;a href=\&#34;https://github.com/gitalk/gitalk\&#34;&gt;Gitalk&lt;/a&gt; 或 &lt;a href=\&#34;https://github.com/SukkaW/DisqusJS\&#34;&gt;DisqusJS&lt;/a&gt; 评论系统&lt;/p&gt;\n&lt;p&gt;🇬🇧  你可以使用&lt;strong&gt;中文简体&lt;/strong&gt;或&lt;strong&gt;英语&lt;/strong&gt;&lt;/p&gt;\n&lt;p&gt;🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力&lt;/p&gt;\n&lt;p&gt;🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步&lt;/p&gt;\n&lt;p&gt;🌱 当然 &lt;strong&gt;Gridea&lt;/strong&gt; 还很年轻，有很多不足，但请相信，它会不停向前 🏃&lt;/p&gt;\n&lt;p&gt;未来，它一定会成为你离不开的伙伴&lt;/p&gt;\n&lt;p&gt;尽情发挥你的才华吧！&lt;/p&gt;\n&lt;p&gt;😘 Enjoy~&lt;/p&gt;\n&#34;,&#34;fileName&#34;:&#34;hello-gridea&#34;,&#34;abstract&#34;:&#34;&lt;p&gt;👏  欢迎使用 &lt;strong&gt;Gridea&lt;/strong&gt; ！&lt;br&gt;\n✍️  &lt;strong&gt;Gridea&lt;/strong&gt; 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...&lt;/p&gt;\n&#34;,&#34;title&#34;:&#34;Hello Gridea&#34;,&#34;tags&#34;:[{&#34;name&#34;:&#34;Gridea&#34;,&#34;slug&#34;:&#34;B_qXfLgOb&#34;,&#34;used&#34;:true,&#34;link&#34;:&#34;https://ofo-ofo.github.io/tag/B_qXfLgOb/&#34;}],&#34;date&#34;:&#34;2018-12-12 00:00:00&#34;,&#34;dateFormat&#34;:&#34;2018-12-12&#34;,&#34;feature&#34;:&#34;https://ofo-ofo.github.io/post-images/hello-gridea.png&#34;,&#34;link&#34;:&#34;https://ofo-ofo.github.io/hello-gridea/&#34;,&#34;hideInList&#34;:true,&#34;isTop&#34;:false,&#34;stats&#34;:{&#34;text&#34;:&#34;2 min read&#34;,&#34;time&#34;:62000,&#34;words&#34;:298,&#34;minutes&#34;:2},&#34;description&#34;:&#34;👏  欢迎使用 Gridea ！\n✍️  Gridea 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...\n\nGithub\nGridea 主页\n示例网站\n特性👇\n📝  你可以使用最酷的 Markdo...&#34;,&#34;toc&#34;:&#34;&lt;ul class=\&#34;markdownIt-TOC\&#34;&gt;\n&lt;li&gt;\n&lt;ul&gt;\n&lt;li&gt;&lt;a href=\&#34;#%E7%89%B9%E6%80%A7\&#34;&gt;特性👇&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n&lt;/li&gt;\n&lt;/ul&gt;\n&#34;}]";
+  // var json = escape.substr(1, escape.length - 2);
+  // var datas = json.split(',');
+  // for (let i=0; i < datas.length; i++) {
+  //   let item = datas[i];
+  //   let attrs = item.split('34;:&#34')
+  //   debugger
+  //   console.log(datas[i])
+  // }
+  let escapeMap = new Map();
+  escapeMap.set('&#34;', '"');
+  escapeMap.set('&gt;', '>');
+  escapeMap.set('&#39;', "'");
+  escapeMap.set('&lt;', '<');
+  escapeMap.set('&quot;', '"');
+  escapeMap.set('&amp;', '&');
+</script> -->
+
+<script src="/media/js/mouse/love.js"></script>
 
 
 
-
-  </body>
 </html>
