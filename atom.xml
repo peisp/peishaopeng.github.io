@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ofo-ofo.github.io</id>
     <title>bany</title>
-    <updated>2021-04-28T09:15:18.849Z</updated>
+    <updated>2021-04-28T09:28:03.890Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ofo-ofo.github.io"/>
     <link rel="self" href="https://ofo-ofo.github.io/atom.xml"/>
@@ -16,19 +16,25 @@
         <link href="https://ofo-ofo.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/">
         </link>
         <updated>2021-04-28T09:01:47.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="xxl-job"><a href="https://www.xuxueli.com/xxl-job/">XXL-JOB</a> 任务调度平台 快速上手</h1>
-<p>｜v : 2.3.0</p>
+        <summary type="html"><![CDATA[<p><a href="https://www.xuxueli.com/xxl-job/">XXL-JOB</a> 任务调度平台 快速上手<br>
+｜v : 2.3.0</p>
+<h2 id="概述-是什么-what">概述 （是什么 what）</h2>
+<blockquote>
+<p>XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。</p>
+</blockquote>
+<p align="right">-- 来自官网</p>]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://www.xuxueli.com/xxl-job/">XXL-JOB</a> 任务调度平台 快速上手<br>
+｜v : 2.3.0</p>
 <h2 id="概述-是什么-what">概述 （是什么 what）</h2>
 <blockquote>
 <p>XXL-JOB是一个分布式任务调度平台，其核心设计目标是开发迅速、学习简单、轻量级、易扩展。现已开放源代码并接入多家公司线上产品线，开箱即用。</p>
 </blockquote>
 <p align="right">-- 来自官网</p>
-<h2 id="使用场景-什么时候场景使用-whenwhere">使用场景 （什么时候/场景使用 when/where）</h2>
-<ul>
-<li>时间驱动的场景：某个时间点发送优惠券，发送短信、订单处理等等</li>
-<li>批量处理数据：批量统计上个月的账单，统计上个月销售数据等等。</li>
-<li>固定频率的场景：每隔5分钟需要执行一次。</li>
-</ul>
+<!-- more -->
+## 使用场景 （什么时候/场景使用 when/where）
+- 时间驱动的场景：某个时间点发送优惠券，发送短信、订单处理等等
+- 批量处理数据：批量统计上个月的账单，统计上个月销售数据等等。
+- 固定频率的场景：每隔5分钟需要执行一次。
 <h2 id="为什么选择-xxl-job-why">为什么选择 XXL-JOB （why）</h2>
 <blockquote>
 <p>是通过一个中心式的调度平台，调度多个执行器执行任务，调度中心通过DB锁保证集群分布式调度的一致性，这样扩展执行器会增大DB的压力，但是如果实际上这里数据库只是负责任务的调度执行。但是如果没有大量的执行器的话和任务的情况，是不会造成数据库压力的</p>
