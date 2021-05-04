@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://ofo-ofo.github.io</id>
+    <id>https://peishaopeng.github.io</id>
     <title>bany</title>
-    <updated>2021-04-28T09:53:26.530Z</updated>
+    <updated>2021-05-04T15:41:08.003Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://ofo-ofo.github.io"/>
-    <link rel="self" href="https://ofo-ofo.github.io/atom.xml"/>
+    <link rel="alternate" href="https://peishaopeng.github.io"/>
+    <link rel="self" href="https://peishaopeng.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://ofo-ofo.github.io/images/avatar.png</logo>
-    <icon>https://ofo-ofo.github.io/favicon.ico</icon>
+    <logo>https://peishaopeng.github.io/images/avatar.png</logo>
+    <icon>https://peishaopeng.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, bany</rights>
     <entry>
         <title type="html"><![CDATA[XXL-JOB 任务调度平台 快速上手]]></title>
-        <id>https://ofo-ofo.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/</id>
-        <link href="https://ofo-ofo.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/">
+        <id>https://peishaopeng.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/</id>
+        <link href="https://peishaopeng.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/">
         </link>
         <updated>2021-04-28T09:01:47.000Z</updated>
         <summary type="html"><![CDATA[<p><a href="https://www.xuxueli.com/xxl-job/">XXL-JOB</a> 任务调度平台 快速上手<br>
@@ -62,7 +62,7 @@
 </ul>
 <h3 id="源码-github">源码 -&gt; <a href="https://github.com/xuxueli/xxl-job">github</a></h3>
 <h3 id="项目结构">项目结构</h3>
-<figure data-type="image" tabindex="1"><img src="https://ofo-ofo.github.io/post-images/16195952627477.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://peishaopeng.github.io/post-images/16195952627477.jpg" alt="" loading="lazy"></figure>
 <h3 id="调度中心启动">调度中心启动</h3>
 <h4 id="初始化数据库">初始化数据库</h4>
 <p>调度中心数据库初始化SQL脚本位置</p>
@@ -96,7 +96,7 @@ xxl.job.logretentiondays=30
 </code></pre>
 <h4 id="运行">运行</h4>
 <p>运行成功后访问：http://localhost:8080/xxl-job-admin/<br>
-<img src="https://ofo-ofo.github.io/post-images/16195961424188.jpg" alt="" loading="lazy"></p>
+<img src="https://peishaopeng.github.io/post-images/16195961424188.jpg" alt="" loading="lazy"></p>
 <h3 id="执行器">执行器</h3>
 <blockquote>
 <p>可以直接运行源码中的执行器demo进行测试</p>
@@ -139,7 +139,7 @@ xxl.job.logretentiondays=30
 <h4 id="执行器注册">执行器注册</h4>
 <ul>
 <li>AppName 需要与配置文件中的一致，如果执行器是集群部署，AppName使用同一个名字即可<br>
-<img src="https://ofo-ofo.github.io/post-images/16195985866841.jpg" alt="" loading="lazy"></li>
+<img src="https://peishaopeng.github.io/post-images/16195985866841.jpg" alt="" loading="lazy"></li>
 </ul>
 <h3 id="执行任务">执行任务</h3>
 <h4 id="bean-模式">Bean 模式</h4>
@@ -170,21 +170,21 @@ public class TestJob {
 </code></pre>
 <ul>
 <li>在调度中心添加任务<br>
-<img src="https://ofo-ofo.github.io/post-images/16195994708070.jpg" alt="" loading="lazy"><br>
-<img src="https://ofo-ofo.github.io/post-images/16195995854905.jpg" alt="" loading="lazy"><br>
-<img src="https://ofo-ofo.github.io/post-images/16195996503151.jpg" alt="" loading="lazy"><br>
+<img src="https://peishaopeng.github.io/post-images/16195994708070.jpg" alt="" loading="lazy"><br>
+<img src="https://peishaopeng.github.io/post-images/16195995854905.jpg" alt="" loading="lazy"><br>
+<img src="https://peishaopeng.github.io/post-images/16195996503151.jpg" alt="" loading="lazy"><br>
 在调度日志中即可看到执行日志<br>
-<img src="https://ofo-ofo.github.io/post-images/16196000004953.jpg" alt="" loading="lazy"></li>
+<img src="https://peishaopeng.github.io/post-images/16196000004953.jpg" alt="" loading="lazy"></li>
 </ul>
 <h4 id="glue模式java">GLUE模式(Java)</h4>
 <p>任务以源码方式维护在调度中心，支持通过Web IDE在线更新，实时编译和生效，因此不需要指定JobHandler。开发流程如下：</p>
 <h5 id="步骤一调度中心新建调度任务">步骤一：调度中心，新建调度任务：</h5>
 <p>参考上文“配置属性详细说明”对新建的任务进行参数配置，运行模式选中 “GLUE模式(Java)”；</p>
-<figure data-type="image" tabindex="2"><img src="https://ofo-ofo.github.io/post-images/16196002080397.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://peishaopeng.github.io/post-images/16196002080397.jpg" alt="" loading="lazy"></figure>
 <h5 id="步骤二开发任务代码">步骤二：开发任务代码：</h5>
 <p>选中指定任务，点击该任务右侧“GLUE”按钮，将会前往GLUE任务的Web IDE界面，在该界面支持对任务代码进行开发（也可以在IDE中开发完成后，复制粘贴到编辑中）。</p>
 <p>版本回溯功能（支持30个版本的版本回溯）：在GLUE任务的Web IDE界面，选择右上角下拉框“版本回溯”，会列出该GLUE的更新历史，选择相应版本即可显示该版本代码，保存后GLUE代码即回退到对应的历史版本；</p>
-<figure data-type="image" tabindex="3"><img src="https://ofo-ofo.github.io/post-images/16196002159041.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://peishaopeng.github.io/post-images/16196002159041.jpg" alt="" loading="lazy"></figure>
 <h2 id="架构设计">架构设计</h2>
 <h3 id="设计思想">设计思想</h3>
 <p>将调度行为抽象形成“调度中心”公共平台，而平台自身并不承担业务逻辑，“调度中心”负责发起调度请求。</p>
@@ -200,13 +200,13 @@ public class TestJob {
 接收“调度中心”的执行请求、终止请求和日志请求等。</li>
 </ul>
 <h3 id="架构图">架构图</h3>
-<figure data-type="image" tabindex="4"><img src="https://ofo-ofo.github.io/post-images/16196004173719.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://peishaopeng.github.io/post-images/16196004173719.jpg" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[孙子兵法]]></title>
-        <id>https://ofo-ofo.github.io/sun-zi-bing-fa/</id>
-        <link href="https://ofo-ofo.github.io/sun-zi-bing-fa/">
+        <id>https://peishaopeng.github.io/sun-zi-bing-fa/</id>
+        <link href="https://peishaopeng.github.io/sun-zi-bing-fa/">
         </link>
         <updated>2021-04-22T04:18:25.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="第一-始计篇">第一 始计篇</h1>
@@ -402,8 +402,8 @@ public class TestJob {
     </entry>
     <entry>
         <title type="html"><![CDATA[MySQL Explain 介绍]]></title>
-        <id>https://ofo-ofo.github.io/mysql-explain-jie-shao/</id>
-        <link href="https://ofo-ofo.github.io/mysql-explain-jie-shao/">
+        <id>https://peishaopeng.github.io/mysql-explain-jie-shao/</id>
+        <link href="https://peishaopeng.github.io/mysql-explain-jie-shao/">
         </link>
         <updated>2020-12-08T08:44:49.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="explain有什么用">Explain有什么用</h1>
@@ -735,8 +735,8 @@ public class TestJob {
     </entry>
     <entry>
         <title type="html"><![CDATA[单例模式的实现及破坏方式]]></title>
-        <id>https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/</id>
-        <link href="https://ofo-ofo.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/">
+        <id>https://peishaopeng.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/</id>
+        <link href="https://peishaopeng.github.io/dan-li-mo-shi-de-shi-xian-ji-po-pi-fang-shi/">
         </link>
         <updated>2020-11-25T10:47:55.000Z</updated>
         <summary type="html"><![CDATA[<h1 id="单例模式">单例模式</h1>
@@ -967,8 +967,8 @@ Caused by: java.lang.RuntimeException: 单例模式被破坏！
     </entry>
     <entry>
         <title type="html"><![CDATA[Homebrew介绍与使用]]></title>
-        <id>https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/</id>
-        <link href="https://ofo-ofo.github.io/homebrew-jie-shao-yu-shi-yong/">
+        <id>https://peishaopeng.github.io/homebrew-jie-shao-yu-shi-yong/</id>
+        <link href="https://peishaopeng.github.io/homebrew-jie-shao-yu-shi-yong/">
         </link>
         <updated>2020-11-11T03:33:59.000Z</updated>
         <summary type="html"><![CDATA[<p>Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。</p>
