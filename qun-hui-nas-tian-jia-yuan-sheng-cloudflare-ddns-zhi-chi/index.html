@@ -8,7 +8,7 @@
 <meta name="keywords" content="peishaopeng 裴少鹏">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>bany</title>
+<title>群晖nas添加原生cloudflare ddns支持 | bany</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/favicon.ico?v=1630770567060">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/media/css/gemini.css">
@@ -39,6 +39,8 @@
   })();
 </script>
 
+  <meta name="description" content="群晖nas添加原生cloudflare ddns支持" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -166,8 +168,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/images/avatar.png"/>
@@ -209,55 +227,402 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#cloudflare-ddns%E8%84%9A%E6%9C%AC">cloudflare ddns脚本</a></li>
+<li><a href="#%E7%BE%A4%E6%99%96%E4%B8%AD%E7%9A%84%E8%AE%BE%E7%BD%AE">群晖中的设置</a></li>
+<li><a href="#https%E5%8D%8F%E8%AE%AE%E9%85%8D%E7%BD%AE">https协议配置</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini box-shadow-wrapper">
-          <section class="friends-section bg-color slide-down-in">
-            <div class="firends-box">
-              <h1 class="firends-title" itemprop="name headline">友情链接</h1>
-              
-              
-              
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
             </div>
-            <hr>
-            <div style="text-align:center">
-              <span class="with-love">
-                <i class="fa fa-heart"></i>
-              </span>
-              留言添加友链
-              <span class="with-love">
-                <i class="fa fa-heart"></i>
-              </span>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://peishaopeng.github.io/qun-hui-nas-tian-jia-yuan-sheng-cloudflare-ddns-zhi-chi/">
+      群晖nas添加原生cloudflare ddns支持
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2021-09-04</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>3分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>770<span class="pc-show">字数</span></span>
+    </span>
+    
+  </div>
+</header>
+            <div class="post-body next-md-body" id="post_body">
+              <h2 id="cloudflare-ddns脚本">cloudflare ddns脚本</h2>
+<p>这是一个来自github的开源项目，配置非常简单，原文链接可以参考**<a href="https://github.com/joshuaavalon/SynologyCloudflareDDNS">Synology Cloudflare DDNS</a>**，下面讲下如何配置</p>
+<p>ssh登录群晖，依次执行下方命令</p>
+<pre><code>
+
+1.  sudo \-i #切换root用户身份
+2.  wget https://raw.githubusercontent.com/joshuaavalon/SynologyCloudflareDDNS/master/cloudflareddns.sh -O /sbin/cloudflareddns.sh  #下载cloudflare ddns脚本
+3.  chmod +x /sbin/cloudflareddns.sh #赋予脚本执行权限
+4.  vi /sbin/cloudflareddns.sh #参考下方截图，修改proxy的值为false，避免ddns更新后开启cdn
+
+
+</code></pre>
+<p><img src="https://peishaopeng.github.io/post-images/1630770224070.png" alt="" loading="lazy"><br>
+新增原生cloudflare ddns选项，复制下方所有代码运行</p>
+<pre><code>
+
+1.  cat \&gt;&gt;  /etc.defaults/ddns\_provider.conf &lt;&lt; EOF
+2.  \[Cloudflare\]
+3.   modulepath\=/sbin/cloudflareddns.sh
+4.   queryurl\=https://www.cloudflare.com
+5.   website\=https://www.cloudflare.com
+6.  EOF
+
+
+</code></pre>
+<h2 id="群晖中的设置">群晖中的设置</h2>
+<p><img src="https://peishaopeng.github.io/post-images/1630770260411.png" alt="" loading="lazy"><br>
+依次解释一下上述参数如何获取</p>
+<p>外部访问设置中，新增ddns，提供商设置为cloudflare</p>
+<p>主机名称是用于ddns的动态域名，至于域名如何获取，可以自行寻找一些动态域名提供商</p>
+<p>用户名/电子邮件一行填写区域ID，区域ID如何获得，看下图；cloudflare的概述页面往下拉，区域ID会显示在右下角</p>
+<p><img src="https://peishaopeng.github.io/post-images/1630770316857.png" alt="" loading="lazy"><br>
+<img src="https://peishaopeng.github.io/post-images/1630770337858.png" alt="" loading="lazy"></p>
+<p>获取区域ID以后，点击“获取您的API令牌”，点击API令牌选项卡，创建令牌，按照下图所示设置，点击继续即可获得API令牌的密钥，复制密钥填充于密码字段</p>
+<figure data-type="image" tabindex="1"><img src="https://peishaopeng.github.io/post-images/1630770363054.png" alt="" loading="lazy"></figure>
+<p>以上步骤完成以后直接点击保存，等待ddns更新，看到下图中的提示后你可以ping一下你的ddns域名，若是返回了群晖nas连接的网络的公网IP地址，即表示成功配置</p>
+<figure data-type="image" tabindex="2"><img src="https://peishaopeng.github.io/post-images/1630770383753.png" alt="" loading="lazy"></figure>
+<h2 id="https协议配置">https协议配置</h2>
+<p>这是额外的配置项目，你可以为访问群晖nas所用的ddns域名申请cloudflare的证书，导入证书开启https协议访问</p>
+<p>按照下图位置，在cloudflare中申请证书，申请证书的域名必须是你用于设置ddns的域名</p>
+<figure data-type="image" tabindex="3"><img src="https://peishaopeng.github.io/post-images/1630770404718.png" alt="" loading="lazy"></figure>
+<p>申请证书以后，不要关闭页面，复制密钥以及证书的文本，保存于本地文档中，分别对应xxx.key  xxx.pem的文件，key后缀的就是密钥文件，pem后缀的就是证书文件<br>
+<img src="https://peishaopeng.github.io/post-images/1630770424850.png" alt="" loading="lazy"></p>
+<p>转到群晖的安全性选项卡，添加新的证书，选择导入证书，中间证书不需要处理，其余的导入位置看下方截图</p>
+<figure data-type="image" tabindex="4"><img src="https://peishaopeng.github.io/post-images/1630770452115.png" alt="" loading="lazy"></figure>
+<p>完成证书添加以后即可看到已添加的证书以及证书到期时间，cloudflare的证书可以申请最长15年的期限</p>
+<figure data-type="image" tabindex="5"><img src="https://peishaopeng.github.io/post-images/1630770475548.png" alt="" loading="lazy"></figure>
+<p>由于cloudflare对于非常规端口有硬性要求，这里我们使用https访问群晖的时候就不要用默认的5001端口，我们修改成cloudflare支持的2987端口</p>
+<p>按照下图所示位置，修改群晖的端口，http协议端口使用2086，https协议端口使用2087，勾选http重定向到https即可</p>
+<figure data-type="image" tabindex="6"><img src="https://peishaopeng.github.io/post-images/1630770496613.png" alt="" loading="lazy"></figure>
+<p>记得在路由器防火墙中放行2087端口</p>
+<figure data-type="image" tabindex="7"><img src="https://peishaopeng.github.io/post-images/1630770519813.png" alt="" loading="lazy"></figure>
+<p>尝试使用https://ddns_domain:2087的地址访问群晖吧，会显示不安全字样，忽略即可</p>
+<figure data-type="image" tabindex="8"><img src="https://peishaopeng.github.io/post-images/1630770560239.png" alt="" loading="lazy"></figure>
+<p><a href="https://xitianshijie.com/index.php/nas/2021/03/07/540/">原文链接</a></p>
+
             </div>
-            <hr>
-            <div class="friends-note">
-              <p><strong>友链格式：</strong></p>
-              <ul>
-                <li>网站名称：枫糖</li>
-                <li>网站地址：<a href="https://blog.maplesugar.space" data-pjax-state="">https://blog.maplesugar.space</a>
-                </li>
-                <li> 网站描述：From rookie to master</li>
-                <li> 网站 Logo / 头像：<a href="https://blog.maplesugar.space/uploads/maple-leaf-avatar.jpg"
-                    data-pjax-state="">https://blog.maplesugar.space/uploads/maple-leaf-avatar.jpg</a></li>
-              </ul>
-            </div>
+            <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      PEI SHAOPENG
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://peishaopeng.github.io/qun-hui-nas-tian-jia-yuan-sheng-cloudflare-ddns-zhi-chi/" title="群晖nas添加原生cloudflare ddns支持">https://peishaopeng.github.io/qun-hui-nas-tian-jia-yuan-sheng-cloudflare-ddns-zhi-chi/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="[转] [译] GitLab Flow 简介 - V2EX" href="https://peishaopeng.github.io/yi-gitlab-flow-jian-jie-v2ex/">[转] [译] GitLab Flow 简介 - V2EX</a>
+        <a class="nav-mobile-next" title="[转] [译] GitLab Flow 简介 - V2EX" href="https://peishaopeng.github.io/yi-gitlab-flow-jian-jie-v2ex/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
             
   
 
-          </section>
+          </div>
         </div>
       </div>
     </div>
@@ -971,6 +1336,36 @@
   // 代码高亮
   hljs.initHighlightingOnLoad();
 
+</script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
 </script>
   </div>
 </body>
@@ -2305,7 +2700,6 @@ rm -rf ~/Library/Caches/Homebrew
 </script> -->
 
 <script src="/media/js/mouse/love.js"></script>
-
 
 
 </html>

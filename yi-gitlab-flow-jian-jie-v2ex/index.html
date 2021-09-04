@@ -8,7 +8,7 @@
 <meta name="keywords" content="peishaopeng 裴少鹏">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>bany</title>
+<title>[转] [译] GitLab Flow 简介 - V2EX | bany</title>
 <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/favicon.ico?v=1630770567060">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/media/css/gemini.css">
@@ -39,6 +39,8 @@
   })();
 </script>
 
+  <meta name="description" content="[转] [译] GitLab Flow 简介 - V2EX" />
+  <meta name="keywords" content="GitLab Flow" />
 </head>
 
 <body>
@@ -166,8 +168,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://cdn.jsdelivr.net/gh/ofo-ofo/ofo-ofo.github.io@main/images/avatar.png"/>
@@ -209,55 +227,469 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#git-flow-%E5%92%8C%E5%AE%83%E7%9A%84%E9%97%AE%E9%A2%98">Git flow 和它的问题</a></li>
+<li><a href="#github-flow%E4%B8%80%E7%A7%8D%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E6%9B%BF%E4%BB%A3%E6%96%B9%E6%A1%88">Github flow——一种更简单的替代方案</a></li>
+<li><a href="#gitlab-flow-%E4%B8%AD%E7%9A%84%E7%94%9F%E4%BA%A7%E5%88%86%E6%94%AF">GitLab flow 中的生产分支</a></li>
+<li><a href="#gitlab-flow-%E4%B8%AD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%88%86%E6%94%AF">GitLab flow 中的环境分支</a></li>
+<li><a href="#gitlab-flow-%E4%B8%AD%E7%9A%84%E5%8F%91%E5%B8%83%E5%88%86%E6%94%AF">GitLab flow 中的发布分支</a></li>
+<li><a href="#gitlab-flow-%E4%B8%AD%E7%9A%84%E5%90%88%E5%B9%B6-%E6%8B%89%E5%8F%96%E8%AF%B7%E6%B1%82">GitLab flow 中的合并 /拉取请求</a></li>
+<li><a href="#gitlab-flow-%E4%B8%AD%E7%9A%84%E9%97%AE%E9%A2%98%E8%B7%9F%E8%B8%AA-issue-tracking">GitLab flow 中的问题跟踪（ issue tracking ）</a></li>
+<li><a href="#%E9%93%BE%E6%8E%A5%E5%92%8C%E5%85%B3%E9%97%AD%E6%9D%A5%E8%87%AA%E5%90%88%E5%B9%B6%E8%AF%B7%E6%B1%82%E4%B8%AD%E7%9A%84-issue">链接和关闭来自合并请求中的 issue</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-rebase-%E6%9D%A5%E5%8E%8B%E7%BC%A9%E6%8F%90%E4%BA%A4">使用 rebase 来压缩提交</a></li>
+<li><a href="#%E5%87%8F%E5%B0%91%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF%E4%B8%AD%E7%9A%84%E5%90%88%E5%B9%B6%E6%8F%90%E4%BA%A4">减少功能分支中的合并提交</a></li>
+<li><a href="#%E9%A2%91%E7%B9%81%E5%9C%B0%E6%8F%90%E4%BA%A4%E5%92%8C%E6%8E%A8%E9%80%81">频繁地提交和推送</a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8F%90%E4%BA%A4%E6%B6%88%E6%81%AF">如何写一个好的提交消息</a></li>
+<li><a href="#%E5%90%88%E5%B9%B6%E5%89%8D%E6%B5%8B%E8%AF%95">合并前测试</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%8A%9F%E8%83%BD%E5%88%86%E6%94%AF">使用功能分支</a></li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini box-shadow-wrapper">
-          <section class="friends-section bg-color slide-down-in">
-            <div class="firends-box">
-              <h1 class="firends-title" itemprop="name headline">友情链接</h1>
-              
-              
-              
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
             </div>
-            <hr>
-            <div style="text-align:center">
-              <span class="with-love">
-                <i class="fa fa-heart"></i>
-              </span>
-              留言添加友链
-              <span class="with-love">
-                <i class="fa fa-heart"></i>
-              </span>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <header class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://peishaopeng.github.io/yi-gitlab-flow-jian-jie-v2ex/">
+      [转] [译] GitLab Flow 简介 - V2EX
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span>发布于</span>
+      <span>2021-05-10</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show">分类于</span>
+      
+      
+      <a href="https://peishaopeng.github.io/tag/iNwyW9SQG/">
+        <span>GitLab Flow</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>23分钟</span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>6389<span class="pc-show">字数</span></span>
+    </span>
+    
+  </div>
+</header>
+            <div class="post-body next-md-body" id="post_body">
+              <p><a href="https://www.v2ex.com/t/775673">译文原址</a></p>
+<p>GitLab 的官方文章，虽说是简介，翻译成介绍可能好一点？毕竟挺详细的。我感觉是在我看的介绍 Git 工作流的文章中最好的一篇了，方方面面都有提到。翻译真的是个体力活，花了好多个小时。😓</p>
+<figure data-type="image" tabindex="1"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow.png" alt="" loading="lazy"></figure>
+<p>Git 允许广泛的分支策略和工作流。因此，许多组织使用的工作流都是相当复杂且没有清晰定义的，也没有很好的与问题跟踪系统（ issue tracking systems ）集成在一起。所以，我们提出了 GitLab flow，让它作为一组清晰定义的最佳实践。它结合了<a href="https://en.wikipedia.org/wiki/Feature-driven_development">feature-driven development （功能驱动开发）</a>和带有问题跟踪的<a href="https://martinfowler.com/bliki/FeatureBranch.html">feature branches （功能分支）</a>。</p>
+<p>从其他版本控制系统转到 Git 的组织常常会发现，发展出一套高效的工作流是很困难的。这篇文章描述了 GitLab flow，它集成了一套带有问题跟踪系统的 Git 工作流。它提供了一套可以透明高效地使用 Git 的方法。</p>
+<figure data-type="image" tabindex="2"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_four_stages.png" alt="" loading="lazy"></figure>
+<p>在迁移到 Git 时，你必须习惯与同事分享提交（ commit ）需要三个步骤的事实。大多数版本控制系统只有一个步骤：把工作副本提交到共享服务器上。使用 Git 时，你要先把工作副本中的文件添加到暂存区，然后再把它们提交到你的本地仓库之中。第三步是推送到一个共享的远程仓库。在习惯了这三个步骤之后，下一个挑战是分支模型。</p>
+<figure data-type="image" tabindex="3"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_messy_flow.png" alt="" loading="lazy"></figure>
+<p>由于许多刚接触 Git 的组织对如何使用它没有约定，他们的仓库很快就会变得混乱不堪。最大的问题是出现了许多长期运行的分支，它们都包含了部分变化。人们很难弄清楚哪个分支有最新的代码，或者哪个分支应该部署到生产中。通常，这个问题的应对之策是采取一种标准化的模式，如<a href="https://nvie.com/posts/a-successful-git-branching-model/">Git flow</a>和<a href="http://scottchacon.com/2011/08/31/github-flow.html">GitHub flow</a>。我们认为仍有改进余地。在本文档中，我们描述了一套我们称为 GitLab flow 的实践。</p>
+<p>有关这一切如何在 GitLab 中运作的视频介绍，见<a href="https://www.youtube.com/watch?v=InKNIvky2KE">GitLab Flow</a>。</p>
+<h1 id="git-flow-和它的问题">Git flow 和它的问题</h1>
+<figure data-type="image" tabindex="4"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_gitdashflow.png" alt="" loading="lazy"></figure>
+<p>Git flow 是使用 Git 分支最早的提议之一，并且它受到了广泛的关注。它建议使用一个<code>master</code>分支和一个分离的<code>develop</code>分支，以及用于功能、发布和热修复的辅助分支。开发工作在<code>develop</code>分支上进行，然后转移到发布分支，最后合并到<code>master</code>分支。</p>
+<p>Git flow 是一个明确定义的标准，但它的复杂性引入了两个问题。其一是开发人员必须使用<code>develop</code>分支而不是<code>master</code>分支。<code>master</code>分支是用于存放那些发布到生产环境的代码的。按照惯例，你将你的默认分支称为<code>master</code>，你的大多数分支源自它并且合并回它。而且因为大多数工具都会自动地使用<code>master</code>作为默认分支，所以不得不切换到另一个分支是很烦人的。</p>
+<p>Git flow 的第二个问题是由 hotfix （热修复）和 release （发布）分支所带来的复杂性。这些分支对某些组织来说可能是个好主意，但对绝大多数组织来说都太过了。如今，大多数组织都实行持续交付，这意味着你的默认分支可以被部署。持续交付消除了对 hotfix 和 release 分支的需求，包括引入它们所带来的所有仪式。这种仪式的一个例子就是 release 分支的回归合并。尽管确实存在专门的工具来解决这些问题，但它们需要文档并且增加了复杂性。经常有开发者犯错误，比如只把改动合并到<code>master</code>分支，却没有合并到<code>develop</code>分支。造成这些错误的原因是 Git flow 对大多数使用情况来说都太复杂了。比如，许多项目仅仅只需要发布，但却不需要做热修复。</p>
+<h1 id="github-flow一种更简单的替代方案">Github flow——一种更简单的替代方案</h1>
+<figure data-type="image" tabindex="5"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_github_flow.png" alt="" loading="lazy"></figure>
+<p>作为对 Git flow 的应对，GitHub 创造了一种更简单的替代方案。<a href="https://guides.github.com/introduction/flow/index.html">GitHub flow</a>仅仅拥有功能分支和<code>master</code>分支。这种工作流很干净直观，许多组织采用它并取得了巨大的成功。Atlassian 推荐了<a href="https://www.atlassian.com/blog/git/simple-git-workflow-is-simple">一种类似的策略</a>，尽管它们会 rebase （变基）功能分支。把所有东西合并到<code>master</code>分支并且频繁地部署意味着你将未发布的代码量降到了最低。这种方案符合精简原则和持续交付的最佳实践。但是，这种工作流仍然留下了许多关于部署、环境、发布，和 issue （问题）集成的未解之谜。在 GitLab flow 中，我们给这些谜题提供了额外的指南。</p>
+<h1 id="gitlab-flow-中的生产分支">GitLab flow 中的生产分支</h1>
+<figure data-type="image" tabindex="6"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_production_branch.png" alt="" loading="lazy"></figure>
+<p>GitHub flow 假定在你合入功能分支的任何时候都可以部署到生产环境。然而在某些情况下这将是一个问题，比如 SaaS 应用。许多情况下这都是不可能的，比如：</p>
+<ul>
+<li>你不能控制发布的时机。例如，一个 iOS 应用只有在它通过 App Store 的验证时才能发布。</li>
+<li>你有部署窗口——例如，工作日的上午 10 点到下午 4 点之间运维团队是满效运作的，但你也可能在其他时间合并代码。</li>
+</ul>
+<p>在这些例子中，你可以创建一个生产分支来承载这些已经部署的代码。你可以通过将<code>master</code>分支合并到生产分支来部署一个新的版本。如果你想知道生产环境中的代码是什么样的，你可以检出生产分支来查看。部署的时间根据版本控制系统中的合并提交（ merge commit ）是大致可知的。如果你自动部署你的生产分支，这个时间是相当准确的。如果你需要一个更准确的时间，你可以让你的部署脚本在每次部署时创建一个标签。这个流程可以避免 Git flow 中出现的发布、标记和合并的开销。</p>
+<h1 id="gitlab-flow-中的环境分支">GitLab flow 中的环境分支</h1>
+<figure data-type="image" tabindex="7"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_environment_branches.png" alt="" loading="lazy"></figure>
+<p>拥有一个可以自动更新到<code>master</code>分支的环境可能是个好主意。只是，在这种情况下，这个环境的名称可能与分支的名称不同。假设你有一个阶段环境（ staging environment ），一个预生产环境（ pre-production environment ），以及一个生产环境（ production environment ）。在这种情况下，将<code>master</code>分支部署到阶段环境。要部署到预生产环境，请创建一个从<code>master</code>分支到预生产分支的合并请求（ merge request ）。通过将预生产分支合并到生产分支来实现上线。这种工作流（在其中提交只流向下游）可以确保所有东西在所有环境中都得到了测试。如果你需要 cherry-pick （挑选）一个带有热修复的提交，通常是在功能分支上开发，然后用合并请求将其合并到<code>master</code>。在这种情况下，先不要删除功能分支。如果<code>master</code>通过了自动测试，你再把这个功能分支合并到其他分支。如果这因为需要更多人工测试而无法做到，你可以把来自功能分支的合并请求发送给下游分支。</p>
+<h1 id="gitlab-flow-中的发布分支">GitLab flow 中的发布分支</h1>
+<figure data-type="image" tabindex="8"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_release_branches.png" alt="" loading="lazy"></figure>
+<p>只有当你需要向外界发布软件时，你才需要使用发布分支。在这种情况下，每个分支都包含一个次要版本（ minor version ），如<code>2-3-stable</code>或<code>2-4-stable</code>。以<code>master</code>为起点创建稳定分支，并尽可能晚地创建。通过这样做，你可以最大限度地减少不得不将错误修复应用到多个分支上的耗时。在公布一个发布分支后，只向该分支添加严重错误修复。如果可能的话，先把这些错误修复合并到<code>master</code>，然后再把它们 cherry-pick 到发布分支。如果一开始就合并到发布分支，你可能会忘记把它们 cherry-pick 到<code>master</code>上，然后你就会在随后的发布中遇到同样的错误。先合并到<code>master</code>分支，然后再 cherry-pick 到发布分支叫做 “上游优先 “政策，<a href="https://www.chromium.org/chromium-os/chromiumos-design-docs/upstream-first">Google</a>和<a href="https://www.redhat.com/en/blog/a-community-for-using-openstack-with-red-hat-rdo">Red Hat</a>也是这样实践的。每当你在发布分支中加入一个错误修复，就通过设置一个新的标签来增大补丁版本（ patch version ）（以符合<a href="https://semver.org/">语义化版本</a>）。有些项目也有一个稳定分支，它指向与最新发布的分支相同的提交。在这种流程下通常都不会有一个生产分支（或 Git flow 的<code>master</code>分支）。</p>
+<h1 id="gitlab-flow-中的合并-拉取请求">GitLab flow 中的合并 /拉取请求</h1>
+<figure data-type="image" tabindex="9"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_mr_inline_comments.png" alt="" loading="lazy"></figure>
+<p>合并或拉取请求是在 Git 管理程序中创建的。它们要求一个被指定的人来合并两个分支。GitHub 和 Bitbucket 等工具选择“拉取请求（ pull request ）“这一名称，因为第一个手动操作是拉取功能分支。GitLab 等工具选择了“合并请求（ merge request ）“这个名字，因为最后的行动是合并功能分支。本文将它们称为合并请求。</p>
+<p>如果你在一个功能分支上工作超过了几个小时，然后想要将中间产物分享给团队的剩余成员。为了做到这一点，创建一个合并请求，不要把它指定给任何人。但是，可以在描述或评论中提及别人，例如，“/cc @<a href="/member/mark">mark</a> @<a href="/member/susan">susan</a>“。这表明虽然该合并请求还没有准备好被合并，但欢迎提供反馈。你的团队成员可以对合并请求进行总的评论，或者使用行评论（ line comment ）对特定的行进行评论。合并请求被用作代码审查工具，而不必使用单独的代码审查工具。如果审查发现了缺陷，任何人都可以提交并推送一个修复。通常情况下，做这个事的人是合并请求的创建者。当新的提交被推送到该分支时，合并请求中的差异会自动更新。</p>
+<p>当你准备好让你的功能分支被合并时，把合并请求指定给最了解你正在修改的代码库的人。此外，提及你希望从他们那里得到反馈的其他人员。在被指定的人对结果感到满意后，他们就可以合并该分支了。如果被指定的人觉得不太好，他们可以要求更多的修改，或者关闭合并请求而不进行合并。</p>
+<p>在 GitLab 中，通常会保护长期存在的分支，比如<code>master</code>分支，所以<a href="https://docs.gitlab.com/ee/user/permissions.html">大多数开发者无法修改它们</a>。因此，如果你想合并到一个受保护的分支，请将你的合并请求分配给有维护者权限的人。</p>
+<p>在合并一个功能分支后，应该从源码控制软件中删除它。在 GitLab 中，你可以在合并时做到这一点。删除已完成的分支可以确保分支列表中只显示正在进行的工作。这也确保了如果有人重新打开该 issue，他们可以使用相同的分支名称而不会造成问题。</p>
+<p>当你重新打开一个 issue 时，你应该创建一个新的合并请求</p>
+<figure data-type="image" tabindex="10"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_remove_checkbox.png" alt="" loading="lazy"></figure>
+<h1 id="gitlab-flow-中的问题跟踪-issue-tracking">GitLab flow 中的问题跟踪（ issue tracking ）</h1>
+<figure data-type="image" tabindex="11"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_merge_request.png" alt="" loading="lazy"></figure>
+<p>GitLab flow 是一种使代码和 issue tracker （问题跟踪器）之间的关系更加透明的方法。</p>
+<p>任何对代码的重大修改都应该以一个描述目标的 issue 开始。为每一次代码修改提供一个理由，有助于告知团队的其他成员，并使一个功能分支的粒度尽可能的小。在 GitLab 中，每一次对代码库的修改都始于问题跟踪系统中的一个 issue 。如果还没有 issue，并且该变更需要进行一个小时以上的工作时，那就创建一个。在许多组织中，提出 issue 是开发流程的一部分，因为它们被用于冲刺计划之中。issue 的标题应该描述系统的期望状态。例如，issue 标题“作为一个管理员，我想在不报错的情况下删除用户“要比“管理员不能删除用户“好。</p>
+<p>当你准备开始编码时，为该 issue 从<code>master</code>分支上创建一个分支。这个分支是任何与此变化有关的工作的地方。</p>
+<p>一个分支的名称可能听令于组织标准。</p>
+<p>当你完成工作或想讨论代码时，打开一个合并请求。合并请求是在线讨论修改和审查代码的地方。</p>
+<p>如果你打开了合并请求，但没有把它分配给任何人，它就是一个<a href="https://docs.gitlab.com/ee/user/project/merge_requests/drafts.html">合并请求草案</a>。这些草案是用来讨论提议的实现的，但它们还没有准备好纳入<code>master</code>分支。在合并请求的标题中以<code>[Draft]</code>、<code>Draft:</code>或<code>(Draft)</code>开头，以防止它在准备好之前被合并。</p>
+<p>当你认为代码已经准备好了，就把合并请求分配给一个评审员（ reviewer ）。当评审员认为代码已经为纳入<code>master</code>分支做好准备时，他们就可以合并这些变更。当他们按下合并按钮时，GitLab 就会合并代码并创建一个合并提交，使这一事件在之后可见。即使该分支在合并时可以不产生合并提交，合并请求也总是会创建一个合并提交。这种合并策略在 Git 中被称为“no fast-forward （非快进模式）“。合并后，将删除该功能分支，因为它不再被需要了。在 GitLab 中，这种删除是合并时的一个选项。</p>
+<p>假设一个分支被合并了，但出现了问题，issue 被重新打开。在这种情况下，重新使用相同的分支名是没有问题的，因为第一个分支在合并时已经被删除了。在任何时候，每个 issue 最多拥有一个分支。一个功能分支解决多个 issue 却是可能的。</p>
+<h1 id="链接和关闭来自合并请求中的-issue">链接和关闭来自合并请求中的 issue</h1>
+<figure data-type="image" tabindex="12"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_close_issue_mr.png" alt="" loading="lazy"></figure>
+<p>通过在提交信息或合并请求的描述中提及 issue 来链接它们，例如，“Fixes #16 “或 “Duck typing 是首选。见#12“。然后，GitLab 会创建指向所提及 issue 的链接，并在 issue 中创建链接回合并请求的注释。</p>
+<p>要自动关闭被链接的 issue，可以用关键字“fixes“或“closes“来提及它们，例如，“fixes #14“或“closes #67“。当代码被合并到默认分支时，GitLab 就会关闭这些 issue 。</p>
+<p>如果你有一个跨越多个仓库的 issue，为每个仓库创建一个 issue，并将所有 issue 链接到一个父 issue 。</p>
+<h1 id="使用-rebase-来压缩提交">使用 rebase 来压缩提交</h1>
+<figure data-type="image" tabindex="13"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_rebase.png" alt="" loading="lazy"></figure>
+<p>Git 中，你可以使用交互式 rebase （<code>rebase -i</code>）来将多个提交压缩成一个，或者重新排列它们。这个功能可以帮助你将几个小提交替换为单一提交，或是帮你让多个提交的顺序更合理。</p>
+<p>然而，如果你在同一分支有其他活跃的贡献者，你应该避免对你已经推送到远程服务器的提交进行 rebase 。因为 rebase 会为你所有的变更创建新的提交，这会造成困惑，因为同一个变更会有多个标识符。这将导致任何在同一分支上工作的人出现合并错误，因为他们的历史与你的历史不匹配。这对作者或其他贡献者来说真的很麻烦。另外，如果有人已经审查过你的代码，rebase 会让人难以分辨自上次审查后发生了什么变化。</p>
+<p>你永远不应该 rebase 别人的提交，除非你们另有协定。这不仅会重写历史，而且还会丢失作者信息。rebase 会使其他作者无法被属性化并且无法共享部分<a href="https://git-scm.com/docs/git-blame">git blame</a>。</p>
+<p>如果一个合并涉及到许多提交，它可能看起来更难撤销。为了解决这个问题，你可以考虑使用 GitLab 的“<a href="https://docs.gitlab.com/ee/user/project/merge_requests/squash_and_merge.html">Squash-and-Merge</a>“功能在合并之前将所有的变更压缩到一个提交之中。幸运的是，你可以撤消一个合并及其所有的提交。这样做的方法是 revert （恢复）合并后的提交。保留这种 revert 合并的能力是一个在手动合并时总是使用“no fast-forward“（<code>--no-ff</code>）策略的很好的理由。</p>
+<p>如果你 revert 了一个合并提交，然后又改变了主意，那么 revert 那个 revert 提交就可以撤销合并了。否则 Git 不允许你再次合并代码。</p>
+<h1 id="减少功能分支中的合并提交">减少功能分支中的合并提交</h1>
+<figure data-type="image" tabindex="14"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_merge_commits.png" alt="" loading="lazy"></figure>
+<p>大量的合并提交会使你的仓库历史变得混乱。因此，你应该在功能分支上尽量避免合并提交。通常，人们避免合并提交的方法是，在提交到<code>master</code>分支后使用 rebase 来重新排序他们的提交。使用 rebase 可以避免将<code>master</code>分支合并到功能分支时产生合并提交，而且可以创造一条整洁的的线性历史。然而，正如<a href="https://docs.gitlab.com/ee/topics/gitlab_flow.html#squashing-commits-with-rebase">有关 rebase 部分</a>所讨论的那样，你应该避免 rebase 与他人共享的功能分支中的提交。</p>
+<p>rebase 可能会产生更多的工作，因为每次 rebase 时你都可能需要解决同样的冲突。有时你可以重复使用已记录的解决方案（<code>rerere</code>），但 merge （合并指令）更好，因为你只需要解决一次冲突。Atlassian 在<a href="https://www.atlassian.com/blog/git/git-team-workflows-merge-or-rebase">他们的博客</a>上对 merge 和 rebase 之间的权衡有更透彻的解释。</p>
+<p>防止产生许多合并提交的一个好方法是，不要经常将<code>master</code>分支合并到功能分支。合入<code>master</code>有三个理由：利用新代码、解决合并冲突、更新长期运行的分支。</p>
+<p>如果你需要使用一些在你创建功能分支后在<code>master</code>中引入的代码，通常只需 cherry-pick 一个提交即可解决。</p>
+<p>如果你的功能分支有合并冲突，创建一个合并提交是解决这个问题的标准方法。</p>
+<p>有时你可以使用<code>.gitattributes</code>来减少合并冲突。例如，你可以将你的更新日志（ changelog ）文件设置为使用<a href="https://git-scm.com/docs/gitattributes#gitattributes-union">联合合并驱动</a>，这样多个新实体就不会相互冲突。</p>
+<p>创建合并提交的最后一个理由是让长期运行的功能分支与项目的最新状态保持同步。解决此类合并提交的办法是让功能分支短命。大多数功能分支的工作时间应少于一天。如果你的功能分支经常要花费一天以上的时间，那就尝试把你的功能拆分成更小的工作单元。</p>
+<p>如果你确实需要让一个功能分支存在超过一天的时间，有一些策略可以让它保持最新状态。一种选项是使用持续集成（ CI ），让它在一天的开始之时将<code>master</code>合并进来。另一个选项是只从定义好的时间点进行合入，比如说，一次打标签的发布的时候。你也可以使用<a href="https://martinfowler.com/bliki/FeatureToggle.html">feature toggle （功能开关）</a>来隐藏不完整的功能，这样你仍然可以每天合回<code>master</code>。</p>
+<p>不要把自动化分支测试和持续集成混为一谈。Martin Fowler 在<a href="https://martinfowler.com/bliki/FeatureBranch.html">一篇关于功能分支的文章</a>中做了这样的区分。“[人们]说他们在进行 CI，因为他们会在每个分支上的每次提交时都运行构建（也许是使用 CI 服务器）。这是持续构建，是件好事，但这儿并没有集成，所以这不是 CI 。”</p>
+<p>总之，你应该努力避免合并提交，但不是消除它们。你的代码库应该干净，但你的历史需要反映真实发生的情况。开发软件是以小的、混乱的步骤进行的，让你的历史表现这一点是完全可以的。你可以使用工具来查看提交的网络图，来理解创建你代码的混乱历史。如果你 rebase 了代码，历史就不正确了，并且工具也没办法补救，因为它们不能处理变化了的提交标识符（ commit identifiers ）。</p>
+<h1 id="频繁地提交和推送">频繁地提交和推送</h1>
+<p>另一个让你的开发工作更轻松的方法是经常提交。每当你有了一套可用的测试和代码，你就应该提交一次。将工作分割成单独的提交，可以为以后查看你代码的开发人员提供上下文。较小的提交可以让人清楚地明白一个功能是如何发展的。它们可以帮助你回滚到一个特定的时间点，或是仅仅恢复一个代码变更而不是好几个不相关的变更。</p>
+<p>经常提交也有助于你分享你的工作，这很重要，因为这样大家都知道你在做什么。你应该经常推送你的功能分支，即使它还没有做好被审查的准备。通过分享你功能分支或合并请求中的工作，你可以避免团队成员重复工作。在你的工作完成之前分享你的工作，也可以让大家讨论和反馈这些变更。这种反馈可以帮助在审查之前改进代码。</p>
+<h1 id="如何写一个好的提交消息">如何写一个好的提交消息</h1>
+<figure data-type="image" tabindex="15"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_good_commit.png" alt="" loading="lazy"></figure>
+<p>提交消息应该反映你的意图，而不仅仅是提交的内容。你可以在提交中看到改动，所以提交消息应该解释你为什么做这些改动。一个好的提交消息的例子是：“合并模板以减少用户视图中的重复代码”。“change （改变）”、“improve （改进）”、“fix （修复）”、“refactor （重构）”这些词并不能为提交消息增加多少信息。例如，“改进 XML 生成”可以更好地写成 “在 XML 生成中正确转义特殊字符”。如果想了解更多关于提交消息的格式信息，请看<a href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">Tim Pope 的这篇优秀博文</a>。</p>
+<p>为了给提交消息添加更多的上下文，可以考虑添加关于变更源头的信息。例如，GitLab issue 的 URL，或是 Jira 的 issue 编号，为需要变更的详尽上下文的那些用户囊括更多信息。</p>
+<p>例如：</p>
+<pre><code class="language-null">Properly escape special characters in XML generation.
+
+Issue: gitlab.com/gitlab-org/gitlab/-/issues/1
+</code></pre>
+<h1 id="合并前测试">合并前测试</h1>
+<figure data-type="image" tabindex="16"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_ci_mr.png" alt="" loading="lazy"></figure>
+<p>在旧的工作流中，持续集成（ CI ）服务器通常只在<code>master</code>分支上运行测试。开发人员必须确保他们的代码不会破坏<code>master</code>分支。当使用 GitLab flow 时，开发人员从这个<code>master</code>分支创建他们的分支，所以它永远不会被破坏是至关重要的。因此，每个合并请求在被接受之前都必须经过测试。像 Travis CI 和 GitLab CI/CD 这样的 CI 软件会在合并请求中直接显示构建结果，以简化这一过程。</p>
+<p>测试合并请求有一个缺点：CI 服务器只测试功能分支本身，而不会测试合并后的结果。理想情况下，服务器也可以在每次修改后测试<code>master</code>分支。但是，在每次提交到<code>master</code>的时候重新测试，计算成本很高，而且也意味着你要更频繁地等待测试结果。因为功能分支应该是短命的，所以只测试它的风险是可以接受的。如果<code>master</code>中的新提交引起了与功能分支的合并冲突，可以将<code>master</code>合回功能分支，让 CI 服务器重新运行测试。如前所述，如果你的功能分支经常持续几天以上，那么你应该把你的 issue 变得更小。</p>
+<h1 id="使用功能分支">使用功能分支</h1>
+<figure data-type="image" tabindex="17"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_git_pull.png" alt="" loading="lazy"></figure>
+<p>当创建功能分支时，总是基于最新的<code>master</code>分支。如果在你开始之前，你知道你的工作依赖于另一个分支，那也可以基于那个分支。如果在开始之后你需要合入另一个分支，请在合并提交中解释原因。如果你还没有将你的提交推送到一个共享位置，你也可以 rebase<code>master</code>或者其他功能分支来纳入变更。如果你的代码可以正常运作，并且即使不合并上游也可以干净合并的话，那就别再次合并上游。只在有需要的时候才合并，这样可以避免在功能分支中产生合并提交（这些提交最终会在<code>master</code>历史中留下痕迹）。</p>
+<p><a href="https://docs.gitlab.com/ee/topics/gitlab_flow.html">原文地址</a></p>
+<p>译于 2021 年 5 月 8 日，部分内容可能会随着时间的改变有所发展。</p>
+
             </div>
-            <hr>
-            <div class="friends-note">
-              <p><strong>友链格式：</strong></p>
-              <ul>
-                <li>网站名称：枫糖</li>
-                <li>网站地址：<a href="https://blog.maplesugar.space" data-pjax-state="">https://blog.maplesugar.space</a>
-                </li>
-                <li> 网站描述：From rookie to master</li>
-                <li> 网站 Logo / 头像：<a href="https://blog.maplesugar.space/uploads/maple-leaf-avatar.jpg"
-                    data-pjax-state="">https://blog.maplesugar.space/uploads/maple-leaf-avatar.jpg</a></li>
-              </ul>
-            </div>
+            <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong>本文作者：</strong>
+      PEI SHAOPENG
+    </li>
+    <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://peishaopeng.github.io/yi-gitlab-flow-jian-jie-v2ex/" title="[转] [译] GitLab Flow 简介 - V2EX">https://peishaopeng.github.io/yi-gitlab-flow-jian-jie-v2ex/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://peishaopeng.github.io/tag/iNwyW9SQG/"># GitLab Flow</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="群晖nas添加原生cloudflare ddns支持" href="https://peishaopeng.github.io/qun-hui-nas-tian-jia-yuan-sheng-cloudflare-ddns-zhi-chi/">群晖nas添加原生cloudflare ddns支持</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="群晖nas添加原生cloudflare ddns支持" href="https://peishaopeng.github.io/qun-hui-nas-tian-jia-yuan-sheng-cloudflare-ddns-zhi-chi/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="XXL-JOB 任务调度平台 快速上手" href="https://peishaopeng.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/">XXL-JOB 任务调度平台 快速上手</a>
+        <a class="nav-mobile-next" title="XXL-JOB 任务调度平台 快速上手" href="https://peishaopeng.github.io/xxl-job-ren-wu-diao-du-ping-tai-kuai-su-shang-shou/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
             
   
 
-          </section>
+          </div>
         </div>
       </div>
     </div>
@@ -971,6 +1403,36 @@
   // 代码高亮
   hljs.initHighlightingOnLoad();
 
+</script>
+    <div class="light-box" id="light_box"></div>
+<script>
+  let imgs = document.querySelectorAll('.post-body img');
+  let lightBox = document.querySelector('#light_box');
+  lightBox.addEventListener('mousedown', (e) => {
+    e.preventDefault()
+  })
+  lightBox.addEventListener('mousewheel', (e) => {
+    e.preventDefault()
+  })
+  let width = window.innerWidth * 0.8;
+  lightBox.onclick = () => {
+    let img = lightBox.querySelector('img');
+    lightBox.style = '';
+    img && img.remove();
+  }
+  imgs.forEach(item => {
+    item.onclick = function (e) {
+      let lightImg = document.createElement('img');
+      lightImg.src = this.src;
+      lightBox.style = `height: 100%; opacity: 1; background-color: rgba(0, 0, 0, 0.5);cursor: zoom-out;`;
+      lightImg.style = `width: ${width}px; border: 1px solid #fff; border-radius: 2px;`;
+      lightImg.onclick = function () {
+        lightBox.style = '';
+        this.remove();
+      }
+      lightBox.append(lightImg);
+    }
+  })
 </script>
   </div>
 </body>
@@ -2305,7 +2767,6 @@ rm -rf ~/Library/Caches/Homebrew
 </script> -->
 
 <script src="/media/js/mouse/love.js"></script>
-
 
 
 </html>
