@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://peishaopeng.github.io</id>
     <title>bany</title>
-    <updated>2021-09-10T16:57:50.619Z</updated>
+    <updated>2021-09-10T17:00:00.867Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://peishaopeng.github.io"/>
     <link rel="self" href="https://peishaopeng.github.io/atom.xml"/>
@@ -16,8 +16,12 @@
         <link href="https://peishaopeng.github.io/qun-hui-nas-tian-jia-yuan-sheng-cloudflare-ddns-zhi-chi/">
         </link>
         <updated>2021-09-04T15:40:10.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="cloudflare-ddns脚本">cloudflare ddns脚本</h2>
+<p>这是一个来自github的开源项目，配置非常简单，原文链接可以参考**<a href="https://github.com/joshuaavalon/SynologyCloudflareDDNS">Synology Cloudflare DDNS</a>**，下面讲下如何配置</p>
+]]></summary>
         <content type="html"><![CDATA[<h2 id="cloudflare-ddns脚本">cloudflare ddns脚本</h2>
 <p>这是一个来自github的开源项目，配置非常简单，原文链接可以参考**<a href="https://github.com/joshuaavalon/SynologyCloudflareDDNS">Synology Cloudflare DDNS</a>**，下面讲下如何配置</p>
+<!-- more -->
 <p>ssh登录群晖，依次执行下方命令</p>
 <pre><code>
 
@@ -79,9 +83,14 @@
         <link href="https://peishaopeng.github.io/yi-gitlab-flow-jian-jie-v2ex/">
         </link>
         <updated>2021-05-10T10:20:59.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://www.v2ex.com/t/775673">译文原址</a></p>
+<p>GitLab 的官方文章，虽说是简介，翻译成介绍可能好一点？毕竟挺详细的。我感觉是在我看的介绍 Git 工作流的文章中最好的一篇了，方方面面都有提到。翻译真的是个体力活，花了好多个小时。😓</p>
+<figure data-type="image" tabindex="1"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow.png" alt="" loading="lazy"></figure>
+]]></summary>
         <content type="html"><![CDATA[<p><a href="https://www.v2ex.com/t/775673">译文原址</a></p>
 <p>GitLab 的官方文章，虽说是简介，翻译成介绍可能好一点？毕竟挺详细的。我感觉是在我看的介绍 Git 工作流的文章中最好的一篇了，方方面面都有提到。翻译真的是个体力活，花了好多个小时。😓</p>
 <figure data-type="image" tabindex="1"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow.png" alt="" loading="lazy"></figure>
+<!-- more -->
 <p>Git 允许广泛的分支策略和工作流。因此，许多组织使用的工作流都是相当复杂且没有清晰定义的，也没有很好的与问题跟踪系统（ issue tracking systems ）集成在一起。所以，我们提出了 GitLab flow，让它作为一组清晰定义的最佳实践。它结合了<a href="https://en.wikipedia.org/wiki/Feature-driven_development">feature-driven development （功能驱动开发）</a>和带有问题跟踪的<a href="https://martinfowler.com/bliki/FeatureBranch.html">feature branches （功能分支）</a>。</p>
 <p>从其他版本控制系统转到 Git 的组织常常会发现，发展出一套高效的工作流是很困难的。这篇文章描述了 GitLab flow，它集成了一套带有问题跟踪系统的 Git 工作流。它提供了一套可以透明高效地使用 Git 的方法。</p>
 <figure data-type="image" tabindex="2"><img src="https://docs.gitlab.com/ee/topics/img/gitlab_flow_four_stages.png" alt="" loading="lazy"></figure>
